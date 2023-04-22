@@ -9,7 +9,7 @@
 
 ## PHP
 ## Сервера
- - Изучить php сервер
+ - Изучить php сервер!!!!!
  https://www.php.net/manual/ru/features.commandline.webserver.php
  - изучить apach
  - изучить nginx
