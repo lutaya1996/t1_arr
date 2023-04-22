@@ -48,8 +48,3 @@ C:\Windows\system32\drivers\etc
  - Алёна, нахуя нам нужен файлик hosts и где он лежит?
  C:\Windows\system32\drivers\etc
  -определение имени(домен), по которому у нас будет доступен сервер(resolve)
- - 
-.ru.mts.inetcore
-
-
-restapi.insetcore.mts.ru:7846
