@@ -18,11 +18,8 @@ class Main
 
    public function run()
    {
-     
       $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
       beautifulP($_SERVER);
-      // $this->router->route($uri);
-     
    }
 }
 
