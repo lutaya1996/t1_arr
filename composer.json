@@ -1,0 +1,18 @@
+{
+    "name": "pr",
+    "description": "тестовый проект по ООП",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "pr": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "алена"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
