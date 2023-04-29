@@ -6,6 +6,10 @@
    * PSR4
    * composer
    * composer.json изучить файл
+## Простарнство имен
+   * require
+   * require_once   
+   * vendor, autoloadd
    
 
 ## Полезные функции
@@ -33,3 +37,5 @@
 
  ## Пространство имен
     Котеров читай
+
+

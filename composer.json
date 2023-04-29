@@ -1,18 +1,17 @@
 {
-    "name": "pr",
-    "description": "тестовый проект по ООП",
+    "name": "felpp/t1.arr",
     "type": "project",
-    "license": "MIT",
+    "license": "cc",
     "autoload": {
         "psr-4": {
-            "pr": "src/"
+            "tt\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "алена"
+            "name": "alena"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "RC",
     "require": {}
 }
