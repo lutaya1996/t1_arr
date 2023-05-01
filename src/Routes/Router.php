@@ -6,7 +6,7 @@ use tt\Helpers\Printer;
 
 class Router
 {
-   public $templatePath = "templates";
+   public $templatePath = "assets" . DIRECTORY_SEPARATOR . "templates";
 
    public $routes = [
       "/about" => "about.html",
@@ -21,6 +21,7 @@ class Router
     */
    public function route(string $uri)
    {
+
       if (!array_key_exists($uri, $this->routes)) {
          echo file_get_contents($this->templatePath . DIRECTORY_SEPARATOR . $this->routes["404"]);
          Printer::beautifulP($_SERVER);

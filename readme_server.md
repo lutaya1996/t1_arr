@@ -3,6 +3,10 @@
  https://www.php.net/manual/ru/features.commandline.webserver.php
  - изучить apach
 
+ NEW   
+   * RewriteEngine On
+   * RewriteRule 
+
     https://eternalhost.net/blog/hosting/web-server-apache
  - изучить nginx
 
