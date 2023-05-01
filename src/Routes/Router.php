@@ -4,26 +4,39 @@ namespace tt\Routes;
 
 use tt\Helpers\Printer;
 
+const DEFAULT_ERROR_PAGE = 'src/views/404.php';
+
 class Router
 {
+   private $routs;
+   private string $errorPagePath;
+
+   /**
+    * array[string]string
+    */
+   public function __construct($routes)
+   {
+      $this->routs = $routes;
+      $this->errorPagePath = DEFAULT_ERROR_PAGE;
+   }
+
+   public function setErrorPage($path)
+   {
+      $this->errorPagePath = $path;
+   }
+
+   //
    public function run()
    {
-      $routs = [
-         '/' => 'src/views/indexView.php',
-         '/cat' => 'src/views/catView.php',
-         '/articles' => 'src/views/articlesView.php',
-         '/contacts' => 'src/views/contactsView.php',
-      ];
-
+   
       $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-
-      if (!array_key_exists($uri, $routs)) {
-         require 'src/views/404.php';
+      if (!array_key_exists($uri, $this->routs)) {
+         require $this->errorPagePath;
          die();
       }
 
-      require $routs[$uri];
+      require $this->routs[$uri];
    }
 }
 

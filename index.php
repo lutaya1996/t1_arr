@@ -2,11 +2,9 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+use tt\App\Main;
 
-
-use tt\Routes\Router;
-
-(new Router())->run();
+Main::run();
 
 
 
