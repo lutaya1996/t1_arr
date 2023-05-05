@@ -3,13 +3,21 @@
 
 # PHP
 ## PSR
+
+   https://svyatoslav.biz/misc/psr_translation/
    * PSR4
    * composer
+     
+      https://rudocs.ispmanager.com/ispmanager6-business/composer-work 
    * composer.json изучить файл
-## Простарнство имен
+
+      https://habr.com/ru/companies/dataart/articles/255739/
+
+      https://getcomposer.org/doc/01-basic-usage.md
+## Пространство имен
    * require
    * require_once   
-   * vendor, autoloadd
+   * vendor, autoload
 
 ## Работа с файлами и директориями
    * file_get_contents
