@@ -97,7 +97,7 @@
          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
          </button>
-         <?php require "src/views/mainMenu.php";?>
+         <?php require "src/views/components/menus/mainMenu.php";?>
       </nav>
    </div>
    <!-- Navbar End -->

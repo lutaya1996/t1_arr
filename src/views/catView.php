@@ -98,7 +98,7 @@
             <span class="navbar-toggler-icon"></span>
          </button>
          <!-- Подключили файл с менюшкой -->
-         <?php require "src/views/mainMenu.php"; ?>
+         <?php require "src/views/components/menus/mainMenu.php"; ?>
       </nav>
    </div>
    <!-- Navbar End -->
