@@ -5,10 +5,6 @@ $menu = [
    'Мои статьи' => '/articles',
    'Контакты' => '/contacts'
 ];
-
-
-
-
 ?>
 
 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">

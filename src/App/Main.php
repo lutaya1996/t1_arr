@@ -19,8 +19,8 @@ class Main
 
       // Вызываем метод объекта класса Router для переопределния 
       // страницы ошибки
-      $router->setErrorPage('src/views/nakhuiView.php');
-      //$router->setErrorPage('src/views/new404.php');
+      // $router->setErrorPage('src/views/nakhuiView.php');
+      $router->setErrorPage('src/views/new404.php');
 
       // Вызываем метод объекта класса Router для отображения страницы
       $router->run();
