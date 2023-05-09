@@ -1,35 +1,34 @@
 <?php
+
+use tt\Controllers\IndexController;
+
 require_once 'src/views/components/header.php';
+
+/**
+ * @var IndexController
+ */
+$obj = $this;
 ?>
 
 <!-- Carousel Start -->
 <div class="container-fluid p-0">
    <div id="header-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-         <div class="carousel-item active">
-            <img class="w-100" src="assets/img/carousel-1.jpg" alt="Image">
-            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-               <div class="p-3" style="max-width: 900px;">
-                  <h3 class="text-white mb-3 d-none d-sm-block">Best Pet Services</h3>
-                  <h1 class="display-3 text-white mb-3">Keep Your Pet Happy</h1>
-                  <h5 class="text-white mb-3 d-none d-sm-block">Duo nonumy et dolor tempor no et. Diam sit diam sit diam erat</h5>
-                  <a href="" class="btn btn-lg btn-primary mt-3 mt-md-4 px-4">Book Now</a>
-                  <a href="" class="btn btn-lg btn-secondary mt-3 mt-md-4 px-4">Learn More</a>
+         <?php foreach ($obj->slides as $slide) : ?>
+            <div class="carousel-item <?=$slide->showOnFirst?"active":""?>">
+               <img class="w-100" src="<?=$slide->image?>" alt="Image">
+               <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                     <h3 class="text-white mb-3 d-none d-sm-block"><?= $slide->firstHead ?></h3>
+                     <h1 class="display-3 text-white mb-3"><?= $slide->secondHead ?></h1>
+                     <h5 class="text-white mb-3 d-none d-sm-block"><?= $slide->thirdHead ?></h5>
+                     <!-- <a href="" class="btn btn-lg btn-primary mt-3 mt-md-4 px-4">Book Now</a>
+                     <a href="" class="btn btn-lg btn-secondary mt-3 mt-md-4 px-4">Learn More</a> -->
+                  </div>
                </div>
             </div>
-         </div>
-         <div class="carousel-item">
-            <img class="w-100" src="assets/img/carousel-2.jpg" alt="Image">
-            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-               <div class="p-3" style="max-width: 900px;">
-                  <h3 class="text-white mb-3 d-none d-sm-block">Best Pet Services</h3>
-                  <h1 class="display-3 text-white mb-3">Pet Spa & Grooming</h1>
-                  <h5 class="text-white mb-3 d-none d-sm-block">Duo nonumy et dolor tempor no et. Diam sit diam sit diam erat</h5>
-                  <a href="" class="btn btn-lg btn-primary mt-3 mt-md-4 px-4">Book Now</a>
-                  <a href="" class="btn btn-lg btn-secondary mt-3 mt-md-4 px-4">Learn More</a>
-               </div>
-            </div>
-         </div>
+
+         <?php endforeach; ?>
       </div>
       <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
          <div class="btn btn-primary rounded" style="width: 45px; height: 45px;">

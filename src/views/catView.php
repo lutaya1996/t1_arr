@@ -1,5 +1,10 @@
 <?php
+use tt\Controllers\CatController;
 require_once 'src/views/components/header.php';
+/**
+ * @var CatController
+ */
+$obj = $this;
 ?>
 
 
@@ -8,7 +13,7 @@ require_once 'src/views/components/header.php';
    <div class="row pt-5">
       <div class="col-lg-8">
          <div class="d-flex flex-column text-left mb-4">
-            <h4 class="text-secondary mb-3">Blog Detail</h4>
+            <h4 class="text-secondary mb-3"><?=$obj->title?></h4>
             <h1 class="mb-3">Lorem ipsum dolor sit amet</h1>
             <div class="d-index-flex mb-2">
                <span class="mr-3"><i class="fa fa-user text-muted"></i> Admin</span>

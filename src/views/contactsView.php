@@ -1,12 +1,16 @@
 <?php
+use tt\Controllers\ContactsController;
 require_once 'src/views/components/header.php';
+/**
+ * @var ContactsController
+ */
+$obj = $this;
 ?>
-
 
 <!-- Contact Start -->
 <div class="container-fluid pt-5">
    <div class="d-flex flex-column text-center mb-5 pt-5">
-      <h4 class="text-secondary mb-3">Contact Us</h4>
+      <h4 class="text-secondary mb-3"><?=$obj->title?></h4>
       <h1 class="display-4 m-0">Contact For <span class="text-primary">Any Query</span></h1>
    </div>
    <div class="row justify-content-center">
