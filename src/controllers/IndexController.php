@@ -38,8 +38,4 @@ class IndexController extends BaseController
       parent::__construct();
    }
 
-   public function render()
-   {
-      require $this->view;
-   }
 }

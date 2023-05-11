@@ -13,7 +13,7 @@ class Main
 {
    public static function run()
    {
-      // Создаем объект класса Roter и при этом вызывается
+      // Создаем объект класса Roиter и при этом вызывается
       // конструктор
       $router = new Router([
          '/' => new IndexController(),

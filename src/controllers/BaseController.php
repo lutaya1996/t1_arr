@@ -23,7 +23,7 @@ class BaseController
    {
       $this->uri = $uri;
    }
-
+   // метод, подключающий нужную вьюшку
    public function render()
    {
       require $this->view;

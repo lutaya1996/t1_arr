@@ -9,28 +9,24 @@ use tt\Controllers\New404Controller;
 
 class Router
 {
-   // Храним хеш-таблицу с uri  в виде ключей и роутами в виде значений
+   // Указали в доке, что переменная routs должна быть массивом
+   // строк и объектов класса BaseController
    /**
     * @var array[string]BaseController
     */
    private $routs;
-
-   // Храним путь до фала который будем подключать через
-   // require и тем самым отображать
    private BaseController $errorPagePath;
 
-   /**
-    * array[string]string
-    */
    public function __construct($routes)
    {
       // в переменную помещаем хештаблицу(ассоциативный массив или мапа)
       $this->routs = $routes;
-      // по умолчанию устанавливаем страницу для ошибки из константы
+      // по умолчанию устанавливаем страницу для ошибки путем создания
+      // объекта класса ErrorController
       $this->errorPagePath = new ErrorController();
    }
 
-   // метод который позволяет переобпределимть страцицу ошибок
+   // метод который позволяет переопределимть страницу ошибок
    public function setErrorPage(BaseController $path)
    {
       $this->errorPagePath = $path;
@@ -45,8 +41,9 @@ class Router
       // Ищем uri в зарегестрированных роутах
       if (!array_key_exists($uri, $this->routs)) {
          //  если не нашли роут в наших зарегестрированных роутах, то
-         // отображаем страцу ошибки
+         // вызоваем метод установки переменной uri BaseController
          $this->errorPagePath->setUri($uri);
+         // рендерим страницу ошибки 
          $this->errorPagePath->render();
 
          // После отображения страницы
@@ -54,9 +51,11 @@ class Router
          die();
       }
 
-      // Если uri есть в зарегестрированных роутах
-      // то отображем нормальную страницу из зарегестрированных
+      // Если uri есть в зарегестрированных роутах,
+      // то вызываем метод установки $uri того объекта,
+      // чей uri найден 
       $this->routs[$uri]->setUri($uri);
+      // рендерим нужную страницу
       $this->routs[$uri]->render();
    }
 }
