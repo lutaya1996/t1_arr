@@ -1,34 +1,6 @@
 
 
 
-# PHP
-## PSR
-
-   https://svyatoslav.biz/misc/psr_translation/
-   * PSR4
-   * composer
-     
-      https://rudocs.ispmanager.com/ispmanager6-business/composer-work 
-   * composer.json изучить файл
-
-      https://habr.com/ru/companies/dataart/articles/255739/
-
-      https://getcomposer.org/doc/01-basic-usage.md
-## Пространство имен
-   * require
-   * require_once   
-   * vendor, autoload
-
-## Работа с файлами и директориями
-   * file_get_contents
-   * DIRECTORY_SEPARATOR    
-   * другие полезные функции
-   
-## Полезные функции
-
- - выписать интересные функции и описать что они делают и
- какие параметры принимают
-
 
 # Компьтерные сети
 ## DNS
