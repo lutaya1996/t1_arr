@@ -7,6 +7,7 @@ use tt\Controllers\BaseController;
 use tt\Controllers\ErrorController;
 use tt\Controllers\New404Controller;
 
+
 class Router
 {
    // Указали в доке, что переменная routs должна быть массивом
@@ -23,7 +24,7 @@ class Router
       $this->routs = $routes;
       // по умолчанию устанавливаем страницу для ошибки путем создания
       // объекта класса ErrorController
-      $this->errorPagePath = new ErrorController();
+      // $this->errorPagePath = new ErrorController();
    }
 
    // метод который позволяет переопределимть страницу ошибок

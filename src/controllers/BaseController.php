@@ -2,13 +2,16 @@
 
 namespace tt\Controllers;
 
+use tt\DataProvider\DataProvider;
+
 class BaseController
 {
    public $uri;
    protected $view;
    public $menu;
+   public DataProvider $dataProvider;
 
-   public function __construct()
+   public function __construct(DataProvider $dataProvider)
    {
       $this->menu =
          [
@@ -17,6 +20,7 @@ class BaseController
             'Мои статьи' => '/articles',
             'Контакты' => '/contacts'
          ];
+      $this->dataProvider = $dataProvider;
    }
 
    public function setUri(string $uri)

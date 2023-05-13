@@ -3,10 +3,12 @@
 use tt\Controllers\ArticlesController;
 
 require_once 'src/views/components/header.php';
+
 /**
  * @var ArticlesController
  */
 $obj = $this;
+
 ?>
 
 
@@ -19,7 +21,7 @@ $obj = $this;
    <div class="row pb-3">
 
       <?php
-      foreach ($obj->previewArticles as $value) : ?>
+      foreach ($obj->dataProvider->getArticles() as $value) : ?>
          <div class="col-lg-4 mb-4">
             <div class="card border-0 mb-2">
                <img class="card-img-top" src="<?= $value->image ?>" alt="">

@@ -3,12 +3,13 @@
 namespace tt\Controllers;
 
 use tt\Models\Slide;
+use tt\DataProvider\DataProvider;
 
 class IndexController extends BaseController
 {
    public $slides;
 
-   public function __construct()
+   public function __construct(DataProvider $dataProvider)
    {
       $this->view = "src/views/indexView.php";
       $this->slides = [
@@ -35,7 +36,6 @@ class IndexController extends BaseController
          ),
 
       ];
-      parent::__construct();
+      parent::__construct($dataProvider);
    }
-
 }

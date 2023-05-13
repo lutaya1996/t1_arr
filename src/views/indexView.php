@@ -4,11 +4,16 @@ use tt\Controllers\IndexController;
 
 require_once 'src/views/components/header.php';
 
+
 /**
  * @var IndexController
  */
 $obj = $this;
+$obj->dataProvider->deleteArticle(1);
 ?>
+<pre>
+   <?php print_r($_SESSION)?>
+</pre>
 
 <!-- Carousel Start -->
 <div class="container-fluid p-0">
