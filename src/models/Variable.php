@@ -6,6 +6,9 @@ class Variable
    //Сервер
    const SERVER_DOMAIN = "SERVER_DOMAIN";
 
+   //Ссылки
+   const URL_ARTICLES_EDIT = "URL_ARTICLES_EDIT";
+
    //настройки контента
    const INDEX_SERVICE_HEAD1 = "INDEX_SERVICE_HEAD1";
    const INDEX_SERVICE_HEAD2 = "INDEX_SERVICE_HEAD2";

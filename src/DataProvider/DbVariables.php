@@ -34,6 +34,10 @@ class DbVariables
                Variable::SERVER_DOMAIN,
                "http://cat-blog/"
             ),
+            new Variable(
+               Variable::URL_ARTICLES_EDIT,
+               "http://cat-blog/articles/edit"
+            ),
          ];
    }
 }
