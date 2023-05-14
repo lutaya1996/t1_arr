@@ -3,10 +3,10 @@ namespace tt\Models;
 
 class Article
 {
+   public $id;
    public $image;
    public $title;
    public $description;
-   public $id;
 
    public function __construct($image, $title, $description, $id)
    {

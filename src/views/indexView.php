@@ -1,6 +1,9 @@
 <?php
 
 use tt\Controllers\IndexController;
+use tt\DataProvider\DataProvider;
+use tt\Models\Variable;
+
 
 require_once 'src/views/components/header.php';
 
@@ -9,19 +12,18 @@ require_once 'src/views/components/header.php';
  * @var IndexController
  */
 $obj = $this;
-$obj->dataProvider->deleteArticle(1);
+
+//ЗАПОМНИ И ПОГУГЛИ
+// var_dump($_SESSION[tt\DataProvider\KEY_SERVICES]);
 ?>
-<pre>
-   <?php print_r($_SESSION)?>
-</pre>
 
 <!-- Carousel Start -->
 <div class="container-fluid p-0">
    <div id="header-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-         <?php foreach ($obj->slides as $slide) : ?>
-            <div class="carousel-item <?=$slide->showOnFirst?"active":""?>">
-               <img class="w-100" src="<?=$slide->image?>" alt="Image">
+         <?php foreach ($obj->dataProvider->getSlides() as $slide) : ?>
+            <div class="carousel-item <?= $slide->showOnFirst ? "active" : "" ?>">
+               <img class="w-100" src="<?= $slide->image ?>" alt="Image">
                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                   <div class="p-3" style="max-width: 900px;">
                      <h3 class="text-white mb-3 d-none d-sm-block"><?= $slide->firstHead ?></h3>
@@ -179,58 +181,19 @@ $obj->dataProvider->deleteArticle(1);
 <div class="container-fluid bg-light pt-5">
    <div class="container py-5">
       <div class="d-flex flex-column text-center mb-5">
-         <h4 class="text-secondary mb-3">Our Services</h4>
-         <h1 class="display-4 m-0"><span class="text-primary">Premium</span> Pet Services</h1>
+         <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::INDEX_SERVICE_HEAD1) ?></h4>
+         <h1 class="display-4 m-0"><?= $obj->dataProvider->getVariables(Variable::INDEX_SERVICE_HEAD2) ?></h1>
       </div>
       <div class="row pb-3">
-         <div class="col-md-6 col-lg-4 mb-4">
-            <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-               <h3 class="flaticon-house display-3 font-weight-normal text-secondary mb-3"></h3>
-               <h3 class="mb-3">Pet Boarding</h3>
-               <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-               <a class="text-uppercase font-weight-bold" href="">Read More</a>
+         <?php foreach ($obj->dataProvider->getServices() as $service) : ?>
+            <div class="col-md-6 col-lg-4 mb-4">
+               <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+                  <h3 class="<?= $service->iconClass ?> display-3 font-weight-normal text-secondary mb-3"></h3>
+                  <h3 class="mb-3"><?= $service->title ?></h3>
+                  <p><?= $service->description ?></p>
+               </div>
             </div>
-         </div>
-         <div class="col-md-6 col-lg-4 mb-4">
-            <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-               <h3 class="flaticon-food display-3 font-weight-normal text-secondary mb-3"></h3>
-               <h3 class="mb-3">Pet Feeding</h3>
-               <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-               <a class="text-uppercase font-weight-bold" href="">Read More</a>
-            </div>
-         </div>
-         <div class="col-md-6 col-lg-4 mb-4">
-            <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-               <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
-               <h3 class="mb-3">Pet Grooming</h3>
-               <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-               <a class="text-uppercase font-weight-bold" href="">Read More</a>
-            </div>
-         </div>
-         <div class="col-md-6 col-lg-4 mb-4">
-            <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-               <h3 class="flaticon-cat display-3 font-weight-normal text-secondary mb-3"></h3>
-               <h3 class="mb-3">Per Training</h3>
-               <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-               <a class="text-uppercase font-weight-bold" href="">Read More</a>
-            </div>
-         </div>
-         <div class="col-md-6 col-lg-4 mb-4">
-            <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-               <h3 class="flaticon-dog display-3 font-weight-normal text-secondary mb-3"></h3>
-               <h3 class="mb-3">Pet Exercise</h3>
-               <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-               <a class="text-uppercase font-weight-bold" href="">Read More</a>
-            </div>
-         </div>
-         <div class="col-md-6 col-lg-4 mb-4">
-            <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-               <h3 class="flaticon-vaccine display-3 font-weight-normal text-secondary mb-3"></h3>
-               <h3 class="mb-3">Pet Treatment</h3>
-               <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-               <a class="text-uppercase font-weight-bold" href="">Read More</a>
-            </div>
-         </div>
+         <?php endforeach; ?>
       </div>
    </div>
 </div>
