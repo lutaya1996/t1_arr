@@ -61,8 +61,8 @@ $obj = $this;
 <script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
 <!-- Contact Javascript File -->
-<script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/mail/jqBootstrapValidation.min.js"></script>
-<script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/mail/contact.js"></script>
+<!-- <script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/mail/jqBootstrapValidation.min.js"></script> -->
+<!-- <script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/mail/contact.js"></script> -->
 
 <!-- Template Javascript -->
 <script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/js/main.js"></script>

@@ -18,26 +18,27 @@ $obj = $this;
 
 
 
-         <form name="sentMessage" id="contactForm" novalidate="novalidate">
+         <!-- TODO Экшен перенести в Variables -->
+         <form method="post" action="http://cat-blog/articles/edit">
             <?php foreach ($obj->dataProvider->getArticles() as $value) : ?>
                <?php
                $id = $value->id;
                ?>
                <h1><?= $value->title ?></h1>
                <div class="control-group">
-                  <input class="form-control p-1" id="id-<?= $id ?>" value="<?= $id ?>" disabled />
+                  <input type="text" class="form-control p-1" name="id-<?= $id ?>" value="<?= $id ?>" disabled />
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <input class="form-control p-1" id="image-<?= $id ?>" value="<?= $value->image ?>" required="required" data-validation-required-message="Ахуел без картнки?????" />
+                  <input type="text" class="form-control p-1" name="image-<?= $id ?>" value="<?= $value->image ?>" />
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <input class="form-control p-1" id="title-<?= $id ?>" value="<?= $value->title ?>" required="required" data-validation-required-message="Сука где тайтл" />
+                  <input type="text" class="form-control p-1" name="title-<?= $id ?>" value="<?= $value->title ?>" />
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <textarea class="form-control p-4" rows="2" id="description-<?= $id ?>" required="required" data-validation-required-message="F rsfbggnfn"><?= $value->description ?></textarea>
+                  <input type="text" class="form-control p-4" rows="2" name="description-<?= $id ?>" value="<?= $value->description ?>" />
                   <p class="help-block text-danger"></p>
                </div>
 
@@ -47,7 +48,8 @@ $obj = $this;
 
 
             <div>
-               <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
+               <input type="submit" value="Submit">
+               <!-- <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button> -->
             </div>
          </form>
 

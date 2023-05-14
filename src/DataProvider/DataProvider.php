@@ -2,6 +2,7 @@
 
 namespace tt\DataProvider;
 
+use tt\Models\Article;
 use tt\Models\Variable;
 
 const KEY_DB_ON = "DB_ON";
@@ -38,6 +39,15 @@ class DataProvider
       foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
          if ($value->id == $id) {
             unset($_SESSION[KEY_ARTICLES][$key]);
+         }
+      }
+   }
+
+   public function updateArticle(Article $article)
+   {
+      foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
+         if ($value->id == $article->id) {
+            $_SESSION[KEY_ARTICLES][$key] = $article;
          }
       }
    }

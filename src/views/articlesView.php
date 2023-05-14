@@ -15,7 +15,6 @@ $obj = $this;
 
 <!-- Blog Start -->
 <div class="container pt-5">
-   <!--  TODO -->
    <a href="<?=$obj->dataProvider->getVariables(Variable::URL_ARTICLES_EDIT)?>">Редактировать</a>
    <div class="d-flex flex-column text-center mb-5 pt-5">
       <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::ARTICLE_HEAD1) ?></h4>
