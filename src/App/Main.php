@@ -3,12 +3,14 @@
 namespace tt\App;
 
 use tt\Controllers\ArticlesController;
+use tt\Controllers\ArticlesEditController;
 use tt\Controllers\CatController;
 use tt\Controllers\ContactsController;
 use tt\Controllers\IndexController;
 use tt\Controllers\New404Controller;
 use tt\DataProvider\DataProvider;
 use tt\Routes\Router;
+
 
 class Main
 {
@@ -18,10 +20,11 @@ class Main
       // Создаем объект класса Roиter и при этом вызывается
       // конструктор
       $router = new Router([
-         '/' => new IndexController($dataProvider),
-         '/cat' => new CatController($dataProvider),
-         '/articles' => new ArticlesController($dataProvider),
-         '/contacts' => new ContactsController($dataProvider),
+         "/" => new IndexController($dataProvider),
+         "/cat" => new CatController($dataProvider),
+         "/articles" => new ArticlesController($dataProvider),
+         "/articles/edit" => new ArticlesEditController($dataProvider),
+         "/contacts" => new ContactsController($dataProvider),
       ]);
 
       // Вызываем метод объекта класса Router для переопределния 
