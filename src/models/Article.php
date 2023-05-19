@@ -8,12 +8,12 @@ class Article
    public $title;
    public $description;
 
-   public function __construct($image, $title, $description, $id)
+   public function __construct( $id, $image, $title, $description)
    {
+      $this->id = $id;
       $this->image = $image;
       $this->title = $title;
       $this->description = $description;
-      $this->id = $id;
    }
 
 

@@ -48,7 +48,7 @@ $obj = $this;
 
 
             <div>
-               <input type="submit" value="Submit">
+               <input type="submit" value="Редактировать">
                <!-- <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button> -->
             </div>
          </form>

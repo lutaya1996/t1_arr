@@ -3,13 +3,13 @@
 use tt\Controllers\ArticlesController;
 use tt\Models\Variable;
 
+
 require_once 'src/views/components/header.php';
 
 /**
  * @var ArticlesController
  */
 $obj = $this;
-
 ?>
 
 
