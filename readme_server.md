@@ -3,7 +3,8 @@
  https://www.php.net/manual/ru/features.commandline.webserver.php
  - изучить apach
 
- NEW   
+ Изучить:
+   * .htaccess
    * RewriteEngine On
    * RewriteRule 
 

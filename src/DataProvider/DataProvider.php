@@ -10,6 +10,7 @@ const KEY_ARTICLES = "DB_ARTICLES";
 const KEY_SLIDES = "DB_SLIDES";
 const KEY_SERVICES = "DB_SERVICES";
 const KEY_VARIABLES = "DB_VARIABLES";
+const MAIN_MENU = "DB_MAIN_MENU";
 
 class DataProvider
 {
@@ -24,6 +25,13 @@ class DataProvider
          $_SESSION[KEY_SLIDES] = DbSlides::getSlides();
          $_SESSION[KEY_SERVICES] = DbServices::getServices();
          $_SESSION[KEY_VARIABLES] = DbVariables::getVariables();
+         $_SESSION[MAIN_MENU] =
+         [
+            'Главная' => '/',
+            'Котики' => '/cat',
+            'Мои статьи' => '/articles',
+            'Контакты' => '/contacts'
+         ];
       }
    }
 
@@ -75,5 +83,12 @@ class DataProvider
             return $value->value;
          }
       }
+   }
+
+   // *** Функции для работы с главным меню ************************************************************
+
+   public function getMainMenu()
+   {
+      return $_SESSION[MAIN_MENU];
    }
 }

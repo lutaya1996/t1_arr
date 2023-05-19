@@ -1,5 +1,8 @@
 <?php
+
 use tt\Controllers\CatController;
+use tt\Models\Variable;
+
 require_once 'src/views/components/header.php';
 /**
  * @var CatController
@@ -13,8 +16,8 @@ $obj = $this;
    <div class="row pt-5">
       <div class="col-lg-8">
          <div class="d-flex flex-column text-left mb-4">
-            <h4 class="text-secondary mb-3"><?=$obj->title?></h4>
-            <h1 class="mb-3">Lorem ipsum dolor sit amet</h1>
+            <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::CATS_HEAD1) ?></h4>
+            <h1 class="mb-3"><?= $obj->dataProvider->getVariables(Variable::CATS_HEAD2) ?></h1>
             <div class="d-index-flex mb-2">
                <span class="mr-3"><i class="fa fa-user text-muted"></i> Admin</span>
                <span class="mr-3"><i class="fa fa-folder text-muted"></i> Web Design</span>

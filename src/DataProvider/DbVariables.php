@@ -31,6 +31,18 @@ class DbVariables
                "Контакты"
             ),
             new Variable(
+               Variable::CATS_HEAD1,
+               "Наши котики"
+            ),
+            new Variable(
+               Variable::CATS_HEAD2,
+               "Про наших котиков"
+            ),
+            new Variable(
+               Variable::INDEX_SERVICE_HEAD2,
+               "<span class=\"text-primary\">Премиальный</span> Сервис для Питомцев"
+            ),
+            new Variable(
                Variable::SERVER_DOMAIN,
                "http://cat-blog/"
             ),

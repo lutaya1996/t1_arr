@@ -16,6 +16,7 @@ class Main
 {
    public static function run()
    {
+      //Создаем объект класса ДатаПровайдер
       $dataProvider = new DataProvider();
       // Создаем объект класса Roиter и при этом вызывается
       // конструктор

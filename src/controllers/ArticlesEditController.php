@@ -20,7 +20,7 @@ class ArticlesEditController extends BaseController
    // метод, подключающий нужную вьюшку
    public function render()
    {
-      //Printer::beautifulP($_POST);
+      // Printer::beautifulP($_POST);
       if (!empty($_POST) && is_array($_POST)) {
          $this->updateArticles($_POST);
          return;
@@ -31,7 +31,7 @@ class ArticlesEditController extends BaseController
 
    private function updateArticles($request)
    {
-      // Пустой массив соджержит приходящие модели
+      // Пустой массив содержит приходящие модели
       // Ключ массива будет id
       // Значение Моделька
       $requestArticles = [];

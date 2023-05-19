@@ -30,7 +30,7 @@ $obj = $this;
                   <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
                </div>
             </div>
-            <?php require 'src/views/components/menus/footerMenu.php' ?>
+            <?php require "src/views/components/menus/footerMenu.php" ?>
          </div>
       </div>
    </div>

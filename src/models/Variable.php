@@ -1,4 +1,5 @@
 <?php
+
 namespace tt\Models;
 
 class Variable
@@ -15,7 +16,9 @@ class Variable
    const ARTICLE_HEAD1 = "ARTICLE_HEAD1";
    const ARTICLE_HEAD2 = "ARTICLE_HEAD2";
    const CONTACT_HEAD1 = "CONTACT_HEAD1";
-  
+   const CATS_HEAD1 = "CATS_HEAD1";
+   const CATS_HEAD2 = "CATS_HEAD2";
+
    public $key;
    public $value;
 

@@ -8,18 +8,10 @@ class BaseController
 {
    public $uri;
    protected $view;
-   public $menu;
    public DataProvider $dataProvider;
 
    public function __construct(DataProvider $dataProvider)
    {
-      $this->menu =
-         [
-            'Главная' => '/',
-            'Котики' => '/cat',
-            'Мои статьи' => '/articles',
-            'Контакты' => '/contacts'
-         ];
       $this->dataProvider = $dataProvider;
    }
 

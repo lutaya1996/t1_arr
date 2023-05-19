@@ -1,7 +1,6 @@
 <?php
 
 use tt\Controllers\IndexController;
-use tt\DataProvider\DataProvider;
 use tt\Models\Variable;
 
 
@@ -13,8 +12,6 @@ require_once 'src/views/components/header.php';
  */
 $obj = $this;
 
-//ЗАПОМНИ И ПОГУГЛИ
-// var_dump($_SESSION[tt\DataProvider\KEY_SERVICES]);
 ?>
 
 <!-- Carousel Start -->
