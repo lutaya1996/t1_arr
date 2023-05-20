@@ -20,7 +20,7 @@ class ArticlesEditController extends BaseController
    }
 
    // метод, подключающий нужную вьюшку
-   public function render()
+   public function render(array $param)
    {
 //      Printer::beautifulP($_POST);
       if (!empty($_POST) && is_array($_POST)) {

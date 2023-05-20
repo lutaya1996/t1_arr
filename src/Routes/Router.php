@@ -38,13 +38,26 @@ class Router
       // получаем uri запроса
       $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+      foreach ($this->routs as $key => $val) {
+          if (strpos($key, "\d")) {
+              preg_match_all($key,$uri, $rez);
+
+              if (isset($rez[1][0])) {
+                  $this->routs[$key]->setUri($uri);
+                  // рендерим нужную страницу
+                  $this->routs[$key]->render(["id"=>(int)$rez[1][0]]);
+                  die();
+              }
+          }
+      }
+
       // Ищем uri в зарегестрированных роутах
       if (!array_key_exists($uri, $this->routs)) {
          //  если не нашли роут в наших зарегестрированных роутах, то
          // вызоваем метод установки переменной uri BaseController
          $this->errorPagePath->setUri($uri);
          // рендерим страницу ошибки 
-         $this->errorPagePath->render();
+         $this->errorPagePath->render([]);
 
          // После отображения страницы
          // логика больше не нужна, поэтому закрываем скрипт
@@ -56,6 +69,6 @@ class Router
       // чей uri найден 
       $this->routs[$uri]->setUri($uri);
       // рендерим нужную страницу
-      $this->routs[$uri]->render();
+      $this->routs[$uri]->render([]);
    }
 }

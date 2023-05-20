@@ -18,7 +18,7 @@ class ArticleCreateController extends  BaseController
 
         parent::__construct($dataProvider);
     }
-    public function render()
+    public function render(array $param)
     {
         if (!empty($_POST) && is_array($_POST)) {
             $this->createArticle($_POST);
