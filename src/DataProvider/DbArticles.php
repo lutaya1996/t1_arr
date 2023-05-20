@@ -34,14 +34,14 @@ class DbArticles
              false
          ),
          new Article(
-            4,
+            432,
             "https://s11.stc.yc.kpcdn.net/share/i/12/12121744/wr-960.webp",
             "Самый толстый котик Беларуси",
             "Очень тослтый",
              false
          ),
          new Article(
-            5,
+            50,
             "https://www.meme-arsenal.com/memes/6ea0141b0b3c11100f0e7d7cc97d3a4e.jpg",
             "Самый толстый котик Беларуси",
             "Очень тослтый",

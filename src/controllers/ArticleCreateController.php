@@ -2,9 +2,13 @@
 namespace tt\Controllers;
 
 use tt\DataProvider\DataProvider;
+use tt\Helpers\Printer;
+use tt\Models\Article;
 
 class ArticleCreateController extends  BaseController
 {
+    public ?string $hasError;
+
     /**
      * @param DataProvider $dataProvider
      */
@@ -16,10 +20,11 @@ class ArticleCreateController extends  BaseController
     }
     public function render()
     {
-//        if (!empty($_POST) && is_array($_POST)) {
-//            $this->createArticle($_POST);
-//            return;
-//        }
+        if (!empty($_POST) && is_array($_POST)) {
+            $this->createArticle($_POST);
+
+            if(is_null($this->hasError)) {return;}
+        }
 
         require $this->view;
     }
@@ -29,39 +34,31 @@ class ArticleCreateController extends  BaseController
         // Пустой массив содержит приходящие модели
         // Ключ массива будет id
         // Значение Моделька
-        $requestArticles = [];
-        foreach ($request as $key => $value) {
-
-            $id = $this->getNewId();
-
-            switch ($key) {
-                case "image":
-                    $requestArticles[$id]->image = $value;
-                    break;
-                case "title":
-                    $requestArticles[$id]->title = $value;
-                    break;
-                case "description":
-                    $requestArticles[$id]->description = $value;
-                    break;
-                case "active":
-                    $requestArticles[$id]->active = true;
-            }
+        if(empty($request["image"]) || empty($request["title"]) || empty($request["description"])) {
+            $this->hasError = "Все поля должны быть заполнены";
+            return;
         }
+        $id = $this->getNewId();
+        $newArticle = new Article($id,
+                                $request["image"]??"",
+                                $request["title"]??"",
+                                $request["description"]??"",
+                                $request["active"]?true:false);
 
-        foreach ($requestArticles as $value) {
-            $this->dataProvider->createArticle($value);
-        }
+
+        $this->dataProvider->createArticle($newArticle);
 
         header('Location: /articles');
     }
     private  function getNewId() :int
     {
-        $ids = [];
-        foreach ($this->dataProvider->getArticles() as $key => $article) {
-            $ids[] = $key;
+        $maxVal = 0;
+        foreach ($this->dataProvider->getArticles() as $article) {
+            if ($maxVal < $article->id) {
+                $maxVal = $article->id;
+            }
         }
-        return max($ids);
+        return $maxVal+1;
     }
 
 }
