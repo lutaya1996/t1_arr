@@ -20,7 +20,10 @@ $obj = $this;
 
          <!-- TODO Экшен перенести в Variables -->
          <form method="post" action="http://cat-blog/articles/edit">
-            <?php foreach ($obj->dataProvider->getArticles() as $value) : ?>
+            <?php
+            /* @var $value \tt\Models\Article */
+            foreach ($obj->dataProvider->getArticles() as $value) :
+                ?>
                <?php
                $id = $value->id;
                ?>
@@ -29,6 +32,10 @@ $obj = $this;
                   <input type="text" class="form-control p-1" name="id-<?= $id ?>" value="<?= $id ?>" disabled />
                   <p class="help-block text-danger"></p>
                </div>
+                <div class="control-group">
+                    <input type="checkbox" class="form-control p-1" name="active-<?= $id ?>" <?= $value->active?"checked":"" ?> value="Активность статьи" />
+                    <p class="help-block text-danger"></p>
+                </div>
                <div class="control-group">
                   <input type="text" class="form-control p-1" name="image-<?= $id ?>" value="<?= $value->image ?>" />
                   <p class="help-block text-danger"></p>

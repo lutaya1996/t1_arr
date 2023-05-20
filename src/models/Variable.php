@@ -9,6 +9,7 @@ class Variable
 
    //Ссылки
    const URL_ARTICLES_EDIT = "URL_ARTICLES_EDIT";
+   const  URL_ARTICLES_CREATE = "URL_ARTICLES_CREATE";
 
    //настройки контента
    const INDEX_SERVICE_HEAD1 = "INDEX_SERVICE_HEAD1";

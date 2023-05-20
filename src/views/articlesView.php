@@ -15,7 +15,8 @@ $obj = $this;
 
 <!-- Blog Start -->
 <div class="container pt-5">
-   <a href="<?=$obj->dataProvider->getVariables(Variable::URL_ARTICLES_EDIT)?>">Редактировать</a>
+   <a href="<?=$obj->dataProvider->getVariables(Variable::URL_ARTICLES_EDIT)?>">Редактировать</a><br>
+   <a href="<?=$obj->dataProvider->getVariables(Variable::URL_ARTICLES_CREATE)?>">Добавить статью</a>
    <div class="d-flex flex-column text-center mb-5 pt-5">
       <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::ARTICLE_HEAD1) ?></h4>
       <h1 class="display-4 m-0"><?= $obj->dataProvider->getVariables(Variable::ARTICLE_HEAD2) ?></h1>
@@ -23,7 +24,7 @@ $obj = $this;
    <div class="row pb-3">
 
       <?php
-      foreach ($obj->dataProvider->getArticles() as $value) : ?>
+      foreach ($obj->dataProvider->getActiveArticles() as $value) : ?>
          <div class="col-lg-4 mb-4">
             <div class="card border-0 mb-2">
                <img class="card-img-top" src="<?= $value->image ?>" alt="">

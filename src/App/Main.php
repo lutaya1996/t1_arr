@@ -2,6 +2,7 @@
 
 namespace tt\App;
 
+use tt\Controllers\ArticleCreateController;
 use tt\Controllers\ArticlesController;
 use tt\Controllers\ArticlesEditController;
 use tt\Controllers\CatController;
@@ -26,6 +27,7 @@ class Main
          "/articles" => new ArticlesController($dataProvider),
          "/articles/edit" => new ArticlesEditController($dataProvider),
          "/contacts" => new ContactsController($dataProvider),
+          "/articles/create" => new ArticleCreateController($dataProvider)
       ]);
 
       // Вызываем метод объекта класса Router для переопределния 

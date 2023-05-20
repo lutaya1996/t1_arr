@@ -6,10 +6,12 @@ use tt\DataProvider\DataProvider;
 use tt\Helpers\Printer;
 use tt\Models\Article;
 
-use function PHPSTORM_META\type;
 
 class ArticlesEditController extends BaseController
 {
+    /**
+     * @param DataProvider $dataProvider
+     */
    public function __construct(DataProvider $dataProvider)
    {
       $this->view = "src/views/articlesEditView.php";
@@ -20,8 +22,9 @@ class ArticlesEditController extends BaseController
    // метод, подключающий нужную вьюшку
    public function render()
    {
-      // Printer::beautifulP($_POST);
+//      Printer::beautifulP($_POST);
       if (!empty($_POST) && is_array($_POST)) {
+//          var_dump($_POST);
          $this->updateArticles($_POST);
          return;
       }
@@ -43,7 +46,7 @@ class ArticlesEditController extends BaseController
          if (
             !isset($requestArticles[$id])
          ) {
-            $requestArticles[$id] = new Article($id, "", "", "");
+            $requestArticles[$id] = new Article($id, "", "", "", false);
          }
 
          switch ($nameField) {
@@ -56,6 +59,8 @@ class ArticlesEditController extends BaseController
             case "description":
                $requestArticles[$id]->description = $value;
                break;
+            case "active":
+                 $requestArticles[$id]->active = true;
          }
       }
 

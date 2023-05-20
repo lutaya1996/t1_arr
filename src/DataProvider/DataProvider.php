@@ -37,11 +37,36 @@ class DataProvider
 
    // *** Функции для работы со статьями ****************************************************************
 
-   public function getArticles()
+    /**
+     * @return Article[]
+     */
+   public function getArticles(): array
    {
       return $_SESSION[KEY_ARTICLES];
    }
 
+    /**
+     * @return Article[]
+     */
+   public  function  getActiveArticles(): array
+   {
+       $res = [];
+
+       /* @var $value Article */
+       foreach ($_SESSION[KEY_ARTICLES]  as $value)  {
+           if($value->active) {
+               $res[] = $value;
+           }
+       }
+       return  $res;
+   }
+   /**
+    * @param Article $article
+    */
+   public  function  createArticle(Article $article)
+   {
+       $_SESSION[KEY_ARTICLES][] = $article;
+   }
    public function deleteArticle($id)
    {
       foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
@@ -78,11 +103,15 @@ class DataProvider
 
    public function getVariables($variableKey)
    {
-      foreach ($_SESSION[KEY_VARIABLES] as $key => $value) {
+      foreach ($_SESSION[KEY_VARIABLES] as $value) {
+          if (is_null($value)) {
+              continue;
+          }
          if ($value->key == $variableKey) {
             return $value->value;
          }
       }
+      return null;
    }
 
    // *** Функции для работы с главным меню ************************************************************
