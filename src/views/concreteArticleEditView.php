@@ -10,7 +10,8 @@ require_once 'src/views/components/header.php';
  * @var ArticleEditConcreteController
  */
 $obj = $this;
-Printer::beautifulP($param);
+$article = $obj->article;
+$id = $obj->article->id;
 
 ?>
 <h1>Редактируем статью</h1>
@@ -19,35 +20,31 @@ Printer::beautifulP($param);
       <div class="contact-form">
          <div id="success"></div>
 
-
+         <?= $obj->hasError ?? "" ?>
 
          <!-- TODO Экшен перенести в Variables -->
-         <form method="post" action="http://cat-blog/\/articles\/edit\/(\d+)/">
-            
-               <?php
-               $id = $param["id"];
-               ?>
-               <h1><?= $obj->dataProvider->getConcreteArticle($id)->title?></h1>
-               <div class="control-group">
-                  <input type="text" class="form-control p-1" name="id-<?= $obj->dataProvider->getConcreteArticle($id)->id ?>" value="<?= $id ?>" disabled />
-                  <p class="help-block text-danger"></p>
-               </div>
-               <div class="control-group">
-                  <input type="checkbox" class="form-control p-1" name="active-<?= $id ?>" <?= $obj->dataProvider->getConcreteArticle($id)->active ? "checked" : "" ?> value="Активность статьи" />
-                  <p class="help-block text-danger"></p>
-               </div>
-               <div class="control-group">
-                  <input type="text" class="form-control p-1" name="image-<?= $id ?>" value="<?= $obj->dataProvider->getConcreteArticle($id)->image ?>" />
-                  <p class="help-block text-danger"></p>
-               </div>
-               <div class="control-group">
-                  <input type="text" class="form-control p-1" name="title-<?= $id ?>" value="<?= $obj->dataProvider->getConcreteArticle($id)->title ?>" />
-                  <p class="help-block text-danger"></p>
-               </div>
-               <div class="control-group">
-                  <input type="text" class="form-control p-4" rows="2" name="description-<?= $id ?>" value="<?= $obj->dataProvider->getConcreteArticle($id)->description ?>" />
-                  <p class="help-block text-danger"></p>
-               </div>
+         <form method="post" action="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLE_EDIT) . $id ?>">
+            <h1><?= $article->title ?></h1>
+            <div class="control-group">
+               <input type="text" class="form-control p-1" name="id-<?= $article->id ?>" value="<?= $id ?>" disabled />
+               <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+               <input type="checkbox" class="form-control p-1" name="active-<?= $id ?>" <?= $article->active ? "checked" : "" ?> value="Активность статьи" />
+               <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+               <input type="text" class="form-control p-1" name="image-<?= $id ?>" value="<?= $article->image ?>" />
+               <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+               <input type="text" class="form-control p-1" name="title-<?= $id ?>" value="<?= $article->title ?>" />
+               <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+               <input type="text" class="form-control p-4" rows="2" name="description-<?= $id ?>" value="<?= $article->description ?>" />
+               <p class="help-block text-danger"></p>
+            </div>
 
 
             <div>
