@@ -41,6 +41,8 @@ class Router
       foreach ($this->routs as $key => $val) {
           if (strpos($key, "\d")) {
               preg_match_all($key,$uri, $rez);
+           
+            //   Printer::beautifulP($key);
 
               if (isset($rez[1][0])) {
                   $this->routs[$key]->setUri($uri);

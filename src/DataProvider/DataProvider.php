@@ -45,6 +45,18 @@ class DataProvider
       return $_SESSION[KEY_ARTICLES];
    }
 
+   /**
+    * @return Article
+    */
+   public function getConcreteArticle($id): object
+   {
+      foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
+         if ($value->id == $id) {
+           return $value;
+         }
+      }
+   }
+
     /**
      * @return Article[]
      */
@@ -77,6 +89,15 @@ class DataProvider
    }
 
    public function updateArticle(Article $article)
+   {
+      foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
+         if ($value->id == $article->id) {
+            $_SESSION[KEY_ARTICLES][$key] = $article;
+         }
+      }
+   }
+
+   public function updateConcreteArticle(Article $article)
    {
       foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
          if ($value->id == $article->id) {

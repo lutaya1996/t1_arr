@@ -36,7 +36,7 @@ $obj = $this;
                      <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
                   </div>
                   <p><?= $value->description ?></p>
-                  <a class="font-weight-bold" href="">Read More</a>
+                  <a class="font-weight-bold" href="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLE_EDIT) . $value->id?>">Редактировать</a>
                </div>
             </div>
          </div>

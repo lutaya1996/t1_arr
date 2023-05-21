@@ -50,10 +50,14 @@ class DbVariables
                Variable::URL_ARTICLES_EDIT,
                "http://cat-blog/articles/edit"
             ),
-             new Variable(
-                 Variable::URL_ARTICLES_CREATE,
-                 "http://cat-blog/articles/create"
-             )
+            new Variable(
+               Variable::URL_ARTICLES_CREATE,
+               "http://cat-blog/articles/create"
+            ),
+            new Variable(
+               Variable::URL_ARTICLE_EDIT,
+               "http://cat-blog/articles/edit/"
+            )
          ];
    }
 }
