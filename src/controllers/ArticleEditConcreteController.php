@@ -10,8 +10,11 @@ use const tt\DataProvider\KEY_ARTICLES;
 
 class ArticleEditConcreteController extends  BaseController
 {
+    /**
+     * @var Article
+     */
     public $article;
-    public ?string $hasError;
+    public ?string $hasError = null;
 
     /**
      * @param DataProvider $dataProvider
@@ -23,42 +26,42 @@ class ArticleEditConcreteController extends  BaseController
 
     public function render(array $param)
     {
+        
+        $this->article = $this->dataProvider->getConcreteArticle($param["id"]);
 
-        foreach ($this->dataProvider->getArticles() as $article) {
-            if ($param["id"] == $article->id) {
-                $this->article = $article;
-
-                if (!empty($_POST) && is_array($_POST)) {
-                    // echo "!!!";
-                    Printer::beautifulP($_POST);
-                    $this->updateArticle($_POST);
-
-                    if (is_null($this->hasError)) {
-                        return;
-                    }
-                }
-                require "src/views/concreteArticleEditView.php";
-                die();
-            }
+        if (is_null($this->article)) {
+            require "src/views/nakhuiView.php";
+            die();
         }
-        require "src/views/nakhuiView.php";
+
+        if (!empty($_POST) && is_array($_POST)) {
+            $this->updateArticle($_POST);
+        }
+        require "src/views/concreteArticleEditView.php";
+       
     }
 
     private function updateArticle($request)
     {
-
         if (empty($request["image"]) || empty($request["title"]) || empty($request["description"])) {
             $this->hasError = "Все поля должны быть заполнены";
             return;
         }
-        $id = $this->article->id;
-        $newArticle = new Article( $id,
-                                    $request["image"] ?? "",
-                                    $request["title"] ?? "",
-                                    $request["description"] ?? "",
-                                    $request["active"] ? true : false
-                                );
-        $this->dataProvider->updateConcreteArticle($newArticle);
+
+        if(
+            $request["image"] == $this->article->image &&
+            $request["title"] == $this->article->title &&
+            $request["description"] == $this->article->description
+        )  {
+            $this->hasError = "Поля не изменились";
+            return;
+        }
+
+        $this->article->image = $request["image"] ?? "";
+        $this->article->title = $request["title"] ?? "";
+        $this->article->description = $request["description"] ?? "";
+        $this->article->active = $request["active"] ? true : false;
+        $this->dataProvider->updateConcreteArticle($this->article);
 
         header('Location: /articles');
     }

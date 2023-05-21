@@ -48,13 +48,14 @@ class DataProvider
    /**
     * @return Article
     */
-   public function getConcreteArticle($id): object
+   public function getConcreteArticle($id): ?object
    {
       foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
          if ($value->id == $id) {
            return $value;
          }
       }
+      return null;
    }
 
     /**
