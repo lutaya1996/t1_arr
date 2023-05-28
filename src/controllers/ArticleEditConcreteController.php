@@ -11,9 +11,12 @@ use const tt\DataProvider\KEY_ARTICLES;
 class ArticleEditConcreteController extends  BaseController
 {
     /**
-     * @var Article
+     * @var Article $article
      */
-    public $article;
+    public Article  $article;
+    /**
+     * @var string|null
+     */
     public ?string $hasError = null;
 
     /**
@@ -24,6 +27,10 @@ class ArticleEditConcreteController extends  BaseController
         parent::__construct($dataProvider);
     }
 
+    /**
+     * @param array $param
+     * @return void
+     */
     public function render(array $param)
     {
         
@@ -41,7 +48,11 @@ class ArticleEditConcreteController extends  BaseController
        
     }
 
-    private function updateArticle($request)
+    /**
+     * @param array $request
+     * @return void
+     */
+    private function updateArticle(array $request)
     {
         if (empty($request["image"]) || empty($request["title"]) || empty($request["description"])) {
             $this->hasError = "Все поля должны быть заполнены";

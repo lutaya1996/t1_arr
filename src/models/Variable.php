@@ -21,9 +21,15 @@ class Variable
    const CATS_HEAD1 = "CATS_HEAD1";
    const CATS_HEAD2 = "CATS_HEAD2";
 
-   public $key;
-   public $value;
+    /** @var string  */
+   public string $key;
+   /** @var string  */
+   public string $value;
 
+    /**
+     * @param $key
+     * @param $value
+     */
    public function __construct($key, $value)
    {
       $this->key = $key;

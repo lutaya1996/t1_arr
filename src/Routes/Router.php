@@ -14,9 +14,14 @@ class Router
    /**
     * @var array[string]BaseController
     */
-   private $routs;
+   private array $routs;
+
+   /** @var BaseController  */
    private BaseController $errorPagePath;
 
+    /**
+     * @param $routes
+     */
    public function __construct($routes)
    {
       // в переменную помещаем хештаблицу(ассоциативный массив или мапа)
@@ -27,18 +32,31 @@ class Router
    }
 
    // метод который позволяет переопределимть страницу ошибок
+
+    /**
+     * @param BaseController $path
+     * @return void
+     */
    public function setErrorPage(BaseController $path)
    {
       $this->errorPagePath = $path;
    }
 
    // Run - основной блок логики приложения
+
+    /**
+     * @return void
+     */
    public function run()
    {
       // получаем uri запроса
       $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-      foreach ($this->routs as $key => $val) {
+      /**
+       * @var string $key
+       * @var BaseController $val
+       */
+       foreach ($this->routs as $key => $val) {
           if (strpos($key, "\d")) {
               preg_match_all($key,$uri, $rez);
            

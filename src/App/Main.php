@@ -16,12 +16,13 @@ use tt\Routes\Router;
 
 class Main
 {
+    /**
+     * @return void
+     */
    public static function run()
    {
-      //Создаем объект класса ДатаПровайдер
       $dataProvider = new DataProvider();
-      // Создаем объект класса Roиter и при этом вызывается
-      // конструктор
+
       $router = new Router([
          "/" => new IndexController($dataProvider),
          "/cat" => new CatController($dataProvider),

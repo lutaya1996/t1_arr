@@ -4,7 +4,10 @@ use tt\Models\Service;
 
 class DbServices
 {
-   public static function getServices()
+    /**
+     * @return Service[]
+     */
+   public static function getServices(): array
    {
       return 
       [

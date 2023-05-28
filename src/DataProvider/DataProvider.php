@@ -3,6 +3,8 @@
 namespace tt\DataProvider;
 
 use tt\Models\Article;
+use tt\Models\Service;
+use tt\Models\Slide;
 use tt\Models\Variable;
 
 const KEY_DB_ON = "DB_ON";
@@ -14,7 +16,9 @@ const MAIN_MENU = "DB_MAIN_MENU";
 
 class DataProvider
 {
-
+    /**
+     * @return void
+     */
    public function __construct()
    {
       session_start();
@@ -45,9 +49,10 @@ class DataProvider
       return $_SESSION[KEY_ARTICLES];
    }
 
-   /**
-    * @return Article
-    */
+    /**
+     * @param $id
+     * @return object|null
+     */
    public function getConcreteArticle($id): ?object
    {
       foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
@@ -75,11 +80,17 @@ class DataProvider
    }
    /**
     * @param Article $article
+    * @return void
     */
    public  function  createArticle(Article $article)
    {
        $_SESSION[KEY_ARTICLES][] = $article;
    }
+
+    /**
+     * @param $id
+     * @return void
+     */
    public function deleteArticle($id)
    {
       foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
@@ -89,6 +100,10 @@ class DataProvider
       }
    }
 
+    /**
+     * @param Article $article
+     * @return void
+     */
    public function updateArticle(Article $article)
    {
       foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
@@ -98,6 +113,10 @@ class DataProvider
       }
    }
 
+    /**
+     * @param Article $article
+     * @return void
+     */
    public function updateConcreteArticle(Article $article)
    {
       foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
@@ -109,21 +128,31 @@ class DataProvider
 
    // *** Функции для работы со слайдами *****************************************************************
 
-   public function getSlides()
+    /**
+     * @return Slide[]
+     */
+   public function getSlides(): array
    {
       return $_SESSION[KEY_SLIDES];
    }
 
    // *** Функции для работы с сервисами *****************************************************************
 
-   public function getServices()
+    /**
+     * @return Service[]
+     */
+   public function getServices(): array
    {
       return $_SESSION[KEY_SERVICES];
    }
 
    // *** Функции для работы с вариативами *****************************************************************
 
-   public function getVariables($variableKey)
+    /**
+     * @param $variableKey
+     * @return null|string
+     */
+   public function getVariables($variableKey): ?string
    {
       foreach ($_SESSION[KEY_VARIABLES] as $value) {
           if (is_null($value)) {
@@ -138,7 +167,10 @@ class DataProvider
 
    // *** Функции для работы с главным меню ************************************************************
 
-   public function getMainMenu()
+    /**
+     * @return array
+     */
+   public function getMainMenu(): array
    {
       return $_SESSION[MAIN_MENU];
    }

@@ -6,8 +6,10 @@ use tt\Models\Slide;
 
 class DbSlides
 {
-
-   public static function getSlides()
+    /**
+     * @return array
+     */
+   public static function getSlides():array
    {
       return
          [

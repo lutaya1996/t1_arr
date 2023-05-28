@@ -4,8 +4,10 @@ use tt\Models\Article;
 
 class DbArticles
 {
-
-   public static function getArticles()
+    /**
+     * @return Article[]
+     */
+   public static function getArticles(): array
    {
       return
       [

@@ -6,7 +6,10 @@ use tt\Models\Variable;
 
 class DbVariables
 {
-   public static function getVariables()
+    /**
+     * @return Variable[]
+     */
+   public static function getVariables():array
    {
       return
          [

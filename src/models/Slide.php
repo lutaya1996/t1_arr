@@ -4,29 +4,19 @@ namespace tt\Models;
 
 class Slide
 {
-    /**
-     * @var string
-     */
+   /** @var string  */
    public string $image;
 
-    /**
-     * @var string
-     */
+  /** @var string  */
    public string $firstHead;
 
-    /**
-     * @var string
-     */
+    /** @var string  */
    public string $secondHead;
 
-    /**
-     * @var string
-     */
+    /** @var string  */
    public string $thirdHead;
 
-    /**
-     * @var bool
-     */
+    /** @var bool|string  */
    public bool $showOnFirst;
 
     /**
