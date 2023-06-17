@@ -6,9 +6,12 @@ use tt\DataProvider\DataProvider;
 
 class IndexController extends BaseController
 {
+    /**
+     * @param DataProvider $dataProvider
+     */
    public function __construct(DataProvider $dataProvider)
    {
-      $this->view = "src/views/indexView.php";
+      $this->view = "src/Views/indexView.php";
       parent::__construct($dataProvider);
    }
 }

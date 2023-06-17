@@ -2,6 +2,8 @@
 
 https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc.md#1-introduction
 
+https://stackoverflow.com/questions/778564/phpdoc-type-hinting-for-array-of-objects
+
 ## **Описание**
 
 * «PHPDoc» — это раздел документации, в котором содержится информация об аспектах «Структурного элемента».

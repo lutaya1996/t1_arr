@@ -4,7 +4,7 @@ use tt\Controllers\ArticlesController;
 use tt\Models\Variable;
 
 
-require_once 'src/views/components/header.php';
+require_once 'src/Views/components/header.php';
 
 /**
  * @var ArticlesController
@@ -67,5 +67,5 @@ $obj = $this;
 <!-- Blog End -->
 
 <?php
-require_once "src/views/components/footer.php";
+require_once "src/Views/components/footer.php";
 ?>

@@ -14,12 +14,17 @@ class ArticlesEditController extends BaseController
      */
    public function __construct(DataProvider $dataProvider)
    {
-      $this->view = "src/views/articlesEditView.php";
+      $this->view = "src/Views/articlesEditView.php";
 
       parent::__construct($dataProvider);
    }
 
    // метод, подключающий нужную вьюшку
+
+    /**
+     * @param array $param
+     * @return void
+     */
    public function render(array $param)
    {
 //      Printer::beautifulP($_POST);
@@ -32,12 +37,18 @@ class ArticlesEditController extends BaseController
       require $this->view;
    }
 
+    /**
+     * @param $request
+     * @return void
+     */
    private function updateArticles($request)
    {
       // Пустой массив содержит приходящие модели
       // Ключ массива будет id
       // Значение Моделька
       $requestArticles = [];
+
+       /** @var mixed $value */
       foreach ($request as $key => $value) {
          [$nameField, $numberFieldRaw] = explode("-", $key);
 
@@ -64,6 +75,9 @@ class ArticlesEditController extends BaseController
          }
       }
 
+       /**
+        * @var  Article $value
+        */
       foreach ($requestArticles as $value) {
          $this->dataProvider->updateArticle($value);
       }

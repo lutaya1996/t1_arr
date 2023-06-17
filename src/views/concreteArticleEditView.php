@@ -4,7 +4,7 @@ use tt\Controllers\ArticleEditConcreteController;
 use tt\Models\Variable;
 use tt\Helpers\Printer;
 
-require_once 'src/views/components/header.php';
+require_once 'src/Views/components/header.php';
 
 /**
  * @var ArticleEditConcreteController
@@ -58,5 +58,5 @@ $id = $obj->article->id;
    </div>
 </div>
 <?php
-require_once "src/views/components/footer.php";
+require_once "src/Views/components/footer.php";
 ?>

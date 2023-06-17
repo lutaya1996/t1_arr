@@ -1,7 +1,7 @@
 <?php
 use tt\Controllers\ArticleCreateController;
 
-require_once 'src/views/components/header.php';
+require_once 'src/Views/components/header.php';
 /**
  * @var ArticleCreateController $obj
  */
@@ -45,5 +45,5 @@ $obj = $this;
     </div>
 
 <?php
-require_once "src/views/components/footer.php";
+require_once "src/Views/components/footer.php";
 ?>

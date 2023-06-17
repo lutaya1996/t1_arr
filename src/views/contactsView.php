@@ -2,7 +2,7 @@
 use tt\Controllers\ContactsController;
 use tt\Models\Variable;
 
-require_once 'src/views/components/header.php';
+require_once 'src/Views/components/header.php';
 /**
  * @var ContactsController
  */
@@ -49,5 +49,5 @@ $obj = $this;
 
 
 <?php
-require_once "src/views/components/footer.php";
+require_once "src/Views/components/footer.php";
 ?>

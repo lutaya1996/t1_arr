@@ -7,6 +7,9 @@ use tt\Models\Article;
 
 class ArticleCreateController extends  BaseController
 {
+    /**
+     * @var string|null
+     */
     public ?string $hasError;
 
     /**
@@ -14,10 +17,15 @@ class ArticleCreateController extends  BaseController
      */
     public function __construct(DataProvider $dataProvider)
     {
-        $this->view = "src/views/articleCreateView.php";
+        $this->view = "src/Views/articleCreateView.php";
 
         parent::__construct($dataProvider);
     }
+
+    /**
+     * @param array $param
+     * @return void
+     */
     public function render(array $param)
     {
         if (!empty($_POST) && is_array($_POST)) {
@@ -29,6 +37,11 @@ class ArticleCreateController extends  BaseController
         require $this->view;
     }
 
+    /**
+     * @param $request
+     * @return void
+     */
+
     private function createArticle($request)
     {
         // Пустой массив содержит приходящие модели
@@ -38,6 +51,9 @@ class ArticleCreateController extends  BaseController
             $this->hasError = "Все поля должны быть заполнены";
             return;
         }
+        /**
+         * @var int $id
+         */
         $id = $this->getNewId();
         $newArticle = new Article($id,
                                 $request["image"]??"",
@@ -50,6 +66,10 @@ class ArticleCreateController extends  BaseController
 
         header('Location: /articles');
     }
+
+    /**
+     * @return int
+     */
     private  function getNewId() :int
     {
         $maxVal = 0;

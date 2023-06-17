@@ -35,7 +35,7 @@ class Main
 
       // Вызываем метод объекта класса Router для переопределния 
       // страницы ошибки
-      // $router->setErrorPage('src/views/nakhuiView.php');
+      // $router->setErrorPage('src/Views/nakhuiView.php');
       $router->setErrorPage(new New404Controller($dataProvider));
 
       // Вызываем метод объекта класса Router для отображения страницы

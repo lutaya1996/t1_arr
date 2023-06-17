@@ -33,19 +33,18 @@ class ArticleEditConcreteController extends  BaseController
      */
     public function render(array $param)
     {
-        
+
         $this->article = $this->dataProvider->getConcreteArticle($param["id"]);
 
         if (is_null($this->article)) {
-            require "src/views/nakhuiView.php";
+            require "src/nakhuiView.php";
             die();
         }
 
         if (!empty($_POST) && is_array($_POST)) {
             $this->updateArticle($_POST);
         }
-        require "src/views/concreteArticleEditView.php";
-       
+        require "src/Views/concreteArticleEditView.php";
     }
 
     /**
@@ -59,11 +58,11 @@ class ArticleEditConcreteController extends  BaseController
             return;
         }
 
-        if(
+        if (
             $request["image"] == $this->article->image &&
             $request["title"] == $this->article->title &&
             $request["description"] == $this->article->description
-        )  {
+        ) {
             $this->hasError = "Поля не изменились";
             return;
         }

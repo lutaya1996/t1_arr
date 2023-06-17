@@ -10,7 +10,7 @@
 
 <body>
    <h1>Идите потихому нахуй</h1>
-   <?php require "src/views/components/menus/mainMenu.php"; ?>
+   <?php require "src/Views/components/menus/mainMenu.php"; ?>
 </body>
 
 </html>
