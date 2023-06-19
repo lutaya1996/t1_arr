@@ -31,10 +31,11 @@ class DataProvider
          $_SESSION[KEY_VARIABLES] = DbVariables::getVariables();
          $_SESSION[MAIN_MENU] =
          [
-            'Главная' => '/',
-            'Котики' => '/cat',
+            "Главная" => "/",
+            "Услуги и цены" => "/catalog",
             'Мои статьи' => '/articles',
-            'Контакты' => '/contacts'
+            "Контакты" => "/contacts",
+            "Наш блог" => "/blog",
          ];
       }
    }

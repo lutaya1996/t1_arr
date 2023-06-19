@@ -25,7 +25,7 @@ class Main
 
       $router = new Router([
          "/" => new IndexController($dataProvider),
-         "/cat" => new CatController($dataProvider),
+         "/blog" => new CatController($dataProvider),
          "/articles" => new ArticlesController($dataProvider),
          "/articles/edit" => new ArticlesEditController($dataProvider),
          "/contacts" => new ContactsController($dataProvider),
