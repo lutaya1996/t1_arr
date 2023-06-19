@@ -48,113 +48,28 @@ $obj = $this;
 </div>
 <!-- Carousel End -->
 
-
-<!-- Booking Start -->
-<div class="container-fluid bg-light">
-   <div class="container">
-      <div class="row align-items-center">
-         <div class="col-lg-5">
-            <div class="bg-primary py-5 px-4 px-sm-5">
-               <form class="py-5">
-                  <div class="form-group">
-                     <input type="text" class="form-control border-0 p-4" placeholder="Your Name" required="required" />
-                  </div>
-                  <div class="form-group">
-                     <input type="email" class="form-control border-0 p-4" placeholder="Your Email" required="required" />
-                  </div>
-                  <div class="form-group">
-                     <div class="date" id="date" data-target-input="nearest">
-                        <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Date" data-target="#date" data-toggle="datetimepicker" />
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <div class="time" id="time" data-target-input="nearest">
-                        <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Time" data-target="#time" data-toggle="datetimepicker" />
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <select class="custom-select border-0 px-4" style="height: 47px;">
-                        <option selected>Select A Service</option>
-                        <option value="1">Service 1</option>
-                        <option value="2">Service 1</option>
-                        <option value="3">Service 1</option>
-                     </select>
-                  </div>
-                  <div>
-                     <button class="btn btn-dark btn-block border-0 py-3" type="submit">Book Now</button>
-                  </div>
-               </form>
-            </div>
-         </div>
-         <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
-            <h4 class="text-secondary mb-3">Going for a vacation?</h4>
-            <h1 class="display-4 mb-4">Book For <span class="text-primary">Your Pet</span></h1>
-            <p>Labore vero lorem eos sed aliquy ipsum aliquy sed. Vero dolore dolore takima ipsum lorem rebum</p>
-            <div class="row py-2">
-               <div class="col-sm-6">
-                  <div class="d-flex flex-column">
-                     <div class="d-flex align-items-center mb-2">
-                        <h1 class="flaticon-house font-weight-normal text-secondary m-0 mr-3"></h1>
-                        <h5 class="text-truncate m-0">Pet Boarding</h5>
-                     </div>
-                     <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet</p>
-                  </div>
-               </div>
-               <div class="col-sm-6">
-                  <div class="d-flex flex-column">
-                     <div class="d-flex align-items-center mb-2">
-                        <h1 class="flaticon-food font-weight-normal text-secondary m-0 mr-3"></h1>
-                        <h5 class="text-truncate m-0">Pet Feeding</h5>
-                     </div>
-                     <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet</p>
-                  </div>
-               </div>
-               <div class="col-sm-6">
-                  <div class="d-flex flex-column">
-                     <div class="d-flex align-items-center mb-2">
-                        <h1 class="flaticon-grooming font-weight-normal text-secondary m-0 mr-3"></h1>
-                        <h5 class="text-truncate m-0">Pet Grooming</h5>
-                     </div>
-                     <p class="m-0">Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet</p>
-                  </div>
-               </div>
-               <div class="col-sm-6">
-                  <div class="d-flex flex-column">
-                     <div class="d-flex align-items-center mb-2">
-                        <h1 class="flaticon-toy font-weight-normal text-secondary m-0 mr-3"></h1>
-                        <h5 class="text-truncate m-0">Pet Tranning</h5>
-                     </div>
-                     <p class="m-0">Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
-<!-- Booking Start -->
-
+<?php require_once "src/Views/components/bookingService.php"; ?>
 
 <!-- About Start -->
 <div class="container py-5">
    <div class="row py-5">
       <div class="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
-         <h4 class="text-secondary mb-3">About Us</h4>
-         <h1 class="display-4 mb-4"><span class="text-primary">Boarding</span> & <span class="text-secondary">Daycare</span></h1>
-         <h5 class="text-muted mb-3">Amet stet amet ut. Sit no vero vero no dolor. Sed erat ut sea. Just clita ut stet kasd at diam sit erat vero sit.</h5>
-         <p class="mb-4">Dolores lorem lorem ipsum sit et ipsum. Sadip sea amet diam dolore sed et. Sit rebum labore sit sit ut vero no sit. Et elitr stet dolor sed sit et sed ipsum et kasd ut. Erat duo eos et erat sed diam duo</p>
+         <h4 class="text-secondary mb-3">О нас</h4>
+         <h1 class="display-4 mb-4"><span class="text-primary">Содержание</span> & <span class="text-secondary">Дневной уход</span></h1>
+         <h5 class="text-muted mb-3">Мы оказываем комплексные услуги вашим домашним любимцам: собакам и кошкам. </h5>
+         <p class="mb-4">Мы можем предложить Вашим питомцам высококвалифицированную круглосуточную ветеринарную помощь, услуги по осуществлению стильных и гигиенических стрижек собак и кошек.</p>
          <ul class="list-inline">
             <li>
-               <h5><i class="fa fa-check-double text-secondary mr-3"></i>Best In Industry</h5>
+               <h5><i class="fa fa-check-double text-secondary mr-3"></i>Лучшие в индустрии</h5>
             </li>
             <li>
-               <h5><i class="fa fa-check-double text-secondary mr-3"></i>Emergency Services</h5>
+               <h5><i class="fa fa-check-double text-secondary mr-3"></i>Экстренные службы помощи</h5>
             </li>
             <li>
-               <h5><i class="fa fa-check-double text-secondary mr-3"></i>24/7 Customer Support</h5>
+               <h5><i class="fa fa-check-double text-secondary mr-3"></i>Поддержка клиентов 24/7</h5>
             </li>
          </ul>
-         <a href="" class="btn btn-lg btn-primary mt-3 px-4">Learn More</a>
+         <a href="" class="btn btn-lg btn-primary mt-3 px-4">Узнать больше</a>
       </div>
       <div class="col-lg-5">
          <div class="row px-3">
@@ -204,32 +119,32 @@ $obj = $this;
          <img class="img-fluid w-100" src="assets/img/feature.jpg" alt="">
       </div>
       <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
-         <h4 class="text-secondary mb-3">Why Choose Us?</h4>
-         <h1 class="display-4 mb-4"><span class="text-primary">Special Care</span> On Pets</h1>
-         <p class="mb-4">Dolor lorem lorem ipsum sit et ipsum. Sadip sea amet diam sed ut vero no sit. Et elitr stet sed sit sed kasd. Erat duo eos et erat sed diam duo</p>
+         <h4 class="text-secondary mb-3">Почему мы?</h4>
+         <h1 class="display-4 mb-4"><span class="text-primary">Особый уход</span> за животными</h1>
+         <p class="mb-4">Оказываем комплексные услуги вашим домашним любимцам: собакам и кошкам. </p>
          <div class="row py-2">
             <div class="col-6">
                <div class="d-flex align-items-center mb-4">
                   <h1 class="flaticon-cat font-weight-normal text-secondary m-0 mr-3"></h1>
-                  <h5 class="text-truncate m-0">Best In Industry</h5>
+                  <h5 class="text-truncate m-0">Лучшие в индустрии</h5>
                </div>
             </div>
             <div class="col-6">
                <div class="d-flex align-items-center mb-4">
                   <h1 class="flaticon-doctor font-weight-normal text-secondary m-0 mr-3"></h1>
-                  <h5 class="text-truncate m-0">Emergency Services</h5>
+                  <h5 class="text-truncate m-0">Экстренные службы</h5>
                </div>
             </div>
             <div class="col-6">
                <div class="d-flex align-items-center">
                   <h1 class="flaticon-care font-weight-normal text-secondary m-0 mr-3"></h1>
-                  <h5 class="text-truncate m-0">Special Care</h5>
+                  <h5 class="text-truncate m-0">Особый уход</h5>
                </div>
             </div>
             <div class="col-6">
                <div class="d-flex align-items-center">
                   <h1 class="flaticon-dog font-weight-normal text-secondary m-0 mr-3"></h1>
-                  <h5 class="text-truncate m-0">Customer Support</h5>
+                  <h5 class="text-truncate m-0">Поддержка клиентов</h5>
                </div>
             </div>
          </div>
@@ -243,8 +158,8 @@ $obj = $this;
 <div class="container-fluid bg-light pt-5 pb-4">
    <div class="container py-5">
       <div class="d-flex flex-column text-center mb-5">
-         <h4 class="text-secondary mb-3">Pricing Plan</h4>
-         <h1 class="display-4 m-0">Choose the <span class="text-primary">Best Price</span></h1>
+         <h4 class="text-secondary mb-3">Наши цены</h4>
+         <h1 class="display-4 m-0">Выберите<span class="text-primary">лучший тариф</span></h1>
       </div>
       <div class="row">
          <div class="col-lg-4 mb-4">
@@ -252,7 +167,7 @@ $obj = $this;
                <div class="card-header position-relative border-0 p-0 mb-4">
                   <img class="card-img-top" src="assets/img/price-1.jpg" alt="">
                   <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
-                     <h3 class="text-primary mb-3">Basic</h3>
+                     <h3 class="text-primary mb-3">Базовый</h3>
                      <h1 class="display-4 text-white mb-0">
                         <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>49<small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
                      </h1>
@@ -260,14 +175,14 @@ $obj = $this;
                </div>
                <div class="card-body text-center p-0">
                   <ul class="list-group list-group-flush mb-4">
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
-                     <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Spa & Grooming</li>
-                     <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Veterinary Medicine</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Кормление</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Содержание</li>
+                     <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Грумминг и СПА</li>
+                     <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Ветеринарная помощь</li>
                   </ul>
                </div>
                <div class="card-footer border-0 p-0">
-                  <a href="" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                  <a href="" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Выбрать</a>
                </div>
             </div>
          </div>
@@ -276,7 +191,7 @@ $obj = $this;
                <div class="card-header position-relative border-0 p-0 mb-4">
                   <img class="card-img-top" src="assets/img/price-2.jpg" alt="">
                   <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
-                     <h3 class="text-secondary mb-3">Standard</h3>
+                     <h3 class="text-secondary mb-3">Стандарт</h3>
                      <h1 class="display-4 text-white mb-0">
                         <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>99<small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
                      </h1>
@@ -284,14 +199,14 @@ $obj = $this;
                </div>
                <div class="card-body text-center p-0">
                   <ul class="list-group list-group-flush mb-4">
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Spa & Grooming</li>
-                     <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Veterinary Medicine</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Кормление</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Содержание</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Грумминг и СПА</li>
+                     <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Ветеринарная помощи</li>
                   </ul>
                </div>
                <div class="card-footer border-0 p-0">
-                  <a href="" class="btn btn-secondary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                  <a href="" class="btn btn-secondary btn-block p-3" style="border-radius: 0;">Выбрать</a>
                </div>
             </div>
          </div>
@@ -300,7 +215,7 @@ $obj = $this;
                <div class="card-header position-relative border-0 p-0 mb-4">
                   <img class="card-img-top" src="assets/img/price-3.jpg" alt="">
                   <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
-                     <h3 class="text-primary mb-3">Premium</h3>
+                     <h3 class="text-primary mb-3">Премиум</h3>
                      <h1 class="display-4 text-white mb-0">
                         <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>149<small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
                      </h1>
@@ -308,14 +223,14 @@ $obj = $this;
                </div>
                <div class="card-body text-center p-0">
                   <ul class="list-group list-group-flush mb-4">
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Spa & Grooming</li>
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Veterinary Medicine</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Кормление</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Содержание</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Грумминг и СПА</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Ветеринарная помощь</li>
                   </ul>
                </div>
                <div class="card-footer border-0 p-0">
-                  <a href="" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                  <a href="" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Выбрать</a>
                </div>
             </div>
          </div>
@@ -328,8 +243,8 @@ $obj = $this;
 <!-- Team Start -->
 <div class="container mt-5 pt-5 pb-3">
    <div class="d-flex flex-column text-center mb-5">
-      <h4 class="text-secondary mb-3">Team Member</h4>
-      <h1 class="display-4 m-0">Meet Our <span class="text-primary">Team Member</span></h1>
+      <h4 class="text-secondary mb-3">Наша команда</h4>
+      <h1 class="display-4 m-0">Встречайте наших <span class="text-primary">членов команды</span></h1>
    </div>
    <div class="row">
       <div class="col-lg-3 col-md-6">
@@ -409,16 +324,16 @@ $obj = $this;
 <div class="container-fluid bg-light my-5 p-0 py-5">
    <div class="container p-0 py-5">
       <div class="d-flex flex-column text-center mb-5">
-         <h4 class="text-secondary mb-3">Testimonial</h4>
-         <h1 class="display-4 m-0">Our Client <span class="text-primary">Says</span></h1>
+         <h4 class="text-secondary mb-3">Отзывы</h4>
+         <h1 class="display-4 m-0">Отзывы <span class="text-primary">наших клиентов</span></h1>
       </div>
       <div class="owl-carousel testimonial-carousel">
          <div class="bg-white mx-3 p-4">
             <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
                <img class="img-fluid" src="assets/img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
                <div class="ml-3">
-                  <h5>Client Name</h5>
-                  <i>Profession</i>
+                  <h5>Имя клиента</h5>
+                  <i>Профессия</i>
                </div>
             </div>
             <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>

@@ -14,7 +14,7 @@ $obj = $this;
    <div class="row pt-5">
       <div class="col-lg-4 col-md-12 mb-5">
          <h1 class="mb-3 display-5 text-capitalize text-white"><span class="text-primary">Pet</span>Lover</h1>
-         <p class="m-0">Блог о наших кошечках</p>
+         <p class="m-0">Премиальный сервис для питомцев</p>
       </div>
       <div class="col-lg-8 col-md-12">
          <div class="row">
@@ -39,7 +39,7 @@ $obj = $this;
    <div class="row">
       <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
          <p class="m-0 text-white">
-            &copy; <a class="text-white font-weight-bold" href="#">CatBlog</a>. Все права защищены.
+            &copy; <a class="text-white font-weight-bold" href="#">PetLover</a>. Все права защищены.
          </p>
       </div>
    </div>
