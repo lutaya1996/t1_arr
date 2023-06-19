@@ -15,7 +15,7 @@ class DbVariables
          [
             new Variable(
                Variable::INDEX_SERVICE_HEAD1,
-               "Наши сервисы"
+               "Наши услуги"
             ),
             new Variable(
                Variable::INDEX_SERVICE_HEAD2,
@@ -60,7 +60,7 @@ class DbVariables
             new Variable(
                Variable::URL_ARTICLE_EDIT,
                "http://cat-blog/articles/edit/"
-            )
+            ),
          ];
    }
 }

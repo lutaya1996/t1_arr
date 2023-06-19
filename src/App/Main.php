@@ -6,6 +6,7 @@ use tt\Controllers\ArticleCreateController;
 use tt\controllers\ArticleEditConcreteController;
 use tt\Controllers\ArticlesController;
 use tt\Controllers\ArticlesEditController;
+use tt\Controllers\CatalogController;
 use tt\Controllers\CatController;
 use tt\Controllers\ContactsController;
 use tt\Controllers\IndexController;
@@ -25,10 +26,11 @@ class Main
 
       $router = new Router([
          "/" => new IndexController($dataProvider),
+         "/catalog" => new CatalogController($dataProvider),
+         "/contacts" => new ContactsController($dataProvider),
          "/blog" => new CatController($dataProvider),
          "/articles" => new ArticlesController($dataProvider),
          "/articles/edit" => new ArticlesEditController($dataProvider),
-         "/contacts" => new ContactsController($dataProvider),
           "/articles/create" => new ArticleCreateController($dataProvider),
           "/\/articles\/edit\/(\d+)/" => new ArticleEditConcreteController($dataProvider)
       ]);
