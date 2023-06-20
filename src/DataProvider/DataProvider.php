@@ -13,6 +13,8 @@ const KEY_SLIDES = "DB_SLIDES";
 const KEY_SERVICES = "DB_SERVICES";
 const KEY_VARIABLES = "DB_VARIABLES";
 const MAIN_MENU = "DB_MAIN_MENU";
+const KEY_TESTIMONIALS = "DB_TESTIMONIALS";
+const KEY_TEAM = "DB_TEAM";
 
 class DataProvider
 {
@@ -37,6 +39,8 @@ class DataProvider
             "Контакты" => "/contacts",
             "Наш блог" => "/blog",
          ];
+         $_SESSION[KEY_TESTIMONIALS] = DbTestimonials::getTestimonials();
+         $_SESSION[KEY_TEAM] = DbTeam::getTeam();
       }
    }
 
@@ -175,4 +179,25 @@ class DataProvider
    {
       return $_SESSION[MAIN_MENU];
    }
+
+   // ***Функция для работы с отзывами*******************************
+
+   /**
+    * @return array
+    */
+   public function getTestimonials(): array
+   {
+      return $_SESSION[KEY_TESTIMONIALS];
+   }
+
+   //***Функция для работы с командой******** *
+
+   /**
+    * @return array
+    */
+   public function getTeam(): array
+   {
+      return $_SESSION[KEY_TEAM];
+   }
+
 }

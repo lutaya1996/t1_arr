@@ -69,7 +69,7 @@ $obj = $this;
                <h5><i class="fa fa-check-double text-secondary mr-3"></i>Поддержка клиентов 24/7</h5>
             </li>
          </ul>
-         <a href="" class="btn btn-lg btn-primary mt-3 px-4">Узнать больше</a>
+         <a href="<?= $obj->dataProvider->getVariables(Variable::URL_CATALOG) ?>" class="btn btn-lg btn-primary mt-3 px-4">Узнать больше</a>
       </div>
       <div class="col-lg-5">
          <div class="row px-3">
@@ -159,7 +159,7 @@ $obj = $this;
    <div class="container py-5">
       <div class="d-flex flex-column text-center mb-5">
          <h4 class="text-secondary mb-3">Наши цены</h4>
-         <h1 class="display-4 m-0">Выберите<span class="text-primary">лучший тариф</span></h1>
+         <h1 class="display-4 m-0">Выберите <span class="text-primary">лучший тариф</span></h1>
       </div>
       <div class="row">
          <div class="col-lg-4 mb-4">
@@ -247,74 +247,29 @@ $obj = $this;
       <h1 class="display-4 m-0">Встречайте наших <span class="text-primary">членов команды</span></h1>
    </div>
    <div class="row">
-      <div class="col-lg-3 col-md-6">
-         <div class="team card position-relative overflow-hidden border-0 mb-4">
-            <img class="card-img-top" src="assets/img/team-1.jpg" alt="">
-            <div class="card-body text-center p-0">
-               <div class="team-text d-flex flex-column justify-content-center bg-light">
-                  <h5>Mollie Ross</h5>
-                  <i>Founder & CEO</i>
-               </div>
-               <div class="team-social d-flex align-items-center justify-content-center bg-dark">
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-         <div class="team card position-relative overflow-hidden border-0 mb-4">
-            <img class="card-img-top" src="assets/img/team-2.jpg" alt="">
-            <div class="card-body text-center p-0">
-               <div class="team-text d-flex flex-column justify-content-center bg-light">
-                  <h5>Jennifer Page</h5>
-                  <i>Chef Executive</i>
-               </div>
-               <div class="team-social d-flex align-items-center justify-content-center bg-dark">
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+
+      <?php foreach ($obj->dataProvider->getTeam() as $member) : ?>
+
+         <div class="col-lg-3 col-md-6">
+            <div class="team card position-relative overflow-hidden border-0 mb-4">
+               <img class="card-img-top" src="<?= $member->image ?>" alt="">
+               <div class="card-body text-center p-0">
+                  <div class="team-text d-flex flex-column justify-content-center bg-light">
+                     <h5><?= $member->name ?></h5>
+                     <i><?= $member->position ?></i>
+                  </div>
+                  <div class="team-social d-flex align-items-center justify-content-center bg-dark">
+                     <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
+                     <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                     <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                     <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+                  </div>
                </div>
             </div>
          </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-         <div class="team card position-relative overflow-hidden border-0 mb-4">
-            <img class="card-img-top" src="assets/img/team-3.jpg" alt="">
-            <div class="card-body text-center p-0">
-               <div class="team-text d-flex flex-column justify-content-center bg-light">
-                  <h5>Kate Glover</h5>
-                  <i>Doctor</i>
-               </div>
-               <div class="team-social d-flex align-items-center justify-content-center bg-dark">
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-         <div class="team card position-relative overflow-hidden border-0 mb-4">
-            <img class="card-img-top" src="assets/img/team-4.jpg" alt="">
-            <div class="card-body text-center p-0">
-               <div class="team-text d-flex flex-column justify-content-center bg-light">
-                  <h5>Lilly Fry</h5>
-                  <i>Trainer</i>
-               </div>
-               <div class="team-social d-flex align-items-center justify-content-center bg-dark">
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
-               </div>
-            </div>
-         </div>
-      </div>
+
+      <?php endforeach; ?>
+
    </div>
 </div>
 <!-- Team End -->
@@ -328,51 +283,25 @@ $obj = $this;
          <h1 class="display-4 m-0">Отзывы <span class="text-primary">наших клиентов</span></h1>
       </div>
       <div class="owl-carousel testimonial-carousel">
-         <div class="bg-white mx-3 p-4">
-            <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-               <img class="img-fluid" src="assets/img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
-               <div class="ml-3">
-                  <h5>Имя клиента</h5>
-                  <i>Профессия</i>
+         <?php foreach ($obj->dataProvider->getTestimonials() as $val) : ?>
+            <div class="bg-white mx-3 p-4">
+               <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
+                  <img class="img-fluid" src="<?= $val->image ?>" style="width: 80px; height: 80px;" alt="">
+                  <div class="ml-3">
+                     <h5><?= $val->clientName ?></h5>
+                     <i><?= $val->profession ?></i>
+                  </div>
                </div>
+               <p class="m-0"><?= $val->text ?></p>
             </div>
-            <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-         </div>
-         <div class="bg-white mx-3 p-4">
-            <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-               <img class="img-fluid" src="assets/img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
-               <div class="ml-3">
-                  <h5>Client Name</h5>
-                  <i>Profession</i>
-               </div>
-            </div>
-            <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-         </div>
-         <div class="bg-white mx-3 p-4">
-            <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-               <img class="img-fluid" src="assets/img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
-               <div class="ml-3">
-                  <h5>Client Name</h5>
-                  <i>Profession</i>
-               </div>
-            </div>
-            <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-         </div>
-         <div class="bg-white mx-3 p-4">
-            <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-               <img class="img-fluid" src="assets/img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
-               <div class="ml-3">
-                  <h5>Client Name</h5>
-                  <i>Profession</i>
-               </div>
-            </div>
-            <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-         </div>
+         <?php endforeach; ?>
       </div>
    </div>
 </div>
 <!-- Testimonial End -->
 
+
+<!--TODO!!!!!!!!!!!!!-->
 
 <!-- Blog Start -->
 <div class="container pt-5">

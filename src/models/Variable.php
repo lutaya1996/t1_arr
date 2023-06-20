@@ -11,6 +11,7 @@ class Variable
    const URL_ARTICLES_EDIT = "URL_ARTICLES_EDIT";
    const  URL_ARTICLES_CREATE = "URL_ARTICLES_CREATE";
    const URL_ARTICLE_EDIT = "URL_ARTICLE_EDIT";
+   const URL_CATALOG = "URL_CATALOG";
    
    //настройки контента
    const INDEX_SERVICE_HEAD1 = "INDEX_SERVICE_HEAD1";

@@ -61,6 +61,10 @@ class DbVariables
                Variable::URL_ARTICLE_EDIT,
                "http://cat-blog/articles/edit/"
             ),
+            new Variable(
+               Variable::URL_CATALOG,
+               "http://cat-blog/catalog"
+            )
          ];
    }
 }
