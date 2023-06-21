@@ -38,7 +38,7 @@ require_once 'src/Views/components/header.php';
    <div class="container py-5">
       <div class="d-flex flex-column text-center mb-5">
          <h4 class="text-secondary mb-3">Наши цены</h4>
-         <h1 class="display-4 m-0">Выберите<span class="text-primary">лучший тариф</span></h1>
+         <h1 class="display-4 m-0">Выберите <span class="text-primary">лучший тариф</span></h1>
       </div>
       <div class="row">
          <div class="col-lg-4 mb-4">
@@ -122,12 +122,20 @@ require_once 'src/Views/components/header.php';
 <div class="container">
    <div class="row align-items-center">
       <div class="col-lg-5">
-         <img class="img-fluid w-100" src="assets/img/feature.jpg" alt="">
+         <img class="img-fluid w-100" src="https://hotelforcats.ru/images/kakdressirovatkoshku.jpg" alt="">
       </div>
       <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
          <h4 class="text-secondary mb-3">Почему мы?</h4>
          <h1 class="display-4 mb-4"><span class="text-primary">Особый уход</span> за животными</h1>
-         <p class="mb-4">Оказываем комплексные услуги вашим домашним любимцам: собакам и кошкам. </p>
+         <p class="mb-4">
+            <b>PetLover – лучший вариант передержки для домашних питомцев.</b>
+         </p>
+         </p>
+         Если вам нужна качественная гостиница для животных в Москве или в другом городе с безупречной
+         репутацией, отличным сервисом и любящей животных командой котонянь, обращайтесь к услугам PetLover
+         - лучшего отеля для животных в столице с видеонаблюдением. 24 часа в сутки вы сможете наблюдать за своим ненаглядным питомцем и
+         общаться с ним посредством камеры.
+         </p>
          <div class="row py-2">
             <div class="col-6">
                <div class="d-flex align-items-center mb-4">

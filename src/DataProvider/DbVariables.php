@@ -15,7 +15,7 @@ class DbVariables
          [
             new Variable(
                Variable::INDEX_SERVICE_HEAD1,
-               "Наши услуги"
+               "Что мы предлагаем"
             ),
             new Variable(
                Variable::INDEX_SERVICE_HEAD2,

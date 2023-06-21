@@ -2,9 +2,9 @@
 <div class="container-fluid bg-light">
    <div class="container">
       <div class="row align-items-center">
-         <div class="col-lg-5">
+         <!-- <div class="col-lg-5"> -->
 
-            <div class="bg-primary py-5 px-4 px-sm-5">
+            <!-- <div class="bg-primary py-5 px-4 px-sm-5">
                <form class="py-5">
                   <div class="form-group">
                      <input type="text" class="form-control border-0 p-4" placeholder="Ваше имя" required="required" />
@@ -35,9 +35,9 @@
                      <button class="btn btn-dark btn-block border-0 py-3" type="submit">Оставить заявку</button>
                   </div>
                </form>
-            </div>
+            </div> -->
 
-         </div>
+         <!-- </div> -->
          <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
             <h4 class="text-secondary mb-3">Уезжаете в отпуск?</h4>
             <h1 class="display-4 mb-4">Забронируйте <span class="text-primary">для Вашего Питомца</span></h1>
