@@ -11,7 +11,7 @@ $obj = $this;
 ?>
 
 
-<!-- Detail Start -->
+<!-- Main Article Start -->
 <div class="container py-5">
    <div class="row pt-5">
       <div class="col-lg-8">
@@ -30,23 +30,14 @@ $obj = $this;
             <p><?= $obj->dataProvider->getConcreteArticle(0)->description ?></p>
          </div>
 
-         <!-- Detail End
+         <!-- Main Article End-->
 
-            <!-- Articles Start -->
-         <!-- <?php $count = 1;
-               // foreach ($obj->dataProvider->getActiveArticles() as $article) : 
-               ?>
+         <!-- Articles Start -->
 
-            //    <h2 class="mb-4"><?= $article->title ?></h2>
-            //    <img class="img-fluid w-50 float-left mr-4 mb-3" src="" alt=" Image">
 
-            // <?php echo $article->description;
-               //    $count++;
-               //    if ($count == 3) break;
-               // endforeach; 
-               ?>
+         <!-- //    <h2 class="mb-4"><?= $article->title ?></h2>
+            //    <img class="img-fluid w-50 float-left mr-4 mb-3" src="" alt=" Image"> -->
 
-         </div> -->
          <!-- Articles End -->
 
          <!-- Comments Start -->
@@ -87,37 +78,16 @@ $obj = $this;
             </div>
          </div>
 
-         <div style="padding: 30px; background: #f6f6f6;">
-            <h3 class="mb-4">Leave a comment</h3>
-            <form>
-               <div class="form-group">
-                  <label for="name">Name *</label>
-                  <input type="text" class="form-control" id="name">
-               </div>
-               <div class="form-group">
-                  <label for="email">Email *</label>
-                  <input type="email" class="form-control" id="email">
-               </div>
-               <div class="form-group">
-                  <label for="website">Website</label>
-                  <input type="url" class="form-control" id="website">
-               </div>
-
-               <div class="form-group">
-                  <label for="message">Message *</label>
-                  <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-               </div>
-               <div class="form-group mb-0">
-                  <input type="submit" value="Leave Comment" class="btn btn-primary px-3">
-               </div>
-            </form>
-         </div>
+         <!--Comment Form Start-->
+         <?php require_once "src/Views/components/forms/commentForm.php" ?>
       </div>
+      <!--Comment Form End-->
 
       <!-- Comments End -->
 
       <!-- Меню справа Start -->
 
+      <!--Поисковик Start-->
       <div class="col-lg-4 mt-5 mt-lg-0">
          <div class="mb-5">
             <form action="">
@@ -129,8 +99,9 @@ $obj = $this;
                </div>
             </form>
          </div>
+         <!--Поисковик End-->
 
-         <!--categories start-->
+         <!--Categories start-->
 
          <div class="mb-5">
             <h3 class="mb-4">Категории</h3>
@@ -159,9 +130,11 @@ $obj = $this;
          </div>
          <!--categories end-->
 
+         <!--Image Start-->
          <!-- <div class="mb-5">
             <img src="assets/img/blog-1.jpg" alt="" class="img-fluid">
          </div> -->
+         <!--Image End-->
 
          <!--Свежие посты начало-->
          <div class="mb-5">
@@ -187,7 +160,6 @@ $obj = $this;
             <?php endforeach; ?>
 
          </div>
-
          <!--Свежие посты конец-->
 
 
