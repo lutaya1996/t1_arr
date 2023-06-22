@@ -12,6 +12,13 @@ class Variable
    const  URL_ARTICLES_CREATE = "URL_ARTICLES_CREATE";
    const URL_ARTICLE_EDIT = "URL_ARTICLE_EDIT";
    const URL_CATALOG = "URL_CATALOG";
+
+   //Пути для подключения компонентов
+   const PATH_FOOTER = "PATH_FOOTER";
+   const PATH_HEADER = "PATH_HEADER";
+   const PATH_PRICING_PLAN = "PATH_PRICING_PLAN";
+   const PATH_FOOTER_MENU = "PATH_FOOTER_MENU";
+   const PATH_MAIN_MENU = "PATH_MAIN_MENU";
    
    //настройки контента
    const INDEX_SERVICE_HEAD1 = "INDEX_SERVICE_HEAD1";
@@ -21,6 +28,8 @@ class Variable
    const CONTACT_HEAD1 = "CONTACT_HEAD1";
    const CATS_HEAD1 = "CATS_HEAD1";
    const CATS_HEAD2 = "CATS_HEAD2";
+   const PRICING_PLAN_HEAD1 = "PRICING_PLAN_HEAD1";
+   const PRICING_PLAN_HEAD2 = "PRICING_PLAN_HEAD2";
 
     /** @var string  */
    public string $key;

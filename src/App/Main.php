@@ -7,7 +7,7 @@ use tt\Controllers\ArticleEditConcreteController;
 use tt\Controllers\ArticlesController;
 use tt\Controllers\ArticlesEditController;
 use tt\Controllers\CatalogController;
-use tt\Controllers\CatController;
+use tt\Controllers\BlogController;
 use tt\Controllers\ContactsController;
 use tt\Controllers\IndexController;
 use tt\Controllers\New404Controller;
@@ -28,7 +28,7 @@ class Main
          "/" => new IndexController($dataProvider),
          "/catalog" => new CatalogController($dataProvider),
          "/contacts" => new ContactsController($dataProvider),
-         "/blog" => new CatController($dataProvider),
+         "/blog" => new BlogController($dataProvider),
          "/articles" => new ArticlesController($dataProvider),
          "/articles/edit" => new ArticlesEditController($dataProvider),
           "/articles/create" => new ArticleCreateController($dataProvider),

@@ -6,10 +6,10 @@ use tt\Models\Variable;
 
 class DbVariables
 {
-    /**
-     * @return Variable[]
-     */
-   public static function getVariables():array
+   /**
+    * @return Variable[]
+    */
+   public static function getVariables(): array
    {
       return
          [
@@ -35,11 +35,11 @@ class DbVariables
             ),
             new Variable(
                Variable::CATS_HEAD1,
-               "Наши котики"
+               "Наш блог"
             ),
             new Variable(
                Variable::CATS_HEAD2,
-               "Про наших котиков"
+               "Знаете ли Вы, что температура тела у кошек в норме 38-39,5С?"
             ),
             new Variable(
                Variable::INDEX_SERVICE_HEAD2,
@@ -64,6 +64,34 @@ class DbVariables
             new Variable(
                Variable::URL_CATALOG,
                "http://cat-blog/catalog"
+            ),
+            new Variable(
+               Variable::PRICING_PLAN_HEAD1,
+               "Наши цены"
+            ),
+            new Variable(
+               Variable::PRICING_PLAN_HEAD2,
+               "Выберите <span class=\"text-primary\">лучший тариф</span>"
+            ),
+            new Variable(
+               Variable::PATH_FOOTER,
+               "src\Views\components\footer.php"
+            ),
+            new Variable(
+               Variable::PATH_HEADER,
+               "src\Views\components\header.php"
+            ),
+            new Variable(
+               Variable::PATH_PRICING_PLAN,
+               "src\Views\components\pricingPlan.php"
+            ),
+            new Variable(
+               Variable::PATH_FOOTER_MENU,
+               "src\Views\components\footerMenu.php"
+            ),
+            new Variable(
+               Variable::PATH_MAIN_MENU,
+               "src\Views\components\mainMenu.php"
             )
          ];
    }
