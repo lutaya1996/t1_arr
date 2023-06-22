@@ -34,12 +34,8 @@ class DbVariables
                "Контакты"
             ),
             new Variable(
-               Variable::CATS_HEAD1,
+               Variable::BLOG_HEAD,
                "Наш блог"
-            ),
-            new Variable(
-               Variable::CATS_HEAD2,
-               "Знаете ли Вы, что температура тела у кошек в норме 38-39,5С?"
             ),
             new Variable(
                Variable::INDEX_SERVICE_HEAD2,

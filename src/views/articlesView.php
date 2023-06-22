@@ -35,7 +35,7 @@ $obj = $this;
                      <small class="mr-2"><i class="fa fa-folder text-muted"></i> Web Design</small>
                      <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
                   </div>
-                  <p><?= $value->description ?></p>
+                  <p><?= mb_substr($value->description, 0, 150) ?></p>
                   <a class="font-weight-bold" href="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLE_EDIT) . $value->id?>">Редактировать</a>
                </div>
             </div>
