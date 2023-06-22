@@ -3,7 +3,7 @@
 namespace tt\App;
 
 use tt\Controllers\ArticleCreateController;
-use tt\controllers\ArticleEditConcreteController;
+use tt\Controllers\ArticleEditConcreteController;
 use tt\Controllers\ArticlesController;
 use tt\Controllers\ArticlesEditController;
 use tt\Controllers\CatalogController;

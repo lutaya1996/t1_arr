@@ -27,7 +27,7 @@ class ArticlesEditController extends BaseController
      */
    public function render(array $param)
    {
-//      Printer::beautifulP($_POST);
+   //   Printer::beautifulP($_POST);
       if (!empty($_POST) && is_array($_POST)) {
 //          var_dump($_POST);
          $this->updateArticles($_POST);

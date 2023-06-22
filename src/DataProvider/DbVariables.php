@@ -23,7 +23,7 @@ class DbVariables
             ),
             new Variable(
                Variable::ARTICLE_HEAD1,
-               "Мои статьи"
+               "Блог о питомцах"
             ),
             new Variable(
                Variable::ARTICLE_HEAD2,

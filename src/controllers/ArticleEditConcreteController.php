@@ -1,6 +1,6 @@
 <?php
 
-namespace tt\controllers;
+namespace tt\Controllers;
 
 use tt\DataProvider\DataProvider;
 use tt\Helpers\Printer;
@@ -37,7 +37,7 @@ class ArticleEditConcreteController extends  BaseController
         $this->article = $this->dataProvider->getConcreteArticle($param["id"]);
 
         if (is_null($this->article)) {
-            require "src/nakhuiView.php";
+            require "src/Views/nakhuiView.php";
             die();
         }
 
