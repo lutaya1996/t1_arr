@@ -57,7 +57,7 @@ class ArticlesEditController extends BaseController
          if (
             !isset($requestArticles[$id])
          ) {
-            $requestArticles[$id] = new Article($id, "", "", "", false);
+            $requestArticles[$id] = new Article($id, "", "", "", false, "", "", "");
          }
 
          switch ($nameField) {
@@ -72,6 +72,15 @@ class ArticlesEditController extends BaseController
                break;
             case "active":
                  $requestArticles[$id]->active = true;
+            case "author":
+               $requestArticles[$id]->author = $value;
+               break;
+            case "title":
+               $requestArticles[$id]->tag = $value;
+               break;
+            case "description":
+               $requestArticles[$id]->amountOfComments = $value;
+               break;
          }
       }
 

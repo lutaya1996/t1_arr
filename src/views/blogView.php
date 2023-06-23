@@ -19,9 +19,9 @@ $obj = $this;
             <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::BLOG_HEAD) ?></h4>
             <h1 class="mb-3"><?= $obj->dataProvider->getConcreteArticle(0)->title ?></h1>
             <div class="d-index-flex mb-2">
-               <span class="mr-3"><i class="fa fa-user text-muted"></i> Admin</span>
-               <span class="mr-3"><i class="fa fa-folder text-muted"></i> Web Design</span>
-               <span class="mr-3"><i class="fa fa-comments text-muted"></i> 15</span>
+               <span class="mr-3"><i class="fa fa-user text-muted"></i> <?= $obj->dataProvider->getConcreteArticle(0)->author ?></span>
+               <span class="mr-3"><i class="fa fa-folder text-muted"></i> <?= $obj->dataProvider->getConcreteArticle(0)->tag ?></span>
+               <span class="mr-3"><i class="fa fa-comments text-muted"></i> <?= $obj->dataProvider->getConcreteArticle(0)->amountOfComments ?></span>
             </div>
          </div>
 
@@ -40,15 +40,18 @@ $obj = $this;
 
          <!-- Articles End -->
 
+
          <!-- Comments Start -->
 
+         <!--Author of article start-->
          <div class="media bg-light mb-5 p-4 p-md-5">
-            <img src="assets/img/user.jpg" alt="Image" class="img-fluid mr-4 mt-1" style="width: 80px;">
+            <img src="<?= ($obj->dataProvider->getAuthors()[0])->image; ?>" alt="Image" class="img-fluid mr-4 mt-1" style="width: 80px;">
             <div class="media-body">
-               <h5 class="mb-3">John Doe</h5>
-               <p class="m-0">Conset elitr erat vero labore dolor ipsum et diam, tempor eos dolor conset lorem ipsum, ipsum ipsum sit no ut est. Guber ea ipsum erat conset magna kasd amet est magna elitr ea sit justo sed.</p>
+               <h5 class="mb-3"><?= ($obj->dataProvider->getAuthors()[0])->name; ?></h5>
+               <p class="m-0"><?= ($obj->dataProvider->getAuthors()[0])->profession; ?></p>
             </div>
          </div>
+         <!--Author of article End-->
 
          <div class="mb-5">
             <h3 class="mb-4">3 Comments</h3>
@@ -78,129 +81,21 @@ $obj = $this;
             </div>
          </div>
 
-         <!--Comment Form Start-->
+       <!--Comment Form Start-->
          <?php require_once "src/Views/components/forms/commentForm.php" ?>
       </div>
       <!--Comment Form End-->
 
       <!-- Comments End -->
 
+
       <!-- Меню справа Start -->
 
-      <!--Поисковик Start-->
-      <div class="col-lg-4 mt-5 mt-lg-0">
-         <div class="mb-5">
-            <form action="">
-               <div class="input-group">
-                  <input type="text" class="form-control form-control-lg" placeholder="Keyword">
-                  <div class="input-group-append">
-                     <span class="input-group-text bg-transparent text-primary"><i class="fa fa-search"></i></span>
-                  </div>
-               </div>
-            </form>
-         </div>
-         <!--Поисковик End-->
+      <?php require_once "src/Views/components/sideBar.php" ?>
 
-         <!--Categories start-->
-
-         <div class="mb-5">
-            <h3 class="mb-4">Категории</h3>
-            <ul class="list-group">
-               <li class="list-group-item d-flex justify-content-between align-items-center">
-                  Безопасное содержание
-                  <span class="badge badge-primary badge-pill">150</span>
-               </li>
-               <li class="list-group-item d-flex justify-content-between align-items-center">
-                  Галерея
-                  <span class="badge badge-primary badge-pill">131</span>
-               </li>
-               <li class="list-group-item d-flex justify-content-between align-items-center">
-                  Грумминг
-                  <span class="badge badge-primary badge-pill">78</span>
-               </li>
-               <li class="list-group-item d-flex justify-content-between align-items-center">
-                  О кошках
-                  <span class="badge badge-primary badge-pill">56</span>
-               </li>
-               <li class="list-group-item d-flex justify-content-between align-items-center">
-                  О собаках
-                  <span class="badge badge-primary badge-pill">98</span>
-               </li>
-            </ul>
-         </div>
-         <!--categories end-->
-
-         <!--Image Start-->
-         <!-- <div class="mb-5">
-            <img src="assets/img/blog-1.jpg" alt="" class="img-fluid">
-         </div> -->
-         <!--Image End-->
-
-         <!--Свежие посты начало-->
-         <div class="mb-5">
-            <h3 class="mb-4">Свежие посты</h3>
-
-            <?php foreach ($obj->dataProvider->getActiveArticles() as $article) :
-               if ($article->id == 0) continue;
-               $title = $article->title;
-               $description = mb_substr($article->description, 0, 70); ?>
-
-               <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                  <img class="img-fluid" src="<?= $article->image ?>" style="width: 80px; height: 80px;" alt="">
-                  <div class="d-flex flex-column pl-3">
-                     <a class="text-dark mb-2" href=""> <?= "<b>" . $title . "</b>" .  " " . $description . "..."; ?></a>
-                     <div class="d-flex">
-                        <small class="mr-3"><i class="fa fa-user text-muted"></i> Admin</small>
-                        <small class="mr-3"><i class="fa fa-folder text-muted"></i> Web Design</small>
-                        <small class="mr-3"><i class="fa fa-comments text-muted"></i> 15</small>
-                     </div>
-                  </div>
-               </div>
-
-            <?php endforeach; ?>
-
-         </div>
-         <!--Свежие посты конец-->
+      <!-- Меню справа End-->
 
 
-
-         <div class="mb-5">
-            <img src="assets/img/blog-2.jpg" alt="" class="img-fluid">
-         </div>
-
-         <!--Tags Start-->
-
-         <div class="mb-5">
-            <h3 class="mb-4">Tag Cloud</h3>
-            <div class="d-flex flex-wrap m-n1">
-               <a href="" class="btn btn-outline-primary m-1">Design</a>
-               <a href="" class="btn btn-outline-primary m-1">Development</a>
-               <a href="" class="btn btn-outline-primary m-1">Marketing</a>
-               <a href="" class="btn btn-outline-primary m-1">SEO</a>
-               <a href="" class="btn btn-outline-primary m-1">Writing</a>
-               <a href="" class="btn btn-outline-primary m-1">Consulting</a>
-            </div>
-         </div>
-
-         <!--Tags End-->
-
-         <div class="mb-5">
-            <img src="https://flexi.de/ru/flexi-ru/wp-content/uploads/2021/06/blog-hero.jpg" alt="" class="img-fluid">
-         </div>
-         <div>
-            <h3 class="mb-4 text-dark">Питомец — это не просто домашнее животное</h3>
-            Другу, который дает нам так много, хочется отдать столько же. Именно поэтому в нашем блоге вы можете найти советы экспертов
-            на любую тему о домашних животных, а также задать интересующие Вас вопросы в комментариях.
-         </div>
-      </div>
-   </div>
-</div>
-
-<!-- Меню справа End-->
-
-
-
-
-<?php
-require_once "src/Views/components/footer.php";
-?>
+      <?php
+      require_once "src/Views/components/footer.php";
+      ?>

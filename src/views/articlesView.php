@@ -15,8 +15,8 @@ $obj = $this;
 
 <!-- Blog Start -->
 <div class="container pt-5">
-   <a href="<?=$obj->dataProvider->getVariables(Variable::URL_ARTICLES_EDIT)?>">Редактировать</a><br>
-   <a href="<?=$obj->dataProvider->getVariables(Variable::URL_ARTICLES_CREATE)?>">Добавить статью</a>
+   <a href="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLES_EDIT) ?>">Редактировать</a><br>
+   <a href="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLES_CREATE) ?>">Добавить статью</a>
    <div class="d-flex flex-column text-center mb-5 pt-5">
       <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::ARTICLE_HEAD1) ?></h4>
       <h1 class="display-4 m-0"><?= $obj->dataProvider->getVariables(Variable::ARTICLE_HEAD2) ?></h1>
@@ -31,12 +31,12 @@ $obj = $this;
                <div class="card-body bg-light p-4">
                   <h4 class="card-title text-truncate"><?= $value->title ?></h4>
                   <div class="d-flex mb-3">
-                     <small class="mr-2"><i class="fa fa-user text-muted"></i> Admin</small>
-                     <small class="mr-2"><i class="fa fa-folder text-muted"></i> Web Design</small>
-                     <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
+                     <small class="mr-2"><i class="fa fa-user text-muted"></i> <?= $value->author ?></small>
+                     <small class="mr-2"><i class="fa fa-folder text-muted"></i> <?= $value->tag ?></small>
+                     <small class="mr-2"><i class="fa fa-comments text-muted"></i> <?= $value->amountOfComments ?></small>
                   </div>
                   <p><?= mb_substr($value->description, 0, 150) ?></p>
-                  <a class="font-weight-bold" href="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLE_EDIT) . $value->id?>">Редактировать</a>
+                  <a class="font-weight-bold" href="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLE_EDIT) . $value->id ?>">Редактировать</a>
                </div>
             </div>
          </div>

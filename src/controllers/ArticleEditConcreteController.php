@@ -61,7 +61,10 @@ class ArticleEditConcreteController extends  BaseController
         if (
             $request["image"] == $this->article->image &&
             $request["title"] == $this->article->title &&
-            $request["description"] == $this->article->description
+            $request["description"] == $this->article->description &&
+            $request["author"] == $this->article->author &&
+            $request["tag"] == $this->article->tag &&
+            $request["amountOfComments"] == $this->article->amountOfComments
         ) {
             $this->hasError = "Поля не изменились";
             return;
@@ -71,6 +74,9 @@ class ArticleEditConcreteController extends  BaseController
         $this->article->title = $request["title"] ?? "";
         $this->article->description = $request["description"] ?? "";
         $this->article->active = $request["active"] ? true : false;
+        $this->article->author = $request["author"] ?? "";
+        $this->article->tag = $request["tag"] ?? "";
+        $this->article->amountOfComments = $request["amountOfComments"] ?? "";
         $this->dataProvider->updateConcreteArticle($this->article);
 
         header('Location: /articles');

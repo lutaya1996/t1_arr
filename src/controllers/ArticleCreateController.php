@@ -1,4 +1,5 @@
 <?php
+
 namespace tt\Controllers;
 
 use tt\DataProvider\DataProvider;
@@ -31,7 +32,9 @@ class ArticleCreateController extends  BaseController
         if (!empty($_POST) && is_array($_POST)) {
             $this->createArticle($_POST);
 
-            if(is_null($this->hasError)) {return;}
+            if (is_null($this->hasError)) {
+                return;
+            }
         }
 
         require $this->view;
@@ -47,7 +50,10 @@ class ArticleCreateController extends  BaseController
         // Пустой массив содержит приходящие модели
         // Ключ массива будет id
         // Значение Моделька
-        if(empty($request["image"]) || empty($request["title"]) || empty($request["description"])) {
+        if (
+            empty($request["image"]) || empty($request["title"]) || empty($request["description"]) ||
+            empty($request["author"]) || empty($request["tag"]) || empty($request["amountOfComments"])
+        ) {
             $this->hasError = "Все поля должны быть заполнены";
             return;
         }
@@ -55,11 +61,16 @@ class ArticleCreateController extends  BaseController
          * @var int $id
          */
         $id = $this->getNewId();
-        $newArticle = new Article($id,
-                                $request["image"]??"",
-                                $request["title"]??"",
-                                $request["description"]??"",
-                                $request["active"]?true:false);
+        $newArticle = new Article(
+                                    $id,
+                                    $request["image"] ?? "",
+                                    $request["title"] ?? "",
+                                    $request["description"] ?? "",
+                                    $request["active"] ? true : false,
+                                    $request["author"] ?? "",
+                                    $request["tag"] ?? "",
+                                    $request["amountOfComments"] ?? "",
+                                );
 
 
         $this->dataProvider->createArticle($newArticle);
@@ -70,7 +81,7 @@ class ArticleCreateController extends  BaseController
     /**
      * @return int
      */
-    private  function getNewId() :int
+    private  function getNewId(): int
     {
         $maxVal = 0;
         foreach ($this->dataProvider->getArticles() as $article) {
@@ -78,7 +89,6 @@ class ArticleCreateController extends  BaseController
                 $maxVal = $article->id;
             }
         }
-        return $maxVal+1;
+        return $maxVal + 1;
     }
-
 }

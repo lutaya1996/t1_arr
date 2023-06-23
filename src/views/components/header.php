@@ -14,7 +14,7 @@ $obj = $this;
 
 <head>
    <meta charset="utf-8">
-   <title>PetLover - header</title>
+   <title>PetLover - премиальный сервис для питомцев</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
    <meta content="Free HTML Templates" name="keywords">
    <meta content="Free HTML Templates" name="description">

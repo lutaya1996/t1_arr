@@ -20,7 +20,7 @@ $id = $obj->article->id;
       <div class="contact-form">
          <div id="success"></div>
 
-          <?= $obj->hasError ?? "" ?>
+         <?= $obj->hasError ?? "" ?>
 
          <!-- TODO Экшен перенести в Variables -->
          <form method="post" action="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLE_EDIT) . $id ?>">
@@ -43,6 +43,18 @@ $id = $obj->article->id;
             </div>
             <div class="control-group">
                <input type="text" class="form-control p-4" rows="2" name="description" value="<?= $article->description ?>" />
+               <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+               <input type="text" class="form-control p-4" rows="2" name="author" value="<?= $article->author ?>" />
+               <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+               <input type="text" class="form-control p-4" rows="2" name="tag" value="<?= $article->tag ?>" />
+               <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+               <input type="text" class="form-control p-4" rows="2" name="amountOfComments" value="<?= $article->amountOfComments ?>" />
                <p class="help-block text-danger"></p>
             </div>
 

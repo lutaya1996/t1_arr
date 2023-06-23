@@ -10,11 +10,13 @@ require_once 'src/Views/components/header.php';
  */
 $obj = $this;
 ?>
-<h1>Редактируем статьи</h1>
+
 <div class="row justify-content-center">
+
    <div class="col-12 col-sm-8 mb-5">
       <div class="contact-form">
          <div id="success"></div>
+         <h1>Редактируем статьи</h1>
 
 
 
@@ -23,7 +25,7 @@ $obj = $this;
             <?php
             /* @var $value \tt\Models\Article */
             foreach ($obj->dataProvider->getArticles() as $value) :
-                ?>
+            ?>
                <?php
                $id = $value->id;
                ?>
@@ -32,20 +34,32 @@ $obj = $this;
                   <input type="text" class="form-control p-1" name="id-<?= $id ?>" value="<?= $id ?>" disabled />
                   <p class="help-block text-danger"></p>
                </div>
-                <div class="control-group">
-                    <input type="checkbox" class="form-control p-1" name="active-<?= $id ?>" <?= $value->active?"checked":"" ?> value="Активность статьи" />
-                    <p class="help-block text-danger"></p>
-                </div>
+               <div class="control-group">
+                  <input type="checkbox" class="form-control p-1" name="active-<?= $id ?>" <?= $value->active ? "checked" : "" ?> value="Активность статьи" />
+                  <p class="help-block text-danger"></p>
+               </div>
                <div class="control-group">
                   <input type="text" class="form-control p-1" name="image-<?= $id ?>" value="<?= $value->image ?>" />
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <input type="text" class="form-control p-1" name="title-<?= $id ?>" value="<?= $value->title ?>" />
+                  <textarea class="form-control p-4" name="title-<?= $id ?>"><?= $value->title ?>"</textarea>
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <input type="text" class="form-control p-4" rows="2" name="description-<?= $id ?>" value="<?= $value->description ?>" />
+                  <textarea class="form-control p-4" rows="2" name="description-<?= $id ?>"><?= $value->description ?></textarea>
+                  <p class="help-block text-danger"></p>
+               </div>
+               <div class="control-group">
+                  <input type="text" class="form-control p-4" rows="2" name="author-<?= $id ?>" value="<?= $value->author ?>" />
+                  <p class="help-block text-danger"></p>
+               </div>
+               <div class="control-group">
+                  <input type="text" class="form-control p-4" rows="2" name="tag-<?= $id ?>" value="<?= $value->tag ?>" />
+                  <p class="help-block text-danger"></p>
+               </div>
+               <div class="control-group">
+                  <input type="text" class="form-control p-4" rows="2" name="amountOfComments-<?= $id ?>" value="<?= $value->amountOfComments ?>" />
                   <p class="help-block text-danger"></p>
                </div>
 

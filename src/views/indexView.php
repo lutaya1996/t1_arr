@@ -262,12 +262,12 @@ $obj = $this;
                   <div class="card-body bg-light p-4">
                      <h4 class="card-title text-truncate"><?= $article->title ?></h4>
                      <div class="d-flex mb-3">
-                        <small class="mr-2"><i class="fa fa-user text-muted"></i> Admin</small>
-                        <small class="mr-2"><i class="fa fa-folder text-muted"></i> Web Design</small>
-                        <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
+                        <small class="mr-2"><i class="fa fa-user text-muted"></i> <?= $article->author ?></small>
+                        <small class="mr-2"><i class="fa fa-folder text-muted"></i> <?= $article->tag ?></small>
+                        <small class="mr-2"><i class="fa fa-comments text-muted"></i> <?= $article->amountOfComments ?></small>
                      </div>
                      <p><?= mb_substr($article->description, 0, 150) ?></p>
-                     <a class="font-weight-bold" href="">Read More</a>
+                     <a class="font-weight-bold" href="">Читать далее</a>
                   </div>
                </div>
             </div>
