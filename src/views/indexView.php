@@ -8,7 +8,7 @@ require_once 'src/Views/components/header.php';
 
 
 /**
- * @var IndexController
+ * @var IndexController $obj
  */
 $obj = $this;
 

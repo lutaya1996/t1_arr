@@ -5,6 +5,7 @@ namespace tt\DataProvider;
 use tt\Models\Article;
 use tt\Models\Service;
 use tt\Models\Slide;
+use tt\Models\User;
 use tt\Models\Variable;
 
 const KEY_DB_ON = "DB_ON";
@@ -16,6 +17,7 @@ const MAIN_MENU = "DB_MAIN_MENU";
 const KEY_TESTIMONIALS = "DB_TESTIMONIALS";
 const KEY_TEAM = "DB_TEAM";
 const KEY_AUTHORS = "DB_AUTHORS";
+const KEY_USERS = "DB_USERS";
 const KEY_COMMENTS = "DB_COMMENTS";
 const KEY_CATEGORIES = "DB_CATEGORIES";
 const KEY_TAGS = "DB_TAGS";
@@ -46,6 +48,7 @@ class DataProvider
          $_SESSION[KEY_TESTIMONIALS] = DbTestimonials::getTestimonials();
          $_SESSION[KEY_TEAM] = DbTeam::getTeam();
          $_SESSION[KEY_AUTHORS] = DbAuthors::getAuthors();
+         $_SESSION[KEY_USERS] = DbUsers::getUsers();
          $_SESSION[KEY_COMMENTS] = DbComments::getComments();
          $_SESSION[KEY_CATEGORIES] =
             [
@@ -251,6 +254,25 @@ class DataProvider
    {
       return $_SESSION[KEY_AUTHORS];
    }
+
+    //***Функция для работы с Users******* *
+
+    /**
+     * @return array
+     */
+    public function getUsers(): array
+    {
+        return $_SESSION[KEY_USERS];
+    }
+
+    /**
+     * @param User $user
+     * @return void
+     */
+    public  function  createUser(User $user)
+    {
+        $_SESSION[KEY_USERS][] = $user;
+    }
 
    //***Функция для работы с комменатриями******** *
 

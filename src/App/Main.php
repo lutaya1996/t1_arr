@@ -10,6 +10,9 @@ use tt\Controllers\CatalogController;
 use tt\Controllers\BlogController;
 use tt\Controllers\ContactsController;
 use tt\Controllers\IndexController;
+use tt\Controllers\LoginController;
+use tt\Controllers\LogoutController;
+use tt\Controllers\RegisterController;
 use tt\Controllers\New404Controller;
 use tt\DataProvider\DataProvider;
 use tt\Routes\Router;
@@ -32,7 +35,10 @@ class Main
          "/articles" => new ArticlesController($dataProvider),
          "/articles/edit" => new ArticlesEditController($dataProvider),
           "/articles/create" => new ArticleCreateController($dataProvider),
-          "/\/articles\/edit\/(\d+)/" => new ArticleEditConcreteController($dataProvider)
+          "/\/articles\/edit\/(\d+)/" => new ArticleEditConcreteController($dataProvider),
+          "/login" => new LoginController($dataProvider),
+          "/register" => new RegisterController($dataProvider),
+          "/logout" => new LogoutController($dataProvider)
       ]);
 
       // Вызываем метод объекта класса Router для переопределния 

@@ -18,4 +18,8 @@ $obj = $this;
          <?php endif; ?>
       <?php endforeach; ?>
    </div>
+    <div class="navbar-nav mr-auto py-0">
+    <a href="/login" class="nav-item nav-link ">Авторизация</a>
+    <a href="/register" class="nav-item nav-link ">Регистрация</a>
+    </div>
 </div>

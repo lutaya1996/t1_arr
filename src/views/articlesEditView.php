@@ -16,7 +16,7 @@ $obj = $this;
    <div class="col-12 col-sm-8 mb-5">
       <div class="contact-form">
          <div id="success"></div>
-         <h1>Редактируем статьи</h1>
+         <h1 class="text-secondary ">Редактируем статьи</h1>
 
 
 

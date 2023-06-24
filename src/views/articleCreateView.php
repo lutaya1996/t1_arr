@@ -24,27 +24,27 @@ $obj = $this;
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-1" name="image" value="<?= $_POST["image"] ?? "" ?>" placeholder="image" />
+                    <input type="text" class="form-control p-1" name="image" value="<?= $_POST["image"] ?? "" ?>" placeholder="Загрузите картинку" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-1" name="title" value="<?= $_POST["title"] ?? "" ?>" placeholder="title" />
+                    <input type="text" class="form-control p-1" name="title" value="<?= $_POST["title"] ?? "" ?>" placeholder="Заголовок" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-4" rows="2" name="description" value="<?= $_POST["description"] ?? "" ?>" placeholder="decription" />
+                    <input type="text" class="form-control p-4" rows="2" name="description" value="<?= $_POST["description"] ?? "" ?>" placeholder="Текст статьи" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-4" rows="2" name="author" value="<?= $_POST["author"] ?? "" ?>" placeholder="author" />
+                    <input type="text" class="form-control p-4" rows="2" name="author" value="<?= $_POST["author"] ?? "" ?>" placeholder="Автор статьи" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-4" rows="2" name="tag" value="<?= $_POST["tag"] ?? "" ?>" placeholder="tag" />
+                    <input type="text" class="form-control p-4" rows="2" name="tag" value="<?= $_POST["tag"] ?? "" ?>" placeholder="Тег" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-4" rows="2" name="amountOfComments" value="<?= $_POST["amountOfComments"] ?? "" ?>" placeholder="amountOfComments" />
+                    <input type="text" class="form-control p-4" rows="2" name="amountOfComments" value="<?= $_POST["amountOfComments"] ?? "" ?>" placeholder="количество комментариев" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div>
