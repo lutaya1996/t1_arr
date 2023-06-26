@@ -258,7 +258,7 @@ class DataProvider
     //***Функция для работы с Users******* *
 
     /**
-     * @return array
+     * @return User[]
      */
     public function getUsers(): array
     {

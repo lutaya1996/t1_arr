@@ -21,31 +21,31 @@ $obj = $this;
             <div class="contact-form">
                 <div id="success"></div>
 
-                <?= $obj->hasError1 ?? "" ?>
+                <?= $obj->hasError1  ?? $obj->hasError2 ?? ""; ?>
 
 
-
-                <form  method="post"  action="http://cat-blog/register">
+        <!--TODO  ACTION вынеси в вариаблс-->
+                <form method="post" action="/register">
                     <div class="control-group">
-                        <input type="text" class="form-control p-4" value="<?= $_POST["name"] ?? "" ?>" name="name" placeholder="Ваше имя" />
-
+                        <input type="text" class="form-control p-4 mb-3" value="<?= $_POST["name"] ?? "" ?>" name="name" placeholder="Ваше имя" />
+                        <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
-                        <input type="email" class="form-control p-4" value="<?= $_POST["email"] ?? "" ?>" name="email" placeholder="Ваш Email" />
-
+                        <input type="email" class="form-control p-4 mb-3" value="<?= $_POST["email"] ?? "" ?>" name="email" placeholder="Ваш Email" />
+                        <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
-                        <input type="password" class="form-control p-4" value="<?= $_POST["password"] ?? "" ?>" name="password" placeholder="Пароль" />
-
+                        <input type="password" class="form-control p-4 mb-3" value="<?= $_POST["password"] ?? "" ?>" name="password" placeholder="Пароль" />
+                        <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
-                        <input type="password" class="form-control p-4" value="<?= $_POST["confirm-password"] ?? "" ?>" name="confirm-password" placeholder="Повторите пароль" />
-
+                        <input type="password" class="form-control p-4 mb-3" value="<?= $_POST["confirm-password"] ?? "" ?>" name="confirm-password" placeholder="Повторите пароль" />
+                        <p class="help-block text-danger"></p>
                     </div>
 
 
-                    <div>
-                        <button class="btn btn-primary py-3 px-5" type="submit">Зарегистрироваться</button>
+                    <div class="text-center">
+                        <button class="btn btn-primary py-3 px-5 " type="submit">Зарегистрироваться </button>
                     </div>
                 </form>
             </div>

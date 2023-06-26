@@ -31,7 +31,7 @@ class DbVariables
             ),
             new Variable(
                Variable::CONTACT_HEAD1,
-               "Контакты"
+               "Остались вопросы?"
             ),
             new Variable(
                Variable::BLOG_HEAD,
