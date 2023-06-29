@@ -29,8 +29,8 @@ $obj = $this;
                             <p class="help-block text-danger"></p>
                         </div>
 
-                        <div>
-                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Отправить</button>
+                        <div class="text-center">
+                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Войти</button>
                         </div>
                     </form>
                 </div>

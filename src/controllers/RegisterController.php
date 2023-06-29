@@ -4,17 +4,12 @@ namespace tt\Controllers;
 
 use tt\DataProvider\DataProvider;
 use tt\Helpers\Printer;
+use tt\Helpers\ValidateInputs;
 use tt\Models\User;
 use const tt\DataProvider\KEY_USERS;
 
 class RegisterController extends  BaseController
 {
-    /**
-     * @var string
-     */
-    public string $hasError1;
-    public string  $hasError2;
-
     /**
      * @param DataProvider $dataProvider
      */
@@ -31,12 +26,10 @@ class RegisterController extends  BaseController
      */
     public function render(array $param)
     {
-        if (!empty($_POST) && is_array($_POST)) {
+        if (!empty($_POST)) {
+
             $this->createUser($_POST);
 
-            if (isset($this->hasError1) || isset($this->hasError2)) {
-                return;
-            }
         }
 
         require $this->view;
@@ -51,40 +44,92 @@ class RegisterController extends  BaseController
         // Пустой массив содержит приходящие модели
         // Ключ массива будет id
         // Значение Моделька
-        if (
-            empty($request["name"]) || empty($request["email"]) || empty($request["password"]) ||
-            empty($request["confirm-password"])
-        ) {
-            $this->hasError1 = "Все поля должны быть заполнены.";
-            return;
-        }
-        elseif (
-            $request["password"] !== $request["confirm-password"]
-        ) {
-            $this->hasError2 = "Введенные пароли не совпадают.";
-            return;
-        }
+        $error = $this->checkForEmptyInputs($request);
+        if(!empty($error)) return;
 
         /**
          * @var int $id
          */
         $id = $this->getNewId();
+        /**
+         * @var string
+         */
+        $name = ValidateInputs::getNormalData($request["name"]);
+        /**
+         * @var string
+         */
+        $email = ValidateInputs::getNormalData($request["email"]);
+        /**
+         * @var string
+         */
+        $password = ValidateInputs::getNormalData($request["password"]);
 
         /**
          * @var User $newUser
          */
         $newUser = new User(
-            $id,
-            $request["name"] ?? "",
-            $request["email"] ?? "",
-            $request["password"] ?? "",
+                            $id,
+                            $name ?? "",
+                            $email ?? "",
+                            $password ?? "",
         );
 
 
         $this->dataProvider->createUser($newUser);
-//        Printer::beautifulP($_SESSION[KEY_USERS]);
 
-//        header('Location: /');
+        header("Location: /");
+        exit();
+    }
+
+    /**
+     * @param array $request
+     * @return array
+     */
+    public  function checkForEmptyInputs(array $request): array
+    {
+        $errors = [];
+
+            if (empty($request["name"])) {
+                $errors["name"] = "Пожалуйста, введите имя!";
+            } else $errors["name"] = "";
+
+            if (empty($request["email"])) {
+                $errors["email"] = "Пожалуйста, введите email!";
+            } else $errors["email"] = "";
+
+            if (empty($request["password"])) {
+                $errors["password"] = "Пожалуйста, введите пароль!";
+            } else $errors["password"] = "";
+
+            if (empty($request["confirm-password"])) {
+                $errors["confirm-password"] = "Пожалуйста, повторите пароль!";
+            } else $errors["confirm-password"] = "";
+
+            if (!empty($request["password"]) && !empty($request["confirm-password"]) &&
+                $request["password"] !== $request["confirm-password"]
+            ) {
+                $errors["same"] = "Введенные пароли не совпадают.";
+        } else $errors["same"] = "";
+
+        return $errors;
+    }
+
+    public  function checkData($request): string
+    {
+        $name = ValidateInputs::getNormalData($request["name"]);
+        if (!preg_match("/^([А-ЯЁ]{1}[а-яё]{29})|([A-Z]{1}[a-z]{29})$/u",$name)) {
+            return "Введите корректное имя";
+        }
+
+        $email = ValidateInputs::getNormalData($request["email"]);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return "Некорректно введён email";
+        }
+
+        $password = ValidateInputs::getNormalData($request["password"]);
+         if (!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,12}$/u",$password)) {
+             return "Некорректный пароль";
+         }
     }
 
     /**

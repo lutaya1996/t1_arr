@@ -32,7 +32,7 @@ class ArticleCreateController extends  BaseController
         if (!empty($_POST) && is_array($_POST)) {
             $this->createArticle($_POST);
 
-            if (is_null($this->hasError)) {
+            if (!isset($this->hasError)) {
                 return;
             }
         }
@@ -66,7 +66,7 @@ class ArticleCreateController extends  BaseController
                                     $request["image"] ?? "",
                                     $request["title"] ?? "",
                                     $request["description"] ?? "",
-                                    $request["active"] ? true : false,
+                                    isset($request["active"]) ? true : false,
                                     $request["author"] ?? "",
                                     $request["tag"] ?? "",
                                     $request["amountOfComments"] ?? "",
@@ -75,7 +75,9 @@ class ArticleCreateController extends  BaseController
 
         $this->dataProvider->createArticle($newArticle);
 
-        header('Location: /articles');
+        Printer::beautifulP($_POST);
+
+        // header('Location: /articles');
     }
 
     /**

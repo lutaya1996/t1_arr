@@ -59,7 +59,7 @@ $id = $obj->article->id;
             </div>
 
 
-            <div>
+            <div class="text-center">
                <input type="submit" value="Редактировать">
                <!-- <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button> -->
             </div>
