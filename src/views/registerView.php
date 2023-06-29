@@ -8,7 +8,14 @@ require_once "src/Views/components/header.php";
  * @var RegisterController $obj
  */
 $obj = $this;
+
+//Массив с ошибками, если какие-то поля пустые
+/** @var array $errors */
 $errors = $obj->checkForEmptyInputs($_POST);
+
+//Массив с ошибками, если какие-то поля заполнены неверно
+/** @var array $invalidData */
+$invalidData = $obj->checkData($_POST);
 
 ?>
 
@@ -21,7 +28,6 @@ $errors = $obj->checkForEmptyInputs($_POST);
         <div class="col-12 col-sm-8 mb-5">
             <div class="contact-form">
                 <div id="success"></div>
-<!--                <h4 class="display-12 m-3"> <span style="color:red" class="error">--><?php //echo empty($_POST) ? "" : $obj->checkForEmptyInputs($_POST) ;?><!--</span></h4>-->
 
         <!--TODO  ACTION вынеси в вариаблс-->
                 <form method="post" action="/register">
@@ -32,16 +38,22 @@ $errors = $obj->checkForEmptyInputs($_POST);
                         <span style="color:red">*</span>
                         <input type="text" class="form-control p-4 mb-1" value="<?= $_POST["name"] ?? "" ?>" name="name" placeholder="Ваше имя" required="true"/>
                         <label style="color:red" class="error"><?php echo empty($_POST) ? "" : $errors["name"] ;?></label>
+                        <label style="color:red" class="error"><?php echo empty($_POST) ? "" : $invalidData["name"] ;?></label>
+                        <label class="text">Используйте ТОЛЬКО латиницу или ТОЛЬКО кириллицу. Первая буква имени должна быть в верхнем регистре, а все остальные в нижнем.</label>
                     </div>
                     <div class="control-group">
                         <span style="color:red">*</span>
                         <input type="email" class="form-control p-4 mb-1" value="<?= $_POST["email"] ?? "" ?>" name="email" placeholder="Ваш Email" required="true"/>
                         <label style="color:red" class="error"><?php echo empty($_POST) ? "" : $errors["email"] ;?></label>
+                        <label style="color:red" class="error"><?php echo empty($_POST) ? "" : $invalidData["email"] ;?></label>
+                        <label class="info">Укажите полный email</label>
                     </div>
                     <div class="control-group">
                         <span style="color:red">*</span>
                         <input type="password" class="form-control p-4 mb-1" value="<?= $_POST["password"] ?? "" ?>" name="password" placeholder="Пароль" required="true"/>
                         <label style="color:red" class="error"><?php echo empty($_POST) ? "" : $errors["password"]  ;?></label>
+                        <label style="color:red" class="error"><?php echo empty($_POST) ? "" : $invalidData["password"] ;?></label>
+                        <label class="info">Пароль должен состоять из латинских символов, обязательно иметь 1 символ в верхнем и нижнем регистре, 1 цифру и иметь длину от 8 до 12 символов.</label>
                     </div>
                     <div class="control-group">
                         <span style="color:red">*</span>

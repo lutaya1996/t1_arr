@@ -16,15 +16,15 @@ class User
 
     /**
      * @param $id
-     * @param $image
      * @param $name
-     * @param $profession
+     * @param $email
+     * @param $password
      */
     public function __construct($id, $name, $email, $password)
     {
         $this->id = $id;
-        $this->image = $name;
-        $this->name = $email;
-        $this->profession = $password;
+        $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
     }
 }

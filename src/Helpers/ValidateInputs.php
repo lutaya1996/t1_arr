@@ -4,8 +4,11 @@ namespace tt\Helpers;
 
 class ValidateInputs
 {
-
-    public static function getNormalData($data)
+    /**
+     * @param string $data
+     * @return string
+     */
+    public static function getNormalData(string $data): string
     {
         $data = trim($data);
         $data = stripslashes($data);
