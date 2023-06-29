@@ -17,7 +17,7 @@ class ArticleEditConcreteController extends  BaseController
     /**
      * @var string|null
      */
-    public ?string $hasError = null;
+    public ?string $hasError;
 
     /**
      * @param DataProvider $dataProvider

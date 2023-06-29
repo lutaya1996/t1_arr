@@ -57,7 +57,7 @@ class ArticlesEditController extends BaseController
          if (
             !isset($requestArticles[$id])
          ) {
-            $requestArticles[$id] = new Article($id, "", "", "", false, "", "", "");
+            $requestArticles[$id] = new Article($id, "", "", "", true, "", "", "");
          }
 
          switch ($nameField) {
