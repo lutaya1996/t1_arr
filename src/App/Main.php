@@ -14,7 +14,10 @@ use tt\Controllers\LoginController;
 use tt\Controllers\LogoutController;
 use tt\Controllers\RegisterController;
 use tt\Controllers\New404Controller;
+use tt\DataProvider\Database;
 use tt\DataProvider\DataProvider;
+use tt\Helpers\Request;
+use tt\Helpers\Session;
 use tt\Routes\Router;
 
 
@@ -25,7 +28,22 @@ class Main
      */
    public static function run()
    {
-      $dataProvider = new DataProvider();
+       //Подключение к БД
+       $config =require_once "config/database.php";
+       $dsn = $config["dsn"];
+       $username = $config["username"];
+       $password = $config["password"];
+       $database = new Database($dsn, $username, $password);
+
+       //Включаем сессию
+       $session = new Session();
+       $session->start();
+       $session->save();
+
+       //Работаем с копией глобального массива POST
+
+       $dataProvider = new DataProvider();
+       $request = new Request();
 
       $router = new Router([
          "/" => new IndexController($dataProvider),
@@ -36,8 +54,8 @@ class Main
          "/articles/edit" => new ArticlesEditController($dataProvider),
           "/articles/create" => new ArticleCreateController($dataProvider),
           "/\/articles\/edit\/(\d+)/" => new ArticleEditConcreteController($dataProvider),
-          "/login" => new LoginController($dataProvider),
-          "/register" => new RegisterController($dataProvider),
+          "/login" => new LoginController($dataProvider, $database, $session),
+          "/register" => new RegisterController($request, $dataProvider, $database, $session),
           "/logout" => new LogoutController($dataProvider)
       ]);
 

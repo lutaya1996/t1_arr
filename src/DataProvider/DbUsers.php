@@ -15,8 +15,8 @@ class DbUsers
         return [
             new User(
                 1,
-                "ася",
-                " Ross@wd.tu",
+                "алена",
+                "felppt@yandex.ru",
                 "123"
             ),
             new User(

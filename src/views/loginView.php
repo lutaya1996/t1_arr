@@ -4,9 +4,10 @@ use tt\Models\Variable;
 
 require_once 'src/Views/components/header.php';
 /**
- * @var LoginController
+ * @var LoginController $obj
  */
 $obj = $this;
+
 ?>
 
     <!-- Contact Start -->
@@ -19,18 +20,19 @@ $obj = $this;
             <div class="col-12 col-sm-8 mb-5">
                 <div class="contact-form">
                     <div id="success"></div>
-                    <form name="sentMessage" id="contactForm"  method="post" enctype="application/x-www-form-urlencoded" action="http://cat-blog/login" novalidate="novalidate">
+
+                    <form name="sentMessage"  method="post" action="http://cat-blog/login" >
                         <div class="control-group">
-                            <input type="email" class="form-control p-4" id="email" placeholder="Ваш Email" required="required" data-validation-required-message="Please enter your email" />
-                            <p class="help-block text-danger"></p>
+                            <input type="email" class="form-control p-4 mb-3" name="email" value="<?php echo $_POST["email"] ?? "" ?>" placeholder="Ваш Email" required="required" data-validation-required-message="Пожалуйста, введите Ваш email" />
+
                         </div>
                         <div class="control-group">
-                            <input type="password" class="form-control p-4" id="password" placeholder="Пароль" required="required" data-validation-required-message="Please enter your password" />
-                            <p class="help-block text-danger"></p>
+                            <input type="password" class="form-control p-4 mb-3" name="password" value="<?php echo $_POST["password"] ?? "" ?>" placeholder="Пароль" required="required" data-validation-required-message="Пожалуйста, введите Ваш пароль" />
+                            <p class="help-block text-danger"><?php echo empty($_POST) ? "" : $obj->checkUser($_POST) ?></p>
                         </div>
 
                         <div class="text-center">
-                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Войти</button>
+                            <button class="btn btn-primary py-3 px-5" type="submit" ">Войти</button>
                         </div>
                     </form>
                 </div>

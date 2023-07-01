@@ -6,6 +6,7 @@ use tt\Models\Article;
 use tt\Models\Service;
 use tt\Models\Slide;
 use tt\Models\User;
+use tt\Helpers\Session;
 use tt\Models\Variable;
 
 const KEY_DB_ON = "DB_ON";
@@ -54,7 +55,7 @@ class DataProvider
             [
                "Безопасное содержание" => "3",
                "Галерея" => "4",
-               "Грумминг" => "3",
+               "Груминг" => "3",
                "О кошках" => "11",
                "О собаках" => "9",
             ];
@@ -62,7 +63,7 @@ class DataProvider
             [
                "Безопасное содержание",
                "Галерея",
-               "Грумминг",
+               "Груминг",
                "О кошках",
                "О собаках",
             ];

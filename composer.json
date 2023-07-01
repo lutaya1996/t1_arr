@@ -13,5 +13,7 @@
         }
     ],
     "minimum-stability": "RC",
-    "require": {}
+    "require": {
+      "ext-pdo": "*"
+    }
 }

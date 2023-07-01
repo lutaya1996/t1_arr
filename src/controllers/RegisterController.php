@@ -4,16 +4,30 @@ namespace tt\Controllers;
 
 use tt\DataProvider\DataProvider;
 use tt\Helpers\Printer;
+use tt\Helpers\Request;
 use tt\Helpers\ValidateInputs;
-use tt\Models\User;
+use tt\DataProvider\Database;
+use tt\Helpers\Session;
 
 class RegisterController extends  BaseController
 {
+
+    private Database $database;
+    private Session $session;
+    public Request $request;
+
     /**
+     * @param $request
      * @param DataProvider $dataProvider
+     * @param $database
+     * @param $session
      */
-    public function __construct(DataProvider $dataProvider)
+    public function __construct($request, DataProvider $dataProvider, $database, $session)
     {
+        $this->request = $request;
+        $this->database = $database;
+        $this->session = $session;
+
         $this->view = "src/Views/registerView.php";
 
         parent::__construct($dataProvider);
@@ -23,10 +37,10 @@ class RegisterController extends  BaseController
      * @param array $param
      * @return void
      */
-    public function render(array $param)
+    public function render(array $param): void
     {
-        if (!empty($_POST)) {
-            $this->createUser($_POST);
+        if (!empty($this->request->getPost())) {
+            $this->createUser($this->request->getPost());
         }
         require $this->view;
     }
@@ -91,7 +105,7 @@ class RegisterController extends  BaseController
             }
 
             $password = ValidateInputs::getNormalData($request["password"]);
-            if (!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,12}$/u", $password)) {
+            if (!preg_match("/^(?=.*\d)(?=.*[a-zA-z])[0-9a-zA-Z]{8,12}$/u", $password)) {
                 $errors["password"] = "Некорректный пароль";
             } else {
                 $errors["password"] = "";
@@ -115,7 +129,6 @@ class RegisterController extends  BaseController
         if(!empty($invalidData["name"]) || !empty($invalidData["email"]) || !empty($invalidData["password"])) return;
 
         //Собираем параметры для сборки нового юзера
-        $id = $this->getNewId();
         /**
          * @var string
          */
@@ -127,37 +140,40 @@ class RegisterController extends  BaseController
         /**
          * @var string
          */
-        $password = ValidateInputs::getNormalData($request["password"]);
+        $password = password_hash($request["password"], PASSWORD_BCRYPT);
 
-        //Создаем нового юзера
-        $newUser = new User(
-            $id,
-            $name ?? "",
-            $email ?? "",
-            $password ?? "",
+        //TODO
+        //Проверяем, есть ли такое имя и email в БД, если да, не создаем юзера
+        $statement = $this->database->getConnection()->prepare(
+            "SELECT * FROM users WHERE name = :name"
         );
+        $user = $statement->fetch();
+        if(!empty($user)) {
+            exit( "User с таким именем существует");
+        }
+
+        $statement = $this->database->getConnection()->prepare(
+            "SELECT * FROM users WHERE email = :email"
+        );
+        $user = $statement->fetch();
+        if(!empty($user)) {
+            exit( "User с таким email существует");
+        }
 
 
-        $this->dataProvider->createUser($newUser);
+        //Создаем нового юзера в BD
+        $statement = $this->database->getConnection()->prepare(
+            "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)"
+        );
+        $statement->execute([
+            "name" => $name,
+            "email" => $email,
+            "password" => $password
+        ]);
 
         //Перенаправляем пользователя на главную страницу в случае удачной регистрации
         // и завершаем скрипт
-        header("Location: /");
-        exit();
-    }
-
-    //Функция создания нового ID
-    /**
-     * @return int
-     */
-    private  function getNewId(): int
-    {
-        $maxVal = 0;
-        foreach ($this->dataProvider->getUsers() as $user) {
-            if ($maxVal < $user->id) {
-                $maxVal = $user->id;
-            }
-        }
-        return $maxVal + 1;
+//        header("Location: /");
+//        exit();
     }
 }
