@@ -2,6 +2,7 @@
 
 namespace tt\Controllers;
 
+use PDO;
 use tt\DataProvider\DataProvider;
 use tt\Helpers\Printer;
 use tt\Helpers\Request;
@@ -13,24 +14,18 @@ class RegisterController extends  BaseController
 {
 
     private Database $database;
-    private Session $session;
+
     public Request $request;
 
-    /**
-     * @param $request
-     * @param DataProvider $dataProvider
-     * @param $database
-     * @param $session
-     */
-    public function __construct($request, DataProvider $dataProvider, $database, $session)
+
+    public function __construct(DataProvider $dataProvider)
     {
-        $this->request = $request;
-        $this->database = $database;
-        $this->session = $session;
-
         $this->view = "src/Views/registerView.php";
-
         parent::__construct($dataProvider);
+
+        $this->database = $this->dataProvider->database;
+        $this->request = $this->dataProvider->request;
+
     }
 
     /**
@@ -104,7 +99,7 @@ class RegisterController extends  BaseController
                 $errors["email"] = "";
             }
 
-            $password = ValidateInputs::getNormalData($request["password"]);
+            $password = $request["password"];
             if (!preg_match("/^(?=.*\d)(?=.*[a-zA-z])[0-9a-zA-Z]{8,12}$/u", $password)) {
                 $errors["password"] = "Некорректный пароль";
             } else {
@@ -130,31 +125,38 @@ class RegisterController extends  BaseController
 
         //Собираем параметры для сборки нового юзера
         /**
-         * @var string
+         * @var string $name
          */
         $name = ValidateInputs::getNormalData($request["name"]);
         /**
-         * @var string
+         * @var string $email
          */
         $email = ValidateInputs::getNormalData($request["email"]);
         /**
-         * @var string
+         * @var string $password
          */
         $password = password_hash($request["password"], PASSWORD_BCRYPT);
 
         //TODO
         //Проверяем, есть ли такое имя и email в БД, если да, не создаем юзера
         $statement = $this->database->getConnection()->prepare(
-            "SELECT * FROM users WHERE name = :name"
+            "SELECT 1 FROM users WHERE name = :name LIMIT 1"
         );
+
+        $statement->execute([
+            'name' => $name
+        ]);
         $user = $statement->fetch();
         if(!empty($user)) {
             exit( "User с таким именем существует");
         }
 
         $statement = $this->database->getConnection()->prepare(
-            "SELECT * FROM users WHERE email = :email"
+            "SELECT 1 FROM users WHERE email = :email LIMIT 1"
         );
+        $statement->execute([
+            'email' => $email
+        ]);
         $user = $statement->fetch();
         if(!empty($user)) {
             exit( "User с таким email существует");

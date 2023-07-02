@@ -2,6 +2,7 @@
 
 namespace tt\DataProvider;
 
+use tt\Helpers\Request;
 use tt\Models\Article;
 use tt\Models\Service;
 use tt\Models\Slide;
@@ -25,236 +26,242 @@ const KEY_TAGS = "DB_TAGS";
 
 class DataProvider
 {
-   /**
-    * @return void
-    */
-   public function __construct()
-   {
-      session_start();
-      if (!isset($_SESSION[KEY_DB_ON])) {
+    public Session $session;
+    public Database $database;
+    public Request $request;
 
-         $_SESSION[KEY_DB_ON] = true;
-         $_SESSION[KEY_ARTICLES] = DbArticles::getArticles();
-         $_SESSION[KEY_SLIDES] = DbSlides::getSlides();
-         $_SESSION[KEY_SERVICES] = DbServices::getServices();
-         $_SESSION[KEY_VARIABLES] = DbVariables::getVariables();
-         $_SESSION[MAIN_MENU] =
-            [
-               "Главная" => "/",
-               "Услуги и цены" => "/catalog",
-               'Мои статьи' => '/articles',
-               "Контакты" => "/contacts",
-               "Наш блог" => "/blog",
-            ];
-         $_SESSION[KEY_TESTIMONIALS] = DbTestimonials::getTestimonials();
-         $_SESSION[KEY_TEAM] = DbTeam::getTeam();
-         $_SESSION[KEY_AUTHORS] = DbAuthors::getAuthors();
-         $_SESSION[KEY_USERS] = DbUsers::getUsers();
-         $_SESSION[KEY_COMMENTS] = DbComments::getComments();
-         $_SESSION[KEY_CATEGORIES] =
-            [
-               "Безопасное содержание" => "3",
-               "Галерея" => "4",
-               "Груминг" => "3",
-               "О кошках" => "11",
-               "О собаках" => "9",
-            ];
-         $_SESSION[KEY_TAGS] =
-            [
-               "Безопасное содержание",
-               "Галерея",
-               "Груминг",
-               "О кошках",
-               "О собаках",
-            ];
-      }
-   }
+    /**
+     * @param Database $database
+     */
+    public function __construct(Database $database)
+    {
+        $this->database = $database;
+        $this->session = new Session();
+        $this->request = new Request();
 
-   // *** Функции для работы со статьями ****************************************************************
+        //Включаем сессию
+        $this->session->start();
 
-   /**
-    * @return Article[]
-    */
-   public function getArticles(): array
-   {
-      return $_SESSION[KEY_ARTICLES];
-   }
+        $this->session->setData(KEY_DB_ON, true);
+        $this->session->setData(KEY_ARTICLES, DbArticles::getArticles());
+        $this->session->setData(KEY_SLIDES, DbSlides::getSlides());
+        $this->session->setData(KEY_SERVICES, DbServices::getServices());
+        $this->session->setData(KEY_VARIABLES, DbVariables::getVariables());
+        $this->session->setData(MAIN_MENU,  [
+                                                "Главная" => "/",
+                                                "Услуги и цены" => "/catalog",
+                                                'Мои статьи' => '/articles',
+                                                "Контакты" => "/contacts",
+                                                "Наш блог" => "/blog",
+                                            ]);
+        $this->session->setData(KEY_TESTIMONIALS, DbTestimonials::getTestimonials());
+        $this->session->setData(KEY_TEAM, DbTeam::getTeam());
+        $this->session->setData(KEY_AUTHORS,DbAuthors::getAuthors());
+        $this->session->setData(KEY_USERS, DbUsers::getUsers());
+        $this->session->setData(KEY_COMMENTS, DbComments::getComments());
+        $this->session->setData(KEY_CATEGORIES,  [
+                                                "Безопасное содержание" => "3",
+                                                "Галерея" => "4",
+                                                "Груминг" => "3",
+                                                "О кошках" => "11",
+                                                "О собаках" => "9",
+                                            ]);
+        $this->session->setData(KEY_TAGS, [
+                                                "Безопасное содержание",
+                                                "Галерея",
+                                                "Груминг",
+                                                "О кошках",
+                                                "О собаках",
+                                            ]);
 
-   /**
-    * @param $id
-    * @return object|null
-    */
-   public function getConcreteArticle($id): ?object
-   {
-      foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
-         if ($value->id == $id) {
-            return $value;
-         }
-      }
-      return null;
-   }
+        }
 
-   /**
-    * @return Article[]
-    */
-   public  function  getActiveArticles(): array
-   {
-      $res = [];
 
-      /* @var $value Article */
-      foreach ($_SESSION[KEY_ARTICLES]  as $value) {
-         if ($value->active) {
-            $res[] = $value;
-         }
-      }
-      return  $res;
-   }
-   /**
-    * @param Article $article
-    * @return void
-    */
-   public  function  createArticle(Article $article)
-   {
-      $_SESSION[KEY_ARTICLES][] = $article;
-   }
+    // *** Функции для работы со статьями ****************************************************************
 
-   /**
-    * @param $id
-    * @return void
-    */
-   public function deleteArticle($id)
-   {
-      foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
-         if ($value->id == $id) {
-            unset($_SESSION[KEY_ARTICLES][$key]);
-         }
-      }
-   }
+    /**
+     * @return Article[]
+     */
+    public function getArticles(): array
+    {
+        return $this->session->getData(KEY_ARTICLES);
+    }
 
-   /**
-    * @param Article $article
-    * @return void
-    */
-   public function updateArticle(Article $article)
-   {
-      foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
-         if ($value->id == $article->id) {
-            $_SESSION[KEY_ARTICLES][$key] = $article;
-         }
-      }
-   }
+    /**
+     * @param $id
+     * @return object|null
+     */
+    public function getConcreteArticle($id): ?object
+    {
+        foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
+            if ($value->id == $id) {
+                return $value;
+            }
+        }
+        return null;
+    }
 
-   /**
-    * @param Article $article
-    * @return void
-    */
-   public function updateConcreteArticle(Article $article)
-   {
-      foreach ($_SESSION[KEY_ARTICLES] as $key => $value) {
-         if ($value->id == $article->id) {
-            $_SESSION[KEY_ARTICLES][$key] = $article;
-         }
-      }
-   }
+    /**
+     * @return Article[]
+     */
+    public  function  getActiveArticles(): array
+    {
+        $res = [];
 
-   // *** Функции для работы со слайдами *****************************************************************
+        /* @var $value Article */
+        foreach ($this->session->getData(KEY_ARTICLES) as $value) {
+            if ($value->active) {
+                $res[] = $value;
+            }
+        }
+        return  $res;
+    }
+    /**
+     * @param Article $article
+     * @return void
+     */
+    public  function  createArticle(Article $article)
+    {
+        $this->session->getData(KEY_ARTICLES)[] = $article;
+    }
 
-   /**
-    * @return Slide[]
-    */
-   public function getSlides(): array
-   {
-      return $_SESSION[KEY_SLIDES];
-   }
+    /**
+     * @param $id
+     * @return void
+     */
+    public function deleteArticle($id)
+    {
+        foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
+            if ($value->id == $id) {
+                unset($this->session->getData(KEY_ARTICLES)[$key]);
+            }
+        }
+    }
 
-   // *** Функции для работы с сервисами *****************************************************************
+    /**
+     * @param Article $article
+     * @return void
+     */
+    public function updateArticle(Article $article)
+    {
+        foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
+            if ($value->id == $article->id) {
+                $this->session->getData(KEY_ARTICLES)[$key] = $article;
+            }
+        }
+    }
 
-   /**
-    * @return Service[]
-    */
-   public function getServices(): array
-   {
-      return $_SESSION[KEY_SERVICES];
-   }
+    /**
+     * @param Article $article
+     * @return void
+     */
+    public function updateConcreteArticle(Article $article)
+    {
+        foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
+            if ($value->id == $article->id) {
+                $this->session->getData(KEY_ARTICLES)[$key] = $article;
+            }
+        }
+    }
 
-   // *** Функции для работы с вариативами *****************************************************************
+    // *** Функции для работы со слайдами *****************************************************************
 
-   /**
-    * @param $variableKey
-    * @return null|string
-    */
-   public function getVariables($variableKey): ?string
-   {
-      foreach ($_SESSION[KEY_VARIABLES] as $value) {
-         if (is_null($value)) {
-            continue;
-         }
-         if ($value->key == $variableKey) {
-            return $value->value;
-         }
-      }
-      return null;
-   }
+    /**
+     * @return Slide[]
+     */
+    public function getSlides(): array
+    {
+        return $this->session->getData(KEY_SLIDES);
+    }
 
-   // *** Функции для работы с главным меню ************************************************************
+    // *** Функции для работы с сервисами *****************************************************************
 
-   /**
-    * @return array
-    */
-   public function getMainMenu(): array
-   {
-      return $_SESSION[MAIN_MENU];
-   }
+    /**
+     * @return Service[]
+     */
+    public function getServices(): array
+    {
+        return $this->session->getData(KEY_SERVICES);
+    }
 
-   // *** Функции для работы с категориями ************************************************************
+    // *** Функции для работы с вариативами *****************************************************************
 
-   /**
-    * @return array
-    */
-   public function getCategories(): array
-   {
-      return $_SESSION[KEY_CATEGORIES];
-   }
+    /**
+     * @param $variableKey
+     * @return null|string
+     */
+    public function getVariables($variableKey): ?string
+    {
+        foreach ($this->session->getData(KEY_VARIABLES) as $value) {
+            if (is_null($value)) {
+                continue;
+            }
+            if ($value->key == $variableKey) {
+                return $value->value;
+            }
+        }
+        return null;
+    }
 
-   // *** Функции для работы с тегами ************************************************************
+    // *** Функции для работы с главным меню ************************************************************
 
-   /**
-    * @return array
-    */
-   public function getTags(): array
-   {
-      return $_SESSION[KEY_TAGS];
-   }
+    /**
+     * @return array
+     */
+    public function getMainMenu(): array
+    {
+        return $this->session->getData(MAIN_MENU);
+    }
 
-   // ***Функция для работы с отзывами*******************************
+    // *** Функции для работы с категориями ************************************************************
 
-   /**
-    * @return array
-    */
-   public function getTestimonials(): array
-   {
-      return $_SESSION[KEY_TESTIMONIALS];
-   }
+    /**
+     * @return array
+     */
+    public function getCategories(): array
+    {
+        return $this->session->getData(KEY_CATEGORIES);
+    }
 
-   //***Функция для работы с командой******** *
+    // *** Функции для работы с тегами ************************************************************
 
-   /**
-    * @return array
-    */
-   public function getTeam(): array
-   {
-      return $_SESSION[KEY_TEAM];
-   }
+    /**
+     * @return array
+     */
+    public function getTags(): array
+    {
+         return $this->session->getData(KEY_TAGS);
+    }
 
-   //***Функция для работы с авторами******** *
+    // ***Функция для работы с отзывами*******************************
 
-   /**
-    * @return array
-    */
-   public function getAuthors(): array
-   {
-      return $_SESSION[KEY_AUTHORS];
-   }
+    /**
+     * @return array
+     */
+    public function getTestimonials(): array
+    {
+        return $this->session->getData(KEY_TESTIMONIALS);
+    }
+
+    //***Функция для работы с командой******** *
+
+    /**
+     * @return array
+     */
+    public function getTeam(): array
+    {
+        return $this->session->getData(KEY_TEAM);
+    }
+
+    //***Функция для работы с авторами******** *
+
+    /**
+     * @return array
+     */
+    public function getAuthors(): array
+    {
+        return $this->session->getData(KEY_AUTHORS);
+    }
 
     //***Функция для работы с Users******* *
 
@@ -263,7 +270,7 @@ class DataProvider
      */
     public function getUsers(): array
     {
-        return $_SESSION[KEY_USERS];
+        return $this->session->getData(KEY_USERS);
     }
 
     /**
@@ -272,16 +279,16 @@ class DataProvider
      */
     public  function  createUser(User $user)
     {
-        $_SESSION[KEY_USERS][] = $user;
+        $this->session->getData(KEY_USERS)[] = $user;
     }
 
-   //***Функция для работы с комменатриями******** *
+    //***Функция для работы с комменатриями******** *
 
-   /**
-    * @return array
-    */
-   public function getComments(): array
-   {
-      return $_SESSION[KEY_COMMENTS];
-   }
+    /**
+     * @return array
+     */
+    public function getComments(): array
+    {
+        return $this->session->getData(KEY_COMMENTS);
+    }
 }

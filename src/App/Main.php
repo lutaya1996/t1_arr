@@ -26,45 +26,38 @@ class Main
     /**
      * @return void
      */
-   public static function run()
-   {
-       //Подключение к БД
-       $config =require_once "config/database.php";
-       $dsn = $config["dsn"];
-       $username = $config["username"];
-       $password = $config["password"];
-       $database = new Database($dsn, $username, $password);
+    public static function run()
+    {
+        //Подключение к БД
+        $config = require_once "config/database.php";
+        $dsn = $config["dsn"];
+        $username = $config["username"];
+        $password = $config["password"];
+        $database = new Database($dsn, $username, $password);
 
-       //Включаем сессию
-       $session = new Session();
-       $session->start();
-       $session->save();
+        $dataProvider = new DataProvider($database);
 
-       //Работаем с копией глобального массива POST
+        $router = new Router([
+            "/" => new IndexController($dataProvider),
+            "/catalog" => new CatalogController($dataProvider),
+            "/contacts" => new ContactsController($dataProvider),
+            "/blog" => new BlogController($dataProvider),
+            "/articles" => new ArticlesController($dataProvider),
+            "/articles/edit" => new ArticlesEditController($dataProvider),
+            "/articles/create" => new ArticleCreateController($dataProvider),
+            "/\/articles\/edit\/(\d+)/" => new ArticleEditConcreteController($dataProvider),
+            "/login" => new LoginController($dataProvider),
+            "/register" => new RegisterController($dataProvider),
+            "/logout" => new LogoutController($dataProvider)
+        ]);
 
-       $dataProvider = new DataProvider();
-       $request = new Request();
+        // Вызываем метод объекта класса Router для переопределния
+        // страницы ошибки
+        // $router->setErrorPage('src/Views/nakhuiView.php');
+        $router->setErrorPage(new New404Controller($dataProvider));
 
-      $router = new Router([
-         "/" => new IndexController($dataProvider),
-         "/catalog" => new CatalogController($dataProvider),
-         "/contacts" => new ContactsController($dataProvider),
-         "/blog" => new BlogController($dataProvider),
-         "/articles" => new ArticlesController($dataProvider),
-         "/articles/edit" => new ArticlesEditController($dataProvider),
-          "/articles/create" => new ArticleCreateController($dataProvider),
-          "/\/articles\/edit\/(\d+)/" => new ArticleEditConcreteController($dataProvider),
-          "/login" => new LoginController($dataProvider, $database, $session),
-          "/register" => new RegisterController($request, $dataProvider, $database, $session),
-          "/logout" => new LogoutController($dataProvider)
-      ]);
+        // Вызываем метод объекта класса Router для отображения страницы
+        $router->run();
 
-      // Вызываем метод объекта класса Router для переопределния 
-      // страницы ошибки
-      // $router->setErrorPage('src/Views/nakhuiView.php');
-      $router->setErrorPage(new New404Controller($dataProvider));
-
-      // Вызываем метод объекта класса Router для отображения страницы
-      $router->run();
-   }
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace tt\Controllers;
 
+
 use tt\DataProvider\DataProvider;
+use tt\Helpers\Session;
 
 class BaseController
 {
@@ -15,12 +17,15 @@ class BaseController
    /** @var DataProvider  */
    public DataProvider $dataProvider;
 
+   public Session $session;
+
     /**
      * @param DataProvider $dataProvider
      */
    public function __construct(DataProvider $dataProvider)
    {
       $this->dataProvider = $dataProvider;
+      $this->session = $this->dataProvider->session;
    }
 
     /**
