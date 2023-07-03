@@ -11,7 +11,13 @@ class LogoutController extends BaseController
      */
     public function __construct(DataProvider $dataProvider)
     {
-        $this->view = "src/Views/logoutView.php";
         parent::__construct($dataProvider);
     }
+
+    public function  render(array $param)
+    {
+        $this->session->setData("user", null);
+        header("Location: /");
+    }
+
 }

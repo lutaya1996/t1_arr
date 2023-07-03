@@ -22,6 +22,15 @@ class Session
 
     /**
      * @param string $key
+     * @param $value
+     * @return void
+     */
+    public function addData(string $key, $value): void
+    {
+        $_SESSION[$key][] = $value;
+    }
+    /**
+     * @param string $key
      * @return mixed|null
      */
     public  function getData(string $key)

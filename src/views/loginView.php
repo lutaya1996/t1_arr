@@ -28,7 +28,6 @@ $obj = $this;
                         </div>
                         <div class="control-group">
                             <input type="password" class="form-control p-4 mb-3" name="password" value="<?php echo $_POST["password"] ?? "" ?>" placeholder="Пароль" required="required" data-validation-required-message="Пожалуйста, введите Ваш пароль" />
-                            <p class="help-block text-danger"><?php echo empty($_POST) ? "" : $obj->checkUser($_POST) ?></p>
                         </div>
 
                         <div class="text-center">

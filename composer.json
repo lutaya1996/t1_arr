@@ -14,6 +14,7 @@
     ],
     "minimum-stability": "RC",
     "require": {
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+      "ext-mbstring": "*"
     }
 }

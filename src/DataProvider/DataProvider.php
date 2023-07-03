@@ -2,6 +2,7 @@
 
 namespace tt\DataProvider;
 
+use tt\Helpers\Printer;
 use tt\Helpers\Request;
 use tt\Models\Article;
 use tt\Models\Service;
@@ -42,39 +43,42 @@ class DataProvider
         //Включаем сессию
         $this->session->start();
 
-        $this->session->setData(KEY_DB_ON, true);
-        $this->session->setData(KEY_ARTICLES, DbArticles::getArticles());
-        $this->session->setData(KEY_SLIDES, DbSlides::getSlides());
-        $this->session->setData(KEY_SERVICES, DbServices::getServices());
-        $this->session->setData(KEY_VARIABLES, DbVariables::getVariables());
-        $this->session->setData(MAIN_MENU,  [
-                                                "Главная" => "/",
-                                                "Услуги и цены" => "/catalog",
-                                                'Мои статьи' => '/articles',
-                                                "Контакты" => "/contacts",
-                                                "Наш блог" => "/blog",
-                                            ]);
-        $this->session->setData(KEY_TESTIMONIALS, DbTestimonials::getTestimonials());
-        $this->session->setData(KEY_TEAM, DbTeam::getTeam());
-        $this->session->setData(KEY_AUTHORS,DbAuthors::getAuthors());
-        $this->session->setData(KEY_USERS, DbUsers::getUsers());
-        $this->session->setData(KEY_COMMENTS, DbComments::getComments());
-        $this->session->setData(KEY_CATEGORIES,  [
-                                                "Безопасное содержание" => "3",
-                                                "Галерея" => "4",
-                                                "Груминг" => "3",
-                                                "О кошках" => "11",
-                                                "О собаках" => "9",
-                                            ]);
-        $this->session->setData(KEY_TAGS, [
-                                                "Безопасное содержание",
-                                                "Галерея",
-                                                "Груминг",
-                                                "О кошках",
-                                                "О собаках",
-                                            ]);
+        if (!$this->session->getData(KEY_DB_ON)) {
 
+            $this->session->setData(KEY_DB_ON, true);
+
+            $this->session->setData(KEY_ARTICLES, DbArticles::getArticles());
+            $this->session->setData(KEY_SLIDES, DbSlides::getSlides());
+            $this->session->setData(KEY_SERVICES, DbServices::getServices());
+            $this->session->setData(KEY_VARIABLES, DbVariables::getVariables());
+            $this->session->setData(MAIN_MENU, [
+                "Главная" => "/",
+                "Услуги и цены" => "/catalog",
+                'Мои статьи' => '/articles',
+                "Контакты" => "/contacts",
+                "Наш блог" => "/blog",
+            ]);
+            $this->session->setData(KEY_TESTIMONIALS, DbTestimonials::getTestimonials());
+            $this->session->setData(KEY_TEAM, DbTeam::getTeam());
+            $this->session->setData(KEY_AUTHORS, DbAuthors::getAuthors());
+            $this->session->setData(KEY_USERS, DbUsers::getUsers());
+            $this->session->setData(KEY_COMMENTS, DbComments::getComments());
+            $this->session->setData(KEY_CATEGORIES, [
+                "Безопасное содержание" => "3",
+                "Галерея" => "4",
+                "Груминг" => "3",
+                "О кошках" => "11",
+                "О собаках" => "9",
+            ]);
+            $this->session->setData(KEY_TAGS, [
+                "Безопасное содержание",
+                "Галерея",
+                "Груминг",
+                "О кошках",
+                "О собаках",
+            ]);
         }
+    }
 
 
     // *** Функции для работы со статьями ****************************************************************
@@ -104,7 +108,7 @@ class DataProvider
     /**
      * @return Article[]
      */
-    public  function  getActiveArticles(): array
+    public function getActiveArticles(): array
     {
         $res = [];
 
@@ -114,15 +118,16 @@ class DataProvider
                 $res[] = $value;
             }
         }
-        return  $res;
+        return $res;
     }
+
     /**
      * @param Article $article
      * @return void
      */
-    public  function  createArticle(Article $article)
+    public function createArticle(Article $article)
     {
-        $this->session->getData(KEY_ARTICLES)[] = $article;
+        $this->session->addData(KEY_ARTICLES, $article);
     }
 
     /**
@@ -230,7 +235,7 @@ class DataProvider
      */
     public function getTags(): array
     {
-         return $this->session->getData(KEY_TAGS);
+        return $this->session->getData(KEY_TAGS);
     }
 
     // ***Функция для работы с отзывами*******************************
@@ -277,12 +282,12 @@ class DataProvider
      * @param User $user
      * @return void
      */
-    public  function  createUser(User $user)
+    public function createUser(User $user)
     {
-        $this->session->getData(KEY_USERS)[] = $user;
+        $this->session->addData(KEY_USERS, $user);
     }
 
-    //***Функция для работы с комменатриями******** *
+    //***Функция для работы с  комментариями******** *
 
     /**
      * @return array
