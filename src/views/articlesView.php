@@ -1,15 +1,17 @@
 <?php
 
 use tt\Controllers\ArticlesController;
+use tt\Helpers\Printer;
 use tt\Models\Variable;
 
-
-require_once 'src/Views/components/header.php';
+require_once "src/Views/components/header.php";
 
 /**
- * @var ArticlesController
+ * @var ArticlesController $obj
  */
 $obj = $this;
+echo session_id();
+
 ?>
 
 

@@ -4,7 +4,7 @@ use tt\Controllers\CatalogController;
 use tt\Models\Variable;
 
 /**
- * @var CatalogController
+ * @var CatalogController $obj
  */
 $obj = $this;
 

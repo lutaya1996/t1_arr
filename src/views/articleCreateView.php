@@ -1,12 +1,15 @@
 <?php
 
 use tt\Controllers\ArticleCreateController;
+use tt\Helpers\Printer;
 
 require_once 'src/Views/components/header.php';
 /**
  * @var ArticleCreateController $obj
  */
 $obj = $this;
+echo session_id();
+
 ?>
     <div class="container-fluid pt-5">
     <div class="d-flex flex-column text-center mb-5 pt-5">
@@ -36,7 +39,7 @@ $obj = $this;
                 </div>
                 <div class="control-group">
                     <textarea  class="form-control p-4 mb-3" rows="12" name="description" value="<?= $_POST["description"] ?? "" ?>" placeholder="Текст статьи" ></textarea>
-                    <p class="help-block text-danger"></p>
+
                 </div>
                 <div class="control-group">
                     <input type="text" class="form-control p-4 mb-3" rows="2" name="author" value="<?= $_POST["author"] ?? "" ?>" placeholder="Автор статьи" />

@@ -9,10 +9,9 @@ class ArticlesController extends BaseController
     /**
      * @param DataProvider $dataProvider
      */
-   public function __construct(DataProvider $dataProvider)
-   {
-      $this->view = "src/Views/articlesView.php";
-
-      parent::__construct($dataProvider);
-   }
+    public function __construct(DataProvider $dataProvider)
+    {
+        $this->view = "src/Views/articlesView.php";
+        parent::__construct($dataProvider);
+    }
 }

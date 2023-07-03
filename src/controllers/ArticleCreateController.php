@@ -6,7 +6,7 @@ use tt\DataProvider\DataProvider;
 use tt\Helpers\Printer;
 use tt\Models\Article;
 
-class ArticleCreateController extends  BaseController
+class ArticleCreateController extends BaseController
 {
     /**
      * @var string|null
@@ -18,9 +18,8 @@ class ArticleCreateController extends  BaseController
      */
     public function __construct(DataProvider $dataProvider)
     {
-        $this->view = "src/Views/articleCreateView.php";
-
         parent::__construct($dataProvider);
+        $this->view = "src/Views/articleCreateView.php";
     }
 
     /**
@@ -29,14 +28,9 @@ class ArticleCreateController extends  BaseController
      */
     public function render(array $param)
     {
-        if (!empty($_POST) && is_array($_POST)) {
-            $this->createArticle($_POST);
-
-            if (!isset($this->hasError)) {
-                return;
-            }
+        if (!empty($this->request->getPost())) {
+            $this->createArticle($this->request->getPost());
         }
-
         require $this->view;
     }
 
@@ -45,7 +39,7 @@ class ArticleCreateController extends  BaseController
      * @return void
      */
 
-    private function createArticle($request)
+    private function createArticle($request): void
     {
         // Пустой массив содержит приходящие модели
         // Ключ массива будет id
@@ -57,33 +51,31 @@ class ArticleCreateController extends  BaseController
             $this->hasError = "Все поля должны быть заполнены";
             return;
         }
-        /**
-         * @var int $id
-         */
+
         $id = $this->getNewId();
+
         $newArticle = new Article(
-                                    $id,
-                                    $request["image"] ?? "",
-                                    $request["title"] ?? "",
-                                    $request["description"] ?? "",
-                                    isset($request["active"]) ? true : false,
-                                    $request["author"] ?? "",
-                                    $request["tag"] ?? "",
-                                    $request["amountOfComments"] ?? "",
-                                );
+            $id,
+            $request["image"] ?? "",
+            $request["title"] ?? "",
+            $request["description"] ?? "",
+            isset($request["active"]) ? true : false,
+            $request["author"] ?? "",
+            $request["tag"] ?? "",
+            $request["amountOfComments"] ?? "",
+        );
 
 
         $this->dataProvider->createArticle($newArticle);
 
-        Printer::beautifulP($_POST);
-
-        // header('Location: /articles');
+         header("Location: /articles");
+         exit();
     }
 
     /**
      * @return int
      */
-    private  function getNewId(): int
+    private function getNewId(): int
     {
         $maxVal = 0;
         foreach ($this->dataProvider->getArticles() as $article) {
