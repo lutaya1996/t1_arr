@@ -18,6 +18,7 @@ class LogoutController extends BaseController
     {
         $this->session->setData("user", null);
         header("Location: /");
+        exit();
     }
 
 }

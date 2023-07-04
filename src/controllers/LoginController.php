@@ -2,37 +2,51 @@
 
 namespace tt\Controllers;
 
+use tt\DataProvider\Database;
 use tt\DataProvider\DataProvider;
 use tt\Helpers\Printer;
 use tt\Helpers\ValidateInputs;
 
 class LoginController extends BaseController
 {
-    private $database;
+    /** @var Database */
+    private Database $database;
 
-    private $post;
+   /** @var string|null  */
+    public ?string $error;
+
     /**
      * @param DataProvider $dataProvider
      */
     public function __construct(DataProvider $dataProvider)
     {
         $this->view = "src/Views/loginView.php";
+
         parent::__construct($dataProvider);
 
         $this->database = $this->dataProvider->database;
-        $this->post =$this->dataProvider->request->getPost();
     }
 
-    public  function render(array $param)
+    /**
+     * @param array $param
+     * @return void
+     */
+    public function render(array $param)
     {
-        if(!empty($this->post)) {
-            $this->loginUser($this->post);
+        if (!empty($this->request->getPost())) {
+
+            $this->loginUser($this->request->getPost());
         }
         require $this->view;
     }
 
-    public function loginUser($request)
+    /**
+     * @param array $request
+     * @return void
+     */
+    public function loginUser(array $request)
     {
+
         $emailAuth = ValidateInputs::getNormalData($request["email"]);
         $passwordAuth = $request["password"];
 
@@ -45,19 +59,21 @@ class LoginController extends BaseController
 
         $user = $statement->fetch();
 
-        if(empty($user)) {
-            exit("user not found");
+        if (empty($user)) {
+            $this->error = "Пользователь с таким логином не существует";
+            return;
         }
-        if(password_verify($passwordAuth, $user["password"]))  {
+        if (password_verify($passwordAuth, $user["password"])) {
 
             $this->session->setData("user",
-                                    [   "userId" => $user["id"],
-                                        "username" => $user["name"],
-                                        "email" => $user["email"]
-                                    ]);
+                ["userId" => $user["id"],
+                    "username" => $user["name"],
+                    "email" => $user["email"]
+                ]);
             header("Location: /");
             exit();
         }
-        exit("incorrect login or email");
+        $this->error = "Неправильный логин или пароль";
+        return;
     }
 }

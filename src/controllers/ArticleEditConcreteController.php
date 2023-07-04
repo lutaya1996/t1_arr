@@ -6,14 +6,12 @@ use tt\DataProvider\DataProvider;
 use tt\Helpers\Printer;
 use tt\Models\Article;
 
-use const tt\DataProvider\KEY_ARTICLES;
-
-class ArticleEditConcreteController extends  BaseController
+class ArticleEditConcreteController extends BaseController
 {
     /**
      * @var Article $article
      */
-    public Article  $article;
+    public Article $article;
     /**
      * @var string|null
      */
@@ -33,7 +31,6 @@ class ArticleEditConcreteController extends  BaseController
      */
     public function render(array $param)
     {
-
         $this->article = $this->dataProvider->getConcreteArticle($param["id"]);
 
         if (is_null($this->article)) {
@@ -41,8 +38,8 @@ class ArticleEditConcreteController extends  BaseController
             die();
         }
 
-        if (!empty($_POST) && is_array($_POST)) {
-            $this->updateArticle($_POST);
+        if (!empty($this->request->getPost())) {
+            $this->updateArticle($this->request->getPost());
         }
         require "src/Views/concreteArticleEditView.php";
     }
@@ -53,7 +50,8 @@ class ArticleEditConcreteController extends  BaseController
      */
     private function updateArticle(array $request)
     {
-        if (empty($request["image"]) || empty($request["title"]) || empty($request["description"])) {
+        if (empty($request["image"]) || empty($request["title"]) || empty($request["description"]) ||
+            empty($request["author"]) || empty($request["tag"]) || empty($request["amountOfComments"])) {
             $this->hasError = "Все поля должны быть заполнены";
             return;
         }
@@ -79,6 +77,7 @@ class ArticleEditConcreteController extends  BaseController
         $this->article->amountOfComments = $request["amountOfComments"] ?? "";
         $this->dataProvider->updateConcreteArticle($this->article);
 
-        header('Location: /articles');
+        header("Location: /articles");
+        exit();
     }
 }
