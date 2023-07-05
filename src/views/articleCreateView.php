@@ -8,12 +8,11 @@ require_once 'src/Views/components/header.php';
  * @var ArticleCreateController $obj
  */
 $obj = $this;
-echo session_id();
 
 ?>
     <div class="container-fluid pt-5">
     <div class="d-flex flex-column text-center mb-5 pt-5">
-        <h4 class="text-secondary mb-3">Добавляем статью</h4>
+        <h1 class="text-secondary mb-3">Добавляем статью</h1>
         <h1 class="display-4 m-0"></span></h1>
     </div>
 
@@ -38,7 +37,7 @@ echo session_id();
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <textarea  class="form-control p-4 mb-3" rows="12" name="description" value="<?= $_POST["description"] ?? "" ?>" placeholder="Текст статьи" ></textarea>
+                    <textarea  class="form-control p-4 mb-3" rows="12" name="content" value="<?= $_POST["content"] ?? "" ?>" placeholder="Текст статьи" ></textarea>
 
                 </div>
                 <div class="control-group">

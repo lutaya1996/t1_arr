@@ -7,14 +7,17 @@ use tt\Helpers\Printer;
 require_once 'src/Views/components/header.php';
 
 /**
- * @var ArticleEditConcreteController
+ * @var ArticleEditConcreteController $obj
  */
 $obj = $this;
 $article = $obj->article;
 $id = $obj->article->id;
 
 ?>
-<h1>Редактируем статью</h1>
+    <div class="container-fluid pt-5">
+    <div class="d-flex flex-column text-center mb-5 pt-5">
+        <h1 class="text-secondary mb-3">Редактируем статью</h1>
+    </div>
 <div class="row justify-content-center">
    <div class="col-12 col-sm-8 mb-5">
       <div class="contact-form">
@@ -24,34 +27,35 @@ $id = $obj->article->id;
 
          <!-- TODO Экшен перенести в Variables -->
          <form method="post" action="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLE_EDIT) . $id ?>">
-            <h1><?= $article->title ?></h1>
+            <h4><?= $article->title ?></h4>
+             <p class="help-block text-danger"></p>
             <div class="control-group">
-               <input type="text" class="form-control p-1" name="id" value="<?= $id ?>" disabled />
-               <p class="help-block text-danger"></p>
+               <input type="text" class="form-control p-1 text-center" name="id" value="<?= $id ?>" disabled />
+                <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
                <input type="checkbox" class="form-control p-1" name="active" <?= $article->active ? "checked" : "" ?> value="Активность статьи" />
-               <p class="help-block text-danger"></p>
+                <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
-               <input type="text" class="form-control p-1" name="image" value="<?= $article->image ?>" />
-               <p class="help-block text-danger"></p>
+               <input type="text" class="form-control p-4" name="image" value="<?= $article->image ?>" />
+                <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
-               <input type="text" class="form-control p-1" name="title" value="<?= $article->title ?>" />
-               <p class="help-block text-danger"></p>
+                <textarea  class="form-control p-4" rows="2" name="title"><?= $article->title ?></textarea>
+                <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
-               <input type="text" class="form-control p-4" rows="2" name="description" value="<?= $article->description ?>" />
-               <p class="help-block text-danger"></p>
+               <textarea  class="form-control p-4" rows="40" name="description" ><?= $article->content ?></textarea>
+                <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
                <input type="text" class="form-control p-4" rows="2" name="author" value="<?= $article->author ?>" />
-               <p class="help-block text-danger"></p>
+                <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
                <input type="text" class="form-control p-4" rows="2" name="tag" value="<?= $article->tag ?>" />
-               <p class="help-block text-danger"></p>
+                <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
                <input type="text" class="form-control p-4" rows="2" name="amountOfComments" value="<?= $article->amountOfComments ?>" />
@@ -60,7 +64,7 @@ $id = $obj->article->id;
 
 
             <div class="text-center">
-               <input type="submit" value="Редактировать">
+               <input class="btn btn-primary py-2" type="submit" value="Редактировать">
                <!-- <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button> -->
             </div>
          </form>

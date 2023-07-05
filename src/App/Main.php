@@ -8,16 +8,16 @@ use tt\Controllers\ArticlesController;
 use tt\Controllers\ArticlesEditController;
 use tt\Controllers\CatalogController;
 use tt\Controllers\BlogController;
+use tt\Controllers\ConcreteArticleController;
 use tt\Controllers\ContactsController;
 use tt\Controllers\IndexController;
 use tt\Controllers\LoginController;
+use tt\DataProvider\ArticleProvider;
 use tt\Controllers\LogoutController;
 use tt\Controllers\RegisterController;
 use tt\Controllers\New404Controller;
 use tt\DataProvider\Database;
 use tt\DataProvider\DataProvider;
-use tt\Helpers\Request;
-use tt\Helpers\Session;
 use tt\Routes\Router;
 
 
@@ -35,6 +35,9 @@ class Main
         $password = $config["password"];
         $database = new Database($dsn, $username, $password);
 
+
+        $articleProvider = new ArticleProvider($database);
+
         $dataProvider = new DataProvider($database);
 
         $router = new Router([
@@ -46,6 +49,7 @@ class Main
             "/articles/edit" => new ArticlesEditController($dataProvider),
             "/articles/create" => new ArticleCreateController($dataProvider),
             "/\/articles\/edit\/(\d+)/" => new ArticleEditConcreteController($dataProvider),
+            "/\/articles\/(\d+)/" => new ConcreteArticleController($articleProvider),
             "/login" => new LoginController($dataProvider),
             "/register" => new RegisterController($dataProvider),
             "/logout" => new LogoutController($dataProvider)

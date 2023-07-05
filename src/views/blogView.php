@@ -5,9 +5,10 @@ use tt\Models\Variable;
 
 require_once 'src/Views/components/header.php';
 /**
- * @var BlogController
+ * @var BlogController $obj
  */
 $obj = $this;
+
 ?>
 
 
@@ -35,7 +36,7 @@ $obj = $this;
          <!-- Articles Start -->
 
 
-         <!-- //    <h2 class="mb-4"><?= $article->title ?></h2>
+         <!-- //    <h2 class="mb-4"></h2>
             //    <img class="img-fluid w-50 float-left mr-4 mb-3" src="" alt=" Image"> -->
 
          <!-- Articles End -->

@@ -11,7 +11,9 @@ class Variable
    const URL_ARTICLES_EDIT = "URL_ARTICLES_EDIT";
    const  URL_ARTICLES_CREATE = "URL_ARTICLES_CREATE";
    const URL_ARTICLE_EDIT = "URL_ARTICLE_EDIT";
+   const URL_ARTICLE_VIEW = "URL_ARTICLE_VIEW";
    const URL_CATALOG = "URL_CATALOG";
+   const URL_ARTICLES_VIEW = "URL_ARTICLES_VIEW";
 
    //Пути для подключения компонентов
    const PATH_FOOTER = "PATH_FOOTER";
@@ -29,6 +31,7 @@ class Variable
    const BLOG_HEAD = "BLOG_HEAD";
    const PRICING_PLAN_HEAD1 = "PRICING_PLAN_HEAD1";
    const PRICING_PLAN_HEAD2 = "PRICING_PLAN_HEAD2";
+
 
     /** @var string  */
    public string $key;
