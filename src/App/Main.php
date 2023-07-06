@@ -3,19 +3,19 @@
 namespace tt\App;
 
 use tt\Controllers\ArticleCreateController;
-use tt\Controllers\ArticleEditConcreteController;
-use tt\Controllers\ArticlesController;
+use tt\ControllersNew\ArticlesController;
 use tt\Controllers\ArticlesEditController;
-use tt\Controllers\CatalogController;
 use tt\Controllers\BlogController;
-use tt\Controllers\ConcreteArticleController;
+use tt\Controllers\CatalogController;
 use tt\Controllers\ContactsController;
 use tt\Controllers\IndexController;
 use tt\Controllers\LoginController;
-use tt\DataProvider\ArticleProvider;
 use tt\Controllers\LogoutController;
-use tt\Controllers\RegisterController;
 use tt\Controllers\New404Controller;
+use tt\Controllers\RegisterController;
+use tt\ControllersNew\ConcreteArticleController;
+use tt\ControllersNew\ConcreteArticleEditController;
+use tt\DataProvider\ArticleProvider;
 use tt\DataProvider\Database;
 use tt\DataProvider\DataProvider;
 use tt\Routes\Router;
@@ -35,21 +35,21 @@ class Main
         $password = $config["password"];
         $database = new Database($dsn, $username, $password);
 
-
         $articleProvider = new ArticleProvider($database);
 
         $dataProvider = new DataProvider($database);
+
 
         $router = new Router([
             "/" => new IndexController($dataProvider),
             "/catalog" => new CatalogController($dataProvider),
             "/contacts" => new ContactsController($dataProvider),
             "/blog" => new BlogController($dataProvider),
-            "/articles" => new ArticlesController($dataProvider),
+            "/articles" => new ArticlesController($articleProvider, $dataProvider),
             "/articles/edit" => new ArticlesEditController($dataProvider),
             "/articles/create" => new ArticleCreateController($dataProvider),
-            "/\/articles\/edit\/(\d+)/" => new ArticleEditConcreteController($dataProvider),
-            "/\/articles\/(\d+)/" => new ConcreteArticleController($articleProvider),
+            "/\/articles\/edit\/(.+)/" => new ConcreteArticleEditController($articleProvider, $dataProvider),
+            "/\/articles\/(.+)/"  => new ConcreteArticleController($articleProvider, $dataProvider),
             "/login" => new LoginController($dataProvider),
             "/register" => new RegisterController($dataProvider),
             "/logout" => new LogoutController($dataProvider)

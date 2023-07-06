@@ -3,7 +3,7 @@
    use tt\Controllers\BaseController;
 
    /**
-    * @var BaseController
+    * @var BaseController $obj
     */
    $obj = $this;
    ?>

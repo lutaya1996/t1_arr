@@ -266,7 +266,7 @@ $obj = $this;
                         <small class="mr-2"><i class="fa fa-folder text-muted"></i> <?= $article->tag ?></small>
                         <small class="mr-2"><i class="fa fa-comments text-muted"></i> <?= $article->amountOfComments ?></small>
                      </div>
-                     <p><?= mb_substr($article->description, 0, 150) ?></p>
+                     <p><?= mb_substr($article->content, 0, 150) ?></p>
                      <a class="font-weight-bold" href="">Читать далее</a>
                   </div>
                </div>

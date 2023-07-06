@@ -1,7 +1,6 @@
 <?php
 
-use tt\Controllers\ConcreteArticleController;
-use tt\Models\Variable;
+use tt\ControllersNew\ConcreteArticleController;
 
 require_once "src/Views/components/header.php";
 /**
@@ -11,7 +10,7 @@ $obj = $this;
 
 $id = $obj->article->id;
 
-//$dataprovider = new \tt\DataProvider\DataProvider($obj->articleProvider->database);
+
 ?>
 
 
@@ -41,13 +40,13 @@ $id = $obj->article->id;
         <!--  Article End-->
 
         <!--Author of article start-->
-<!--        <div class="media bg-light mb-5 p-4 p-md-5">-->
-<!--            <img src="--><?php //= ($dataprovider->getAuthors()[0])->image; ?><!--" alt="Image" class="img-fluid mr-4 mt-1" style="width: 80px;">-->
-<!--            <div class="media-body">-->
-<!--                <h5 class="mb-3">--><?php //= ($dataprovider->getAuthors()[0])->name; ?><!--</h5>-->
-<!--                <p class="m-0">--><?php //= ($dataprovider->getAuthors()[0])->profession; ?><!--</p>-->
-<!--            </div>-->
-<!--        </div>-->
+        <div class="media bg-light mb-5 p-4 p-md-5">
+            <img src="<?= ($obj->dataProvider->getAuthors()[0])->image; ?>" alt="Image" class="img-fluid mr-4 mt-1" style="width: 80px;">
+            <div class="media-body">
+                <h5 class="mb-3"><?= ($obj->dataProvider->getAuthors()[0])->name; ?></h5>
+                <p class="m-0"><?= ($obj->dataProvider->getAuthors()[0])->profession; ?></p>
+            </div>
+        </div>
         <!--Author of article End-->
 
         <!-- Comments Start -->

@@ -50,22 +50,22 @@ class Router
    public function run()
    {
       // получаем uri запроса
-      $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+      $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
       /**
        * @var string $key
        * @var BaseController $val
        */
        foreach ($this->routs as $key => $val) {
-          if (strpos($key, "\d")) {
-              preg_match_all($key,$uri, $rez);
+          if (strpos($key, ".+")) {
+              preg_match_all($key,$uri, $res);
            
             //   Printer::beautifulP($key);
 
-              if (isset($rez[1][0])) {
+              if (isset($res[1][0])) {
                   $this->routs[$key]->setUri($uri);
                   // рендерим нужную страницу
-                  $this->routs[$key]->render(["id"=>(int)$rez[1][0]]);
+                  $this->routs[$key]->render(["url_key"=>$res[1][0]]);
                   die();
               }
           }

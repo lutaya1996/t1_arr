@@ -2,10 +2,8 @@
 namespace tt\Helpers;
 class Session
 {
-    /**
-     * @return void
-     */
-    public  function start(): void
+
+    public  function start()
     {
         session_start();
     }

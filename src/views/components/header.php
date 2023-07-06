@@ -4,7 +4,7 @@ use tt\Controllers\BaseController;
 use tt\Models\Variable;
 
 /**
- * @var BaseController
+ * @var BaseController $obj
  */
 $obj = $this;
 ?>

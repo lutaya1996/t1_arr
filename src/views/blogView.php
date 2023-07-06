@@ -28,7 +28,7 @@ $obj = $this;
 
          <div class="mb-5">
             <img class="img-fluid w-100 mb-4" src="<?= $obj->dataProvider->getConcreteArticle(0)->image ?>" alt="Image">
-            <p><?= $obj->dataProvider->getConcreteArticle(0)->description ?></p>
+            <p><?= $obj->dataProvider->getConcreteArticle(0)->content ?></p>
          </div>
 
          <!-- Main Article End-->

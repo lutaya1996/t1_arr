@@ -4,76 +4,50 @@ namespace tt\Models;
 
 class Article
 {
-   /**
-    *  @var int
-    */
-   public $id;
-
-   /**
-    *  @var string
-    */
-   public $image;
-
-   /**
-    *  @var string
-    */
-   public $title;
-
-   /**
-    *  @var string
-    */
-   public $description;
-
-   /**
-    *  @var bool
-    */
-   public $active;
+    public int $id;
+    public string $url_key;
+    public ?bool $active;
+    public ?string $image;
+    public string $title;
+    public ?string $content;
+    public string $published_date;
+    public string $author;
+    public string $tag;
+    public int $amountOfComments;
 
 
-   /**
-    *  @var string
-    */
-   public $author;
-
-
-   /**
-    *  @var string
-    */
-   public $tag;
-
-
-   /**
-    *  @var int
-    */
-   public $amountOfComments;
-
-   /**
+    /**
     * @param int $id
-    * @param string $image
+    * @param string $url_key
+    * @param ?int $active
+    * @param ?string $image
     * @param string $title
-    * @param string $description
-    * @param boolean $active
+    * @param ?string $content
+    * @param string $published_date
     * @param string $author
     * @param string $tag
-    * @param int $amountOfComments
+    *
     */
    public function __construct(
       int $id,
-      string $image,
+      string $url_key,
+      ?int $active,
+      ?string $image,
       string $title,
-      string $description,
-      bool $active,
+      ?string $content,
+      string $published_date,
       string $author,
-      string $tag,
-      int $amountOfComments
+      string $tag
    ) {
       $this->id = $id;
+      $this->url_key = $url_key;
+      $this->active = $active;
       $this->image = $image;
       $this->title = $title;
-      $this->description = $description;
-      $this->active = $active;
+      $this->content = $content;
+      $this->published_date = $published_date;
       $this->author = $author;
-      $this->tag = $tag;
-      $this->amountOfComments = $amountOfComments;
+       $this->tag = $tag;
+       $this->amountOfComments = 3;
    }
 }

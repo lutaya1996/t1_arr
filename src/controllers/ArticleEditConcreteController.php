@@ -41,7 +41,7 @@ class ArticleEditConcreteController extends BaseController
         if (!empty($this->request->getPost())) {
             $this->updateArticle($this->request->getPost());
         }
-        require "src/Views/concreteArticleEditView.php";
+//        require "src/Views/concreteArticleEditView.php";
     }
 
     /**
@@ -59,7 +59,7 @@ class ArticleEditConcreteController extends BaseController
         if (
             $request["image"] == $this->article->image &&
             $request["title"] == $this->article->title &&
-            $request["description"] == $this->article->description &&
+            $request["content"] == $this->article->content &&
             $request["author"] == $this->article->author &&
             $request["tag"] == $this->article->tag &&
             $request["amountOfComments"] == $this->article->amountOfComments
@@ -70,7 +70,7 @@ class ArticleEditConcreteController extends BaseController
 
         $this->article->image = $request["image"] ?? "";
         $this->article->title = $request["title"] ?? "";
-        $this->article->description = $request["description"] ?? "";
+        $this->article->content = $request["content"] ?? "";
         $this->article->active = $request["active"] ? true : false;
         $this->article->author = $request["author"] ?? "";
         $this->article->tag = $request["tag"] ?? "";

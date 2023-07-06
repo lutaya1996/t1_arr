@@ -6,7 +6,7 @@ use tt\Models\Variable;
 require_once 'src/Views/components/header.php';
 
 /**
- * @var ArticlesEditController
+ * @var ArticlesEditController $obj
  */
 $obj = $this;
 ?>
@@ -52,7 +52,7 @@ $obj = $this;
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <textarea class="form-control p-4 mb-3" rows="12" name="description-<?= $id ?>"><?= $value->description ?></textarea>
+                  <textarea class="form-control p-4 mb-3" rows="12" name="description-<?= $id ?>"><?= $value->content ?></textarea>
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">

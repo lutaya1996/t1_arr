@@ -3,7 +3,6 @@
 namespace tt\DataProvider;
 
 use tt\Models\Article;
-use tt\Controllers\ConcreteArticleController;
 
 class DbArticles
 {
