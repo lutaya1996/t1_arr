@@ -59,10 +59,8 @@ class Router
        foreach ($this->routs as $key => $val) {
           if (strpos($key, ".+")) {
               preg_match_all($key,$uri, $res);
-           
-            //   Printer::beautifulP($key);
 
-              if (isset($res[1][0])) {
+              if (isset($res[1][0]) && $res[1][0] != "create" && $res[1][0] != "edit") {
                   $this->routs[$key]->setUri($uri);
                   // рендерим нужную страницу
                   $this->routs[$key]->render(["url_key"=>$res[1][0]]);

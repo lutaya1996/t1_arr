@@ -2,7 +2,7 @@
 
 namespace tt\App;
 
-use tt\Controllers\ArticleCreateController;
+use tt\ControllersNew\ArticleCreateController;
 use tt\ControllersNew\ArticlesController;
 use tt\Controllers\ArticlesEditController;
 use tt\Controllers\BlogController;
@@ -47,7 +47,7 @@ class Main
             "/blog" => new BlogController($dataProvider),
             "/articles" => new ArticlesController($articleProvider, $dataProvider),
             "/articles/edit" => new ArticlesEditController($dataProvider),
-            "/articles/create" => new ArticleCreateController($dataProvider),
+            "/articles/create" => new ArticleCreateController($articleProvider, $dataProvider),
             "/\/articles\/edit\/(.+)/" => new ConcreteArticleEditController($articleProvider, $dataProvider),
             "/\/articles\/(.+)/"  => new ConcreteArticleController($articleProvider, $dataProvider),
             "/login" => new LoginController($dataProvider),

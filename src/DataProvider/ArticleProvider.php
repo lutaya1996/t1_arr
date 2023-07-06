@@ -62,4 +62,25 @@ class ArticleProvider
             ]
         );
     }
+
+    public function articleCreate(array $values)
+    {
+
+        $statement = $this->connection->prepare(
+            "INSERT INTO article SET  url_key = :url_key,active = :active, image = :image, title = :title,
+        content = :content,published_date = :published_date,author = :author, tag = :tag");
+
+        $statement->execute(
+            [
+                "url_key" => $values["url_key"],
+                "active" => $values["active"],
+                "image" => $values["image"],
+                "title" => $values["title"],
+                "content" => $values["content"],
+                "published_date" => $values["published_date"],
+                "author" => $values["author"],
+                "tag" => $values["tag"]
+            ]
+        );
+    }
 }
