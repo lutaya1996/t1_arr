@@ -22,12 +22,11 @@ class ArticleCreateController
     public $uri;
 
 
-    public function __construct(ArticleProvider $articleProvider, DataProvider $dataProvider)
+    public function __construct(DataProvider $dataProvider)
     {
         $this->session = new Session();
-        $this->session->start();
         $this->dataProvider = $dataProvider;
-        $this->articleProvider = $articleProvider;
+        $this->articleProvider = $dataProvider->articleProvider;
         $this->request = new Request();
         $this->view = "src/Views/articleCreateView.php";
     }

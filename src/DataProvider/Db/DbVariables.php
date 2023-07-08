@@ -1,6 +1,6 @@
 <?php
 
-namespace tt\DataProvider;
+namespace tt\DataProvider\Db;
 
 use tt\Models\Variable;
 
@@ -79,23 +79,23 @@ class DbVariables
             ),
             new Variable(
                Variable::PATH_FOOTER,
-               "src\Views\components\footer.php"
+               "src/Views/components/footer.php"
             ),
             new Variable(
                Variable::PATH_HEADER,
-               "src\Views\components\header.php"
+               "src/Views/components/header.php"
             ),
             new Variable(
                Variable::PATH_PRICING_PLAN,
-               "src\Views\components\pricingPlan.php"
+               "src/Views/components/pricingPlan.php"
             ),
             new Variable(
                Variable::PATH_FOOTER_MENU,
-               "src\Views\components\footerMenu.php"
+               "src/Views/components/footerMenu.php"
             ),
             new Variable(
                Variable::PATH_MAIN_MENU,
-               "src\Views\components\mainMenu.php"
+               "src/Views/components/mainMenu.php"
             )
          ];
    }

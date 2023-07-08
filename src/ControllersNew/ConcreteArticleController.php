@@ -23,16 +23,13 @@ class ConcreteArticleController
 
     public $dataProvider;
     public $session;
-    /**
-     * @param ArticleProvider $articleProvider
-     */
-    public function __construct(ArticleProvider $articleProvider, DataProvider $dataProvider)
+
+    public function __construct( DataProvider $dataProvider)
     {
-        $this->session = new Session();
-        $this->session->start();
-        $this->view = "src/Views/concreteArticleView.php";
         $this->dataProvider = $dataProvider;
-        $this->articleProvider = $articleProvider;
+        $this->session = new Session();
+        $this->view = "src/Views/concreteArticleView.php";
+        $this->articleProvider = $dataProvider->articleProvider;
 
 
     }

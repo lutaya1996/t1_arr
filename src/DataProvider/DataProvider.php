@@ -2,14 +2,10 @@
 
 namespace tt\DataProvider;
 
-use tt\Helpers\Printer;
+
 use tt\Helpers\Request;
-use tt\Models\Article;
-use tt\Models\Service;
-use tt\Models\Slide;
-use tt\Models\User;
 use tt\Helpers\Session;
-use tt\Models\Variable;
+use tt\Models\Article;
 
 const KEY_DB_ON = "DB_ON";
 const KEY_ARTICLES = "DB_ARTICLES";
@@ -30,6 +26,15 @@ class DataProvider
     public Session $session;
     public Database $database;
     public Request $request;
+    public $variablesProvider;
+    public $testimonialsProvider;
+    public $teamProvider;
+    public $userProvider;
+    public $slidesProvider;
+    public $servicesProvider;
+    public $commentsProvider;
+    public $authorsProvider;
+    public $articleProvider;
 
     /**
      * @param Database $database
@@ -43,14 +48,23 @@ class DataProvider
         //Включаем сессию
         $this->session->start();
 
+        //Создаем объекты для работы с сущностями из БД
+        $this->variablesProvider = new VariablesProvider($database);
+        $this->testimonialsProvider = new TestimonialsProvider($database);
+        $this->teamProvider = new TeamProvider($database);
+        $this->userProvider = new UserProvider($database);
+        $this->slidesProvider = new SlidesProvider($database);
+        $this->servicesProvider = new ServicesProvider($database);
+        $this->commentsProvider = new CommentsProvider($database);
+        $this->authorsProvider = new AuthorsProvider($database);
+        $this->articleProvider = new ArticleProvider($database);
+
+
         if (!$this->session->getData(KEY_DB_ON)) {
 
             $this->session->setData(KEY_DB_ON, true);
 
-            $this->session->setData(KEY_ARTICLES, DbArticles::getArticles());
-            $this->session->setData(KEY_SLIDES, DbSlides::getSlides());
-            $this->session->setData(KEY_SERVICES, DbServices::getServices());
-            $this->session->setData(KEY_VARIABLES, DbVariables::getVariables());
+
             $this->session->setData(MAIN_MENU, [
                 "Главная" => "/",
                 "Услуги и цены" => "/catalog",
@@ -58,11 +72,7 @@ class DataProvider
                 "Контакты" => "/contacts",
                 "Наш блог" => "/blog",
             ]);
-            $this->session->setData(KEY_TESTIMONIALS, DbTestimonials::getTestimonials());
-            $this->session->setData(KEY_TEAM, DbTeam::getTeam());
-            $this->session->setData(KEY_AUTHORS, DbAuthors::getAuthors());
-            $this->session->setData(KEY_USERS, DbUsers::getUsers());
-            $this->session->setData(KEY_COMMENTS, DbComments::getComments());
+
             $this->session->setData(KEY_CATEGORIES, [
                 "Безопасное содержание" => "3",
                 "Галерея" => "4",
@@ -83,27 +93,7 @@ class DataProvider
 
     // *** Функции для работы со статьями ****************************************************************
 
-    /**
-     * @return Article[]
-     */
-    public function getArticles(): array
-    {
-        return $this->session->getData(KEY_ARTICLES);
-    }
 
-    /**
-     * @param $id
-     * @return object|null
-     */
-    public function getConcreteArticle($id): ?object
-    {
-        foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
-            if ($value->id == $id) {
-                return $value;
-            }
-        }
-        return null;
-    }
 
     /**
      * @return Article[]
@@ -121,19 +111,6 @@ class DataProvider
         return $res;
     }
 
-    /**
-     * @param Article $article
-     * @return void
-     */
-    public function createArticle(Article $article)
-    {
-        $this->session->addData(KEY_ARTICLES, $article);
-    }
-
-    /**
-     * @param $id
-     * @return void
-     */
     public function deleteArticle($id)
     {
         foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
@@ -160,53 +137,13 @@ class DataProvider
      * @param Article $article
      * @return void
      */
-    public function updateConcreteArticle(Article $article)
-    {
-        foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
-            if ($value->id == $article->id) {
-                $this->session->getData(KEY_ARTICLES)[$key] = $article;
-            }
-        }
-    }
+
 
     // *** Функции для работы со слайдами *****************************************************************
 
-    /**
-     * @return Slide[]
-     */
-    public function getSlides(): array
-    {
-        return $this->session->getData(KEY_SLIDES);
-    }
 
-    // *** Функции для работы с сервисами *****************************************************************
 
-    /**
-     * @return Service[]
-     */
-    public function getServices(): array
-    {
-        return $this->session->getData(KEY_SERVICES);
-    }
 
-    // *** Функции для работы с вариативами *****************************************************************
-
-    /**
-     * @param $variableKey
-     * @return null|string
-     */
-    public function getVariables($variableKey): ?string
-    {
-        foreach ($this->session->getData(KEY_VARIABLES) as $value) {
-            if (is_null($value)) {
-                continue;
-            }
-            if ($value->key == $variableKey) {
-                return $value->value;
-            }
-        }
-        return null;
-    }
 
     // *** Функции для работы с главным меню ************************************************************
 
@@ -238,62 +175,5 @@ class DataProvider
         return $this->session->getData(KEY_TAGS);
     }
 
-    // ***Функция для работы с отзывами*******************************
 
-    /**
-     * @return array
-     */
-    public function getTestimonials(): array
-    {
-        return $this->session->getData(KEY_TESTIMONIALS);
-    }
-
-    //***Функция для работы с командой******** *
-
-    /**
-     * @return array
-     */
-    public function getTeam(): array
-    {
-        return $this->session->getData(KEY_TEAM);
-    }
-
-    //***Функция для работы с авторами******** *
-
-    /**
-     * @return array
-     */
-    public function getAuthors(): array
-    {
-        return $this->session->getData(KEY_AUTHORS);
-    }
-
-    //***Функция для работы с Users******* *
-
-    /**
-     * @return User[]
-     */
-    public function getUsers(): array
-    {
-        return $this->session->getData(KEY_USERS);
-    }
-
-    /**
-     * @param User $user
-     * @return void
-     */
-    public function createUser(User $user)
-    {
-        $this->session->addData(KEY_USERS, $user);
-    }
-
-    //***Функция для работы с  комментариями******** *
-
-    /**
-     * @return array
-     */
-    public function getComments(): array
-    {
-        return $this->session->getData(KEY_COMMENTS);
-    }
 }

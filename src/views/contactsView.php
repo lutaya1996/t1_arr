@@ -1,18 +1,19 @@
 <?php
 use tt\Controllers\ContactsController;
-use tt\Models\Variable;
 
-require_once 'src/Views/components/header.php';
+require_once "src/Views/components/header.php";
 /**
- * @var ContactsController
+ * @var ContactsController $obj
  */
 $obj = $this;
+
+$variableProvider = $obj->dataProvider->variablesProvider;
 ?>
 
 <!-- Contact Start -->
 <div class="container-fluid pt-5">
    <div class="d-flex flex-column text-center mb-5 pt-5">
-      <h1 class="text-secondary mb-3"><?=$obj->dataProvider->getVariables(Variable::CONTACT_HEAD1)?></h1>
+      <h1 class="text-secondary mb-3"><?=$variableProvider->getVariable("CONTACT_HEAD1")?></h1>
       <h4 class="display-4 m-0">Свяжитесь <span class="text-primary"> с нами</span></h4>
    </div>
    <div class="row justify-content-center">

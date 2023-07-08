@@ -1,16 +1,20 @@
 <?php
 
 use tt\Controllers\IndexController;
-use tt\Models\Variable;
 
-
-require_once 'src/Views/components/header.php';
-
+require_once "src/Views/components/header.php";
 
 /**
  * @var IndexController $obj
  */
 $obj = $this;
+
+$variableProvider = $obj->dataProvider->variablesProvider;
+$slides = $obj->dataProvider->slidesProvider->getSlides();
+$services = $obj->dataProvider->servicesProvider->getServices();
+$teamMembers = $obj->dataProvider->teamProvider->getTeamMembers();
+$testimonials = $obj->dataProvider->testimonialsProvider->getTestimonials();
+$articles = $obj->dataProvider->articleProvider->getArticles();
 
 ?>
 
@@ -18,7 +22,7 @@ $obj = $this;
 <div class="container-fluid p-0">
    <div id="header-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-         <?php foreach ($obj->dataProvider->getSlides() as $slide) : ?>
+         <?php foreach ($slides as $slide) : ?>
             <div class="carousel-item <?= $slide->showOnFirst ? "active" : "" ?>">
                <img class="w-100" src="<?= $slide->image ?>" alt="Image">
                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -67,18 +71,18 @@ $obj = $this;
                <h5><i class="fa fa-check-double text-secondary mr-3"></i>Поддержка клиентов 24/7</h5>
             </li>
          </ul>
-         <a href="<?= $obj->dataProvider->getVariables(Variable::URL_CATALOG) ?>" class="btn btn-lg btn-primary mt-3 px-4">Узнать больше</a>
+         <a href="<?= $variableProvider->getVariable("URL_CATALOG") ?>" class="btn btn-lg btn-primary mt-3 px-4">Узнать больше</a>
       </div>
       <div class="col-lg-5">
          <div class="row px-3">
             <div class="col-12 p-0">
-               <img class="img-fluid w-100" src="assets/img/about-1.jpg" alt="">
+               <img class="img-fluid w-100" src="/assets/img/about-1.jpg" alt="">
             </div>
             <div class="col-6 p-0">
-               <img class="img-fluid w-100" src="assets/img/about-2.jpg" alt="">
+               <img class="img-fluid w-100" src="/assets/img/about-2.jpg" alt="">
             </div>
             <div class="col-6 p-0">
-               <img class="img-fluid w-100" src="assets/img/about-3.jpg" alt="">
+               <img class="img-fluid w-100" src="/assets/img/about-3.jpg" alt="">
             </div>
          </div>
       </div>
@@ -101,7 +105,7 @@ $obj = $this;
             <p>Во время пребывания у нас Вашему Питомцу будет уделено самое пристальное внимание с высочайшим качеством ухода.
                Поскольку у нас небольшой список клиентов, мы можем предложить эту очень персонализированную услугу каждому
                клиенту и его четвероногому члену семьи.</p>
-            <a href="<?= $obj->dataProvider->getVariables(Variable::URL_CATALOG) ?>" class="btn btn-lg btn-primary mt-3 px-4">Забронировать</a>
+            <a href="<?=  $variableProvider->getVariable("URL_CATALOG")  ?>" class="btn btn-lg btn-primary mt-3 px-4">Забронировать</a>
          </div>
       </div>
    </div>
@@ -113,11 +117,11 @@ $obj = $this;
    <div class="container py-5">
       <div class="d-flex flex-column text-center mb-5">
 
-         <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::INDEX_SERVICE_HEAD1) ?></h4>
-         <h1 class="display-4 m-0"><?= $obj->dataProvider->getVariables(Variable::INDEX_SERVICE_HEAD2) ?></h1>
+         <h4 class="text-secondary mb-3"><?=  $variableProvider->getVariable("INDEX_SERVICE_HEAD1") ?></h4>
+         <h1 class="display-4 m-0"><?= $variableProvider->getVariable("INDEX_SERVICE_HEAD2") ?></h1>
       </div>
       <div class="row pb-3">
-         <?php foreach ($obj->dataProvider->getServices() as $service) : ?>
+         <?php foreach ($services as $service) : ?>
             <div class="col-md-6 col-lg-4 mb-4">
                <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
                   <h3 class="<?= $service->iconClass ?> display-3 font-weight-normal text-secondary mb-3"></h3>
@@ -136,7 +140,7 @@ $obj = $this;
 <div class="container">
    <div class="row align-items-center">
       <div class="col-lg-5">
-         <img class="img-fluid w-100" src="assets/img/feature.jpg" alt="">
+         <img class="img-fluid w-100" src="/assets/img/feature.jpg" alt="">
       </div>
       <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
          <h4 class="text-secondary mb-3">Почему мы?</h4>
@@ -176,7 +180,7 @@ $obj = $this;
 
 <!-- Pricing Plan Start -->
 
-<?php require_once $obj->dataProvider->getVariables(Variable::PATH_PRICING_PLAN) ?>
+<?php require_once $variableProvider->getVariable("PATH_PRICING_PLAN") ?>
 
 <!-- Pricing Plan End -->
 
@@ -189,7 +193,7 @@ $obj = $this;
    </div>
    <div class="row">
 
-      <?php foreach ($obj->dataProvider->getTeam() as $member) : ?>
+      <?php foreach ($teamMembers as $member) : ?>
 
          <div class="col-lg-3 col-md-6">
             <div class="team card position-relative overflow-hidden border-0 mb-4">
@@ -224,7 +228,7 @@ $obj = $this;
          <h1 class="display-4 m-0">Отзывы <span class="text-primary">наших клиентов</span></h1>
       </div>
       <div class="owl-carousel testimonial-carousel">
-         <?php foreach ($obj->dataProvider->getTestimonials() as $val) : ?>
+         <?php foreach ($testimonials as $val) : ?>
             <div class="bg-white mx-3 p-4">
                <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
                   <img class="img-fluid" src="<?= $val->image ?>" style="width: 80px; height: 80px;" alt="">
@@ -246,27 +250,27 @@ $obj = $this;
 <!-- Blog Start -->
 <div class="container pt-5">
    <div class="d-flex flex-column text-center mb-5">
-      <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::ARTICLE_HEAD1) ?></h4>
-      <h1 class="display-4 m-0"><?= $obj->dataProvider->getVariables(Variable::ARTICLE_HEAD2) ?></h1>
+      <h4 class="text-secondary mb-3"><?= $variableProvider->getVariable("ARTICLE_HEAD1") ?></h4>
+      <h1 class="display-4 m-0"><?= $variableProvider->getVariable("ARTICLE_HEAD2") ?></h1>
    </div>
    <div class="row pb-3">
 
       <?php $count = 1;
-      foreach ($obj->dataProvider->getActiveArticles() as $article) :
+      foreach ($articles as $article) :
          if ($count < 4) :
             $count++; ?>
 
             <div class="col-lg-4 mb-4">
                <div class="card border-0 mb-2">
-                  <img class="card-img-top" src="<?= $article->image ?>" alt="">
+                  <img class="card-img-top" src="<?= $article["image"] ?>" alt="">
                   <div class="card-body bg-light p-4">
-                     <h4 class="card-title text-truncate"><?= $article->title ?></h4>
+                     <h4 class="card-title text-truncate"><?= $article["title"] ?></h4>
                      <div class="d-flex mb-3">
-                        <small class="mr-2"><i class="fa fa-user text-muted"></i> <?= $article->author ?></small>
-                        <small class="mr-2"><i class="fa fa-folder text-muted"></i> <?= $article->tag ?></small>
-                        <small class="mr-2"><i class="fa fa-comments text-muted"></i> <?= $article->amountOfComments ?></small>
+                        <small class="mr-2"><i class="fa fa-user text-muted"></i> <?= $article["author"] ?></small>
+                        <small class="mr-2"><i class="fa fa-folder text-muted"></i> <?= $article["tag"] ?></small>
+                        <small class="mr-2"><i class="fa fa-comments text-muted"></i> <?="3" ?></small>
                      </div>
-                     <p><?= mb_substr($article->content, 0, 150) ?></p>
+                     <p><?= mb_substr($article["content"], 0, 150) ?></p>
                      <a class="font-weight-bold" href="">Читать далее</a>
                   </div>
                </div>

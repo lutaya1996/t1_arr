@@ -1,8 +1,7 @@
 <?php
 
 use tt\ControllersNew\ConcreteArticleEditController;
-use tt\Models\Variable;
-use tt\Helpers\Printer;
+
 
 require_once "src/Views/components/header.php";
 
@@ -12,6 +11,8 @@ require_once "src/Views/components/header.php";
 $obj = $this;
 $article = $obj->article;
 $id = $obj->article->id;
+
+$variableProvider = $obj->dataProvider->variablesProvider;
 
 ?>
     <div class="container-fluid pt-5">
@@ -30,7 +31,7 @@ $id = $obj->article->id;
            <?php endif; ?>
 
          <!-- TODO Экшен перенести в Variables -->
-         <form method="post" action="<?= $obj->dataProvider->getVariables(Variable::URL_ARTICLE_EDIT) . $article->url_key ?>">
+         <form method="post" action="<?=$variableProvider->getVariable("URL_ARTICLE_EDIT") . $article->url_key ?>">
             <h4><?= $article->title ?></h4>
              <p class="help-block text-danger"></p>
             <div class="control-group">

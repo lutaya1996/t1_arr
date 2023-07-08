@@ -1,12 +1,14 @@
 <?php
 
 use tt\Controllers\BaseController;
-use tt\Models\Variable;
+
 
 /**
  * @var BaseController $obj
  */
 $obj = $this;
+
+$variableProvider = $obj->dataProvider->variablesProvider;
 ?>
 
 <!-- Footer Start -->
@@ -54,18 +56,18 @@ $obj = $this;
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/lib/easing/easing.min.js"></script>
-<script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/lib/tempusdominus/js/moment.min.js"></script>
-<script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?= $variableProvider->getVariable("SERVER_DOMAIN") ?>assets/lib/easing/easing.min.js"></script>
+<script src="<?= $variableProvider->getVariable("SERVER_DOMAIN") ?>assets/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="<?= $variableProvider->getVariable("SERVER_DOMAIN") ?>assets/lib/tempusdominus/js/moment.min.js"></script>
+<script src="<?= $variableProvider->getVariable("SERVER_DOMAIN") ?>assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="<?= $variableProvider->getVariable("SERVER_DOMAIN") ?>assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
 <!-- Contact Javascript File -->
-<!-- <script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/mail/jqBootstrapValidation.min.js"></script> -->
-<!-- <script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/mail/contact.js"></script> -->
+<!-- <script src="<?= $variableProvider->getVariable("SERVER_DOMAIN") ?>assets/mail/jqBootstrapValidation.min.js"></script> -->
+<!-- <script src="<?= $variableProvider->getVariable("SERVER_DOMAIN") ?>assets/mail/contact.js"></script> -->
 
 <!-- Template Javascript -->
-<script src="<?= $obj->dataProvider->getVariables(Variable::SERVER_DOMAIN) ?>assets/js/main.js"></script>
+<script src="<?= $variableProvider->getVariable("SERVER_DOMAIN") ?>assets/js/main.js"></script>
 </body>
 
 </html>

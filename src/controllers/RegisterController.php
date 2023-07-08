@@ -3,30 +3,42 @@
 namespace tt\Controllers;
 
 use tt\DataProvider\DataProvider;
+use tt\DataProvider\UserProvider;
 use tt\Helpers\Printer;
+use tt\Helpers\Request;
+use tt\Helpers\Session;
 use tt\Helpers\ValidateInputs;
-use tt\DataProvider\Database;
 
-
-class RegisterController extends BaseController
+class RegisterController
 {
-    /** @var Database */
-    private Database $database;
     /** @var array */
     public array $errors;
     /** @var string */
     public string $warning;
     /** @var array */
     public array $invalidDatas;
+    public UserProvider $userProvider;
+    public string $view;
+    public $uri;
+    public $dataProvider;
+    public $request;
+    public $session;
 
     public function __construct(DataProvider $dataProvider)
     {
+        $this->session = new Session();
+        $this->session->start();
+        $this->userProvider = $dataProvider->userProvider;
         $this->errors = [];
         $this->invalidDatas = [];
         $this->view = "src/Views/registerView.php";
-        parent::__construct($dataProvider);
+        $this->dataProvider = $dataProvider;
+        $this->request = new Request();
+    }
 
-        $this->database = $this->dataProvider->database;
+    public function setUri($uri)
+    {
+        $this->uri = $uri;
     }
 
     /**
@@ -101,43 +113,6 @@ class RegisterController extends BaseController
     }
 
     /**
-     * @param string $name
-     * @param string $email
-     * @return void
-     */
-    private function checkUserInDb(string $name, string $email)
-    {
-        $statement = $this->database->getConnection()->prepare(
-            "SELECT 1 FROM users WHERE name = :name LIMIT 1"
-        );
-
-        $statement->execute([
-            "name" => $name
-        ]);
-
-        $user = $statement->fetch();
-
-        if (!empty($user)) {
-            $this->warning = "User с таким именем существует";
-            return;
-        }
-
-        $statement = $this->database->getConnection()->prepare(
-            "SELECT 1 FROM users WHERE email = :email LIMIT 1"
-        );
-        $statement->execute([
-            "email" => $email
-        ]);
-
-        $user = $statement->fetch();
-
-        if (!empty($user)) {
-            $this->warning = "User с таким email существует";
-            return;
-        }
-    }
-
-    /**
      * @param $request
      * @return void
      */
@@ -167,18 +142,35 @@ class RegisterController extends BaseController
         }
 
         //Создаем нового юзера в BD
-        $statement = $this->database->getConnection()->prepare(
-            "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)"
-        );
-        $statement->execute([
-            "name" => $name,
-            "email" => $email,
-            "password" => $password
-        ]);
+        $this->userProvider->createUser($name, $email, $password);
 
         //Перенаправляем пользователя на главную страницу в случае удачной регистрации
         // и завершаем скрипт
         header("Location: /");
         exit();
+    }
+
+    /**
+     * @param string $name
+     * @param string $email
+     * @return void
+     */
+    private function checkUserInDb(string $name, string $email)
+    {
+        //Проверка БД на существование юзера с таким email
+        $user = $this->userProvider->checkUserInDb($name);
+
+        if (!empty($user)) {
+            $this->warning = "User с таким именем существует";
+            return;
+        }
+
+        //Проверка БД на существование юзера с таким именем
+        $user = $this->userProvider->checkUserInDb($email);
+
+        if (!empty($user)) {
+            $this->warning = "User с таким email существует";
+            return;
+        }
     }
 }

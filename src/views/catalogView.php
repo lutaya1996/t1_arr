@@ -1,12 +1,14 @@
 <?php
 
 use tt\Controllers\CatalogController;
-use tt\Models\Variable;
+
 
 /**
  * @var CatalogController $obj
  */
 $obj = $this;
+$variableProvider = $obj->dataProvider->variablesProvider;
+$services = $obj->dataProvider->servicesProvider->getServices();
 
 require_once "src/Views/components/header.php";
 ?>
@@ -15,11 +17,11 @@ require_once "src/Views/components/header.php";
 <div class="container-fluid bg-light pt-5">
    <div class="container py-5">
       <div class="d-flex flex-column text-center mb-5">
-         <h4 class="text-secondary mb-3"><?= $obj->dataProvider->getVariables(Variable::INDEX_SERVICE_HEAD1) ?></h4>
-         <h1 class="display-4 m-0"><?= $obj->dataProvider->getVariables(Variable::INDEX_SERVICE_HEAD2) ?></h1>
+         <h4 class="text-secondary mb-3"><?= $variableProvider->getVariable("INDEX_SERVICE_HEAD1") ?></h4>
+         <h1 class="display-4 m-0"><?= $variableProvider->getVariable("INDEX_SERVICE_HEAD2") ?></h1>
       </div>
       <div class="row pb-3">
-         <?php foreach ($obj->dataProvider->getServices() as $service) : ?>
+         <?php foreach ($services as $service) : ?>
             <div class="col-md-6 col-lg-4 mb-4">
                <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
                   <h3 class="<?= $service->iconClass ?> display-3 font-weight-normal text-secondary mb-3"></h3>

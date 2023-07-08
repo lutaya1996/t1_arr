@@ -1,5 +1,5 @@
 <?php
-namespace tt\DataProvider;
+namespace tt\DataProvider\Db;
 
 use tt\Models\Testimonial;
 

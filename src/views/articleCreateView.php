@@ -1,13 +1,14 @@
 <?php
 
-use tt\Controllers\ArticleCreateController;
-use tt\Helpers\Printer;
+use tt\ControllersNew\ArticleCreateController;
 
-require_once 'src/Views/components/header.php';
+
+require_once "src/Views/components/header.php";
 /**
  * @var ArticleCreateController $obj
  */
 $obj = $this;
+$post = $obj->request->getPost();
 
 ?>
     <div class="container-fluid pt-5">
@@ -25,35 +26,39 @@ $obj = $this;
             <!-- TODO Экшен перенести в Variables -->
             <form method="post" action="http://cat-blog/articles/create">
                 <div class="control-group">
-                    <input type="checkbox" class="form-control  p-4 mb-3" name="active" <?= isset($_POST["active"]) ? "checked" : "" ?> placeholder="Активность статьи" />
+                    <input type="checkbox" class="form-control  p-4 mb-3 mt-3" name="active" <?= isset($post["active"]) ? "checked" : "" ?> placeholder="Видимость статьи" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control  p-4 mb-3" name="image" value="<?= $_POST["image"] ?? "" ?>" placeholder="Загрузите картинку" />
+                    <input type="text" class="form-control  p-4 mb-3 mt-3" name="image" value="<?= $post["image"] ?? "" ?>" placeholder="Ссылка на картинку" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control  p-4 mb-3" name="title" value="<?= $_POST["title"] ?? "" ?>" placeholder="Заголовок" />
+                    <input type="text" class="form-control  p-4 mb-3 mt-3" name="title" value="<?= $post["title"] ?? "" ?>" placeholder="Заголовок статьи" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <textarea  class="form-control p-4 mb-3" rows="12" name="content" value="<?= $_POST["content"] ?? "" ?>" placeholder="Текст статьи" ></textarea>
+                    <input type="text" class="form-control  p-4 mb-3 mt-3" name="url_key" value="<?= $post["url_key"] ?? "" ?>" placeholder="url_key статьи" />
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="control-group">
+                    <textarea  class="form-control p-4 mb-3 mt-3" rows="12" name="content" placeholder="Содержание статьи" ><?= $post["content"] ?? "" ?></textarea>
 
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-4 mb-3" rows="2" name="author" value="<?= $_POST["author"] ?? "" ?>" placeholder="Автор статьи" />
+                    <input type="text" class="form-control p-4 mb-3 mt-3"  name="author" value="<?= $post["author"] ?? "" ?>" placeholder="Автор статьи" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-4 mb-3" rows="2" name="tag" value="<?= $_POST["tag"] ?? "" ?>" placeholder="Тег" />
+                    <input type="text" class="form-control p-4 mb-3 mt-3"  name="tag" value="<?= $post["tag"] ?? "" ?>" placeholder="Теги статьи" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-4 mb-3" rows="2" name="amountOfComments" value="<?= $_POST["amountOfComments"] ?? "" ?>" placeholder="количество комментариев" />
+                    <input type="text" class="form-control p-4 mb-3 mt-3"  name="published_date" value="<?= $post["published_date"] ?? "" ?>" placeholder="Дата публикации статьи" />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="text-center">
-                    <input class="btn btn-primary py-3 px-5 " type="submit" value="Добавить">
+                    <input class="btn btn-primary py-3 px-5 mb-3 mt-3" type="submit" value="Добавить">
                 </div>
             </form>
 

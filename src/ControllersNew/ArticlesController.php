@@ -23,15 +23,11 @@ class ArticlesController
     public DataProvider $dataProvider;
     public $session;
 
-    /**
-     * @param ArticleProvider $articleProvider
-     */
-    public function __construct(ArticleProvider $articleProvider, DataProvider $dataProvider)
+    public function __construct( DataProvider $dataProvider)
     {
         $this->session = new Session();
-        $this->session->start();
         $this->view = "src/Views/articlesView.php";
-        $this->articleProvider = $articleProvider;
+        $this->articleProvider = $dataProvider->articleProvider;
         $this->dataProvider = $dataProvider;
     }
 

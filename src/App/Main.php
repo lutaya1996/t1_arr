@@ -18,6 +18,8 @@ use tt\ControllersNew\ConcreteArticleEditController;
 use tt\DataProvider\ArticleProvider;
 use tt\DataProvider\Database;
 use tt\DataProvider\DataProvider;
+use tt\DataProvider\UserProvider;
+use tt\DataProvider\VariablesProvider;
 use tt\Routes\Router;
 
 
@@ -35,7 +37,7 @@ class Main
         $password = $config["password"];
         $database = new Database($dsn, $username, $password);
 
-        $articleProvider = new ArticleProvider($database);
+
 
         $dataProvider = new DataProvider($database);
 
@@ -45,12 +47,12 @@ class Main
             "/catalog" => new CatalogController($dataProvider),
             "/contacts" => new ContactsController($dataProvider),
             "/blog" => new BlogController($dataProvider),
-            "/articles" => new ArticlesController($articleProvider, $dataProvider),
+            "/articles" => new ArticlesController( $dataProvider),
             "/articles/edit" => new ArticlesEditController($dataProvider),
-            "/articles/create" => new ArticleCreateController($articleProvider, $dataProvider),
-            "/\/articles\/edit\/(.+)/" => new ConcreteArticleEditController($articleProvider, $dataProvider),
-            "/\/articles\/(.+)/"  => new ConcreteArticleController($articleProvider, $dataProvider),
-            "/login" => new LoginController($dataProvider),
+            "/articles/create" => new ArticleCreateController($dataProvider),
+            "/\/articles\/edit\/(.+)/" => new ConcreteArticleEditController( $dataProvider),
+            "/\/articles\/(.+)/"  => new ConcreteArticleController($dataProvider),
+            "/login" => new LoginController( $dataProvider),
             "/register" => new RegisterController($dataProvider),
             "/logout" => new LogoutController($dataProvider)
         ]);
