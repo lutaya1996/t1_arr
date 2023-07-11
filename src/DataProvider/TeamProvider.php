@@ -9,7 +9,7 @@ class TeamProvider
 
     /** @var \PDO */
     public \PDO $connection;
-    public $database;
+    public Database $database;
     /** @var Team[] */
     public array $teamMembers;
 
@@ -24,7 +24,10 @@ class TeamProvider
         $this->teamMembers = [];
     }
 
-    public function getTeamMembers()
+    /**
+     * @return array|Team[]
+     */
+    public function getTeamMembers(): array
     {
         $statement = $this->connection->prepare("SELECT * FROM team");
         $statement->execute();
@@ -36,6 +39,10 @@ class TeamProvider
         return $this->teamMembers;
     }
 
+    /**
+     * @param array $values
+     * @return void
+     */
     private function createTeamMembers(array $values)
     {
         foreach ($values as $teamMembersValues)  {

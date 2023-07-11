@@ -83,7 +83,7 @@ $variableProvider = $obj->dataProvider->variablesProvider;
                   <ul class="list-group list-group-flush mb-4">
                      <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Кормление</li>
                      <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Содержание</li>
-                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Грумминг и СПА</li>
+                     <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Груминг и СПА</li>
                      <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Ветеринарная помощь</li>
                   </ul>
                </div>

@@ -9,7 +9,7 @@ class AuthorsProvider
 
     /** @var \PDO */
     public \PDO $connection;
-    public $database;
+    public Database $database;
     /** @var Author[] */
     public array $authors;
 
@@ -24,7 +24,10 @@ class AuthorsProvider
         $this->authors = [];
     }
 
-    public function getAuthors()
+    /**
+     * @return array|Author[]
+     */
+    public function getAuthors(): array
     {
         $statement = $this->connection->prepare("SELECT * FROM authors");
         $statement->execute();
@@ -36,7 +39,11 @@ class AuthorsProvider
         return $this->authors;
     }
 
-    private function createAuthors(array $values)
+    /**
+     * @param array $values
+     * @return void
+     */
+    private function createAuthors(array $values): void
     {
         foreach ($values as $authorValues) {
 

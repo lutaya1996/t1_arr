@@ -9,7 +9,7 @@ use tt\Helpers\Request;
 use tt\Helpers\Session;
 use tt\Helpers\ValidateInputs;
 
-class RegisterController
+class RegisterController extends BaseController
 {
     /** @var array */
     public array $errors;
@@ -18,27 +18,18 @@ class RegisterController
     /** @var array */
     public array $invalidDatas;
     public UserProvider $userProvider;
-    public string $view;
-    public $uri;
-    public $dataProvider;
-    public $request;
-    public $session;
 
+    /**
+     * @param DataProvider $dataProvider
+     */
     public function __construct(DataProvider $dataProvider)
     {
-        $this->session = new Session();
-        $this->session->start();
         $this->userProvider = $dataProvider->userProvider;
         $this->errors = [];
         $this->invalidDatas = [];
         $this->view = "src/Views/registerView.php";
-        $this->dataProvider = $dataProvider;
-        $this->request = new Request();
-    }
 
-    public function setUri($uri)
-    {
-        $this->uri = $uri;
+        parent::__construct($dataProvider);
     }
 
     /**

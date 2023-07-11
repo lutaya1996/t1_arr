@@ -1,46 +1,28 @@
 <?php
 
-namespace tt\ControllersNew;
+namespace tt\Controllers;
 
 use tt\DataProvider\ArticleProvider;
 use tt\DataProvider\DataProvider;
-use tt\Helpers\Session;
 use tt\Models\Article;
 
-class ConcreteArticleController
+class ConcreteArticleController extends BaseController
 {
     /** @var Article */
     public Article $article;
 
-    /** @var string */
-    public string $uri;
-
-    /** @var string */
-    protected string $view;
-
     /** @var ArticleProvider */
     public ArticleProvider $articleProvider;
 
-    public $dataProvider;
-    public $session;
-
+    /**
+     * @param DataProvider $dataProvider
+     */
     public function __construct( DataProvider $dataProvider)
     {
-        $this->dataProvider = $dataProvider;
-        $this->session = new Session();
-        $this->view = "src/Views/concreteArticleView.php";
         $this->articleProvider = $dataProvider->articleProvider;
+        $this->view = "src/Views/concreteArticleView.php";
 
-
-    }
-
-    /**
-     * @param string $uri
-     * @return void
-     */
-    public function setUri(string $uri): void
-    {
-        $this->uri = $uri;
+        parent::__construct($dataProvider);
     }
 
     /**
@@ -55,6 +37,10 @@ class ConcreteArticleController
         require $this->view;
     }
 
+    /**
+     * @param array $values
+     * @return void
+     */
     private function articleCreate(array $values)
     {
         $id = $values["id"];

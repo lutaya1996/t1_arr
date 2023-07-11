@@ -24,7 +24,7 @@ $authors = $obj->dataProvider->authorsProvider->getAuthors();
             <div class="d-index-flex mb-2">
                <span class="mr-3"><i class="fa fa-user text-muted"></i> <?= $articleProvider->getArticleByUrlKey("primary")["author"] ?></span>
                <span class="mr-3"><i class="fa fa-folder text-muted"></i> <?= $articleProvider->getArticleByUrlKey("primary")["tag"] ?></span>
-               <span class="mr-3"><i class="fa fa-comments text-muted"></i> <?= $articleProvider->getArticleByUrlKey("primary")["amountOfComments"] ?></span>
+               <span class="mr-3"><i class="fa fa-comments text-muted"></i> <?=3?></span>
             </div>
          </div>
 
@@ -34,15 +34,6 @@ $authors = $obj->dataProvider->authorsProvider->getAuthors();
          </div>
 
          <!-- Main Article End-->
-
-         <!-- Articles Start -->
-
-
-         <!-- //    <h2 class="mb-4"></h2>
-            //    <img class="img-fluid w-50 float-left mr-4 mb-3" src="" alt=" Image"> -->
-
-         <!-- Articles End -->
-
 
          <!-- Comments Start -->
 
@@ -95,6 +86,8 @@ $authors = $obj->dataProvider->authorsProvider->getAuthors();
       <!-- Меню справа Start -->
 
       <?php require_once "src/Views/components/sideBar.php" ?>
+   </div>
+</div>
 
       <!-- Меню справа End-->
 

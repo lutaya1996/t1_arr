@@ -2,24 +2,21 @@
 
 namespace tt\App;
 
-use tt\ControllersNew\ArticleCreateController;
-use tt\ControllersNew\ArticlesController;
+use tt\Controllers\ArticleCreateController;
+use tt\Controllers\ArticlesController;
 use tt\Controllers\ArticlesEditController;
 use tt\Controllers\BlogController;
 use tt\Controllers\CatalogController;
+use tt\Controllers\ConcreteArticleController;
+use tt\Controllers\ConcreteArticleEditController;
 use tt\Controllers\ContactsController;
 use tt\Controllers\IndexController;
 use tt\Controllers\LoginController;
 use tt\Controllers\LogoutController;
 use tt\Controllers\New404Controller;
 use tt\Controllers\RegisterController;
-use tt\ControllersNew\ConcreteArticleController;
-use tt\ControllersNew\ConcreteArticleEditController;
-use tt\DataProvider\ArticleProvider;
 use tt\DataProvider\Database;
 use tt\DataProvider\DataProvider;
-use tt\DataProvider\UserProvider;
-use tt\DataProvider\VariablesProvider;
 use tt\Routes\Router;
 
 
@@ -36,7 +33,6 @@ class Main
         $username = $config["username"];
         $password = $config["password"];
         $database = new Database($dsn, $username, $password);
-
 
 
         $dataProvider = new DataProvider($database);

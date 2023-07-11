@@ -2,9 +2,8 @@
 
 namespace tt\Controllers;
 
+use tt\DataProvider\ArticleProvider;
 use tt\DataProvider\DataProvider;
-use tt\Helpers\Printer;
-use tt\Models\Article;
 
 class ArticleCreateController extends BaseController
 {
@@ -12,14 +11,14 @@ class ArticleCreateController extends BaseController
      * @var string|null
      */
     public ?string $hasError;
+    public ArticleProvider $articleProvider;
 
-    /**
-     * @param DataProvider $dataProvider
-     */
     public function __construct(DataProvider $dataProvider)
     {
-        parent::__construct($dataProvider);
+        $this->articleProvider = $dataProvider->articleProvider;
         $this->view = "src/Views/articleCreateView.php";
+
+        parent::__construct($dataProvider);
     }
 
     /**
@@ -38,51 +37,44 @@ class ArticleCreateController extends BaseController
      * @param $request
      * @return void
      */
-
     private function createArticle($request): void
     {
         // Пустой массив содержит приходящие модели
         // Ключ массива будет id
         // Значение Моделька
         if (
-            empty($request["image"]) || empty($request["title"]) || empty($request["description"]) ||
-            empty($request["author"]) || empty($request["tag"]) || empty($request["amountOfComments"])
+            empty($request["url_key"]) || empty($request["image"]) || empty($request["title"]) ||
+            empty($request["content"]) || empty($request["author"]) || empty($request["tag"])
         ) {
             $this->hasError = "Все поля должны быть заполнены";
             return;
         }
 
-        $id = $this->getNewId();
+        $datetime = date_create()->format('Y-m-d H:i:s');
 
-        $newArticle = new Article(
-            $id,
-            $request["image"] ?? "",
-            $request["title"] ?? "",
-            $request["description"] ?? "",
-            isset($request["active"]) ? true : false,
-            $request["author"] ?? "",
-            $request["tag"] ?? "",
-            $request["amountOfComments"] ?? "",
-        );
+        $url_key = $request["url_key"] ?? "";
+        $active = isset($request["active"]) ? 1 : 0;
+        $image = $request["image"] ?? "";
+        $title = $request["title"] ?? "";
+        $content = $request["content"] ?? "";
+        $published_date = empty($request["published_date"]) ? $datetime : $request["published_date"];
+        $author = $request["author"] ?? "";
+        $tag = $request["tag"] ?? "";
 
+        $this->articleProvider->articleCreate([
 
-        $this->dataProvider->createArticle($newArticle);
+            "url_key" => $url_key,
+            "active" => $active,
+            "image" => $image,
+            "title" => $title,
+            "content" => $content,
+            "published_date" => $published_date,
+            "author" => $author,
+            "tag" => $tag
+        ]);
 
-         header("Location: /articles");
-         exit();
+        header("Location: /articles");
+        exit();
     }
 
-    /**
-     * @return int
-     */
-    private function getNewId(): int
-    {
-        $maxVal = 0;
-        foreach ($this->dataProvider->getArticles() as $article) {
-            if ($maxVal < $article->id) {
-                $maxVal = $article->id;
-            }
-        }
-        return $maxVal + 1;
-    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use tt\Controllers\LoginController;
-use tt\Models\Variable;
+
 
 require_once 'src/Views/components/header.php';
 /**

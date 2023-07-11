@@ -9,7 +9,7 @@ class TestimonialsProvider
 
     /** @var \PDO */
     public \PDO $connection;
-    public $database;
+    public Database $database;
     /** @var Testimonial[] */
     public array $testimonials;
 
@@ -24,7 +24,10 @@ class TestimonialsProvider
         $this->testimonials = [];
     }
 
-    public function getTestimonials()
+    /**
+     * @return array|Testimonial[]
+     */
+    public function getTestimonials(): array
     {
         $statement = $this->connection->prepare("SELECT * FROM testimonials");
         $statement->execute();
@@ -36,6 +39,10 @@ class TestimonialsProvider
         return $this->testimonials;
     }
 
+    /**
+     * @param array $values
+     * @return void
+     */
     private function createTestimonial(array $values)
     {
         foreach ($values as $testimonialValues)  {

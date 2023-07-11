@@ -7,7 +7,7 @@ class VariablesProvider
 
     /** @var \PDO */
     public \PDO $connection;
-    public $database;
+    public Database $database;
 
     /**
      * @param Database $database
@@ -19,6 +19,10 @@ class VariablesProvider
         $this->database = $database;
     }
 
+    /**
+     * @param $key_variable
+     * @return mixed
+     */
     public function getVariable($key_variable)
     {
         $statement = $this->connection->prepare("SELECT * FROM variables WHERE key_variable = :key_variable");

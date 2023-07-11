@@ -1,7 +1,6 @@
 <?php
 
 use tt\Controllers\RegisterController;
-use tt\Models\Variable;
 
 require_once "src/Views/components/header.php";
 /**

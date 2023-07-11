@@ -9,7 +9,7 @@ class SlidesProvider
 
     /** @var \PDO */
     public \PDO $connection;
-    public $database;
+    public Database $database;
     /** @var Slide[] */
     public array $slides;
 
@@ -24,7 +24,10 @@ class SlidesProvider
         $this->slides = [];
     }
 
-    public function getSlides()
+    /**
+     * @return array|Slide[]
+     */
+    public function getSlides(): array
     {
         $statement = $this->connection->prepare("SELECT * FROM slides");
         $statement->execute();
@@ -36,6 +39,10 @@ class SlidesProvider
         return $this->slides;
     }
 
+    /**
+     * @param array $values
+     * @return void
+     */
     private function createSlides(array $values)
     {
         foreach ($values as $slideValues)  {

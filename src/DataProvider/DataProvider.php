@@ -2,22 +2,11 @@
 
 namespace tt\DataProvider;
 
-
 use tt\Helpers\Request;
 use tt\Helpers\Session;
-use tt\Models\Article;
 
 const KEY_DB_ON = "DB_ON";
-const KEY_ARTICLES = "DB_ARTICLES";
-const KEY_SLIDES = "DB_SLIDES";
-const KEY_SERVICES = "DB_SERVICES";
-const KEY_VARIABLES = "DB_VARIABLES";
 const MAIN_MENU = "DB_MAIN_MENU";
-const KEY_TESTIMONIALS = "DB_TESTIMONIALS";
-const KEY_TEAM = "DB_TEAM";
-const KEY_AUTHORS = "DB_AUTHORS";
-const KEY_USERS = "DB_USERS";
-const KEY_COMMENTS = "DB_COMMENTS";
 const KEY_CATEGORIES = "DB_CATEGORIES";
 const KEY_TAGS = "DB_TAGS";
 
@@ -26,15 +15,17 @@ class DataProvider
     public Session $session;
     public Database $database;
     public Request $request;
-    public $variablesProvider;
-    public $testimonialsProvider;
-    public $teamProvider;
-    public $userProvider;
-    public $slidesProvider;
-    public $servicesProvider;
-    public $commentsProvider;
-    public $authorsProvider;
-    public $articleProvider;
+    /** @var \PDO */
+    public \PDO $connection;
+    public VariablesProvider $variablesProvider;
+    public TestimonialsProvider $testimonialsProvider;
+    public TeamProvider $teamProvider;
+    public UserProvider $userProvider;
+    public SlidesProvider $slidesProvider;
+    public ServicesProvider $servicesProvider;
+    public CommentsProvider $commentsProvider;
+    public AuthorsProvider $authorsProvider;
+    public ArticleProvider $articleProvider;
 
     /**
      * @param Database $database
@@ -42,6 +33,7 @@ class DataProvider
     public function __construct(Database $database)
     {
         $this->database = $database;
+        $this->connection = $database->getConnection();
         $this->session = new Session();
         $this->request = new Request();
 
@@ -91,60 +83,6 @@ class DataProvider
     }
 
 
-    // *** Функции для работы со статьями ****************************************************************
-
-
-
-    /**
-     * @return Article[]
-     */
-    public function getActiveArticles(): array
-    {
-        $res = [];
-
-        /* @var $value Article */
-        foreach ($this->session->getData(KEY_ARTICLES) as $value) {
-            if ($value->active) {
-                $res[] = $value;
-            }
-        }
-        return $res;
-    }
-
-    public function deleteArticle($id)
-    {
-        foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
-            if ($value->id == $id) {
-                unset($this->session->getData(KEY_ARTICLES)[$key]);
-            }
-        }
-    }
-
-    /**
-     * @param Article $article
-     * @return void
-     */
-    public function updateArticle(Article $article)
-    {
-        foreach ($this->session->getData(KEY_ARTICLES) as $key => $value) {
-            if ($value->id == $article->id) {
-                $this->session->getData(KEY_ARTICLES)[$key] = $article;
-            }
-        }
-    }
-
-    /**
-     * @param Article $article
-     * @return void
-     */
-
-
-    // *** Функции для работы со слайдами *****************************************************************
-
-
-
-
-
     // *** Функции для работы с главным меню ************************************************************
 
     /**
@@ -174,6 +112,5 @@ class DataProvider
     {
         return $this->session->getData(KEY_TAGS);
     }
-
 
 }

@@ -2,18 +2,23 @@
 
 namespace tt\Controllers;
 
+use tt\DataProvider\ArticleProvider;
 use tt\DataProvider\DataProvider;
-use tt\Helpers\Printer;
-use tt\Models\Article;
 
 
 class ArticlesEditController extends BaseController
 {
+
+    public array $articles;
+    public ?string $hasError;
+    public ArticleProvider $articleProvider;
+
     /**
      * @param DataProvider $dataProvider
      */
     public function __construct(DataProvider $dataProvider)
     {
+        $this->articleProvider = $dataProvider->articleProvider;
         $this->view = "src/Views/articlesEditView.php";
 
         parent::__construct($dataProvider);
@@ -27,6 +32,8 @@ class ArticlesEditController extends BaseController
      */
     public function render(array $param)
     {
+        $this->articles = $this->articleProvider->getArticles();
+
         if (!empty($this->request->getPost())) {
             $this->updateArticles($this->request->getPost());
         }
@@ -39,53 +46,25 @@ class ArticlesEditController extends BaseController
      */
     private function updateArticles(array $request)
     {
-        // Пустой массив содержит приходящие модели
-        // Ключ массива будет id
-        // Значение Моделька
-        $requestArticles = [];
+            foreach ($request as $key => $articleRequest) {
 
-        /** @var mixed $value */
-        foreach ($request as $key => $value) {
-            [$nameField, $numberFieldRaw] = explode("-", $key);
+                $id = $key;
+                $active = isset($articleRequest["active"]) ? "1" : "0";
 
-            $id = (int)$numberFieldRaw;
+                $values = [
+                    "id" => $id,
+                    "active" => $active,
+                    "image" => $articleRequest["image-$id"],
+                    "title" => $articleRequest["title-$id"],
+                    "content" => $articleRequest["content-$id"],
+                    "published_date" => $articleRequest["published_date-$id"],
+                    "author" => $articleRequest["author-$id"],
+                    "tag" => $articleRequest["tag-$id"],
+                    "url_key" => $articleRequest["url_key-$id"]
+                ];
 
-            if (
-                !isset($requestArticles[$id])
-            ) {
-                $requestArticles[$id] = new Article($id, "", "", "", true, "", "", 0);
+                $this->articleProvider->updateConcreteArticle($values);
             }
-
-            switch ($nameField) {
-                case "image":
-                    $requestArticles[$id]->image = $value;
-                    break;
-                case "title":
-                    $requestArticles[$id]->title = $value;
-                    break;
-                case "description":
-                    $requestArticles[$id]->description = $value;
-                    break;
-                case "active":
-                    $requestArticles[$id]->active = true;
-                case "author":
-                    $requestArticles[$id]->author = $value;
-                    break;
-                case "tag":
-                    $requestArticles[$id]->tag = $value;
-                    break;
-                case "amountOfComments":
-                    $requestArticles[$id]->amountOfComments = $value;
-                    break;
-            }
-        }
-
-        /**
-         * @var  Article $value
-         */
-        foreach ($requestArticles as $value) {
-            $this->dataProvider->updateArticle($value);
-        }
 
         header("Location: /articles");
         exit();

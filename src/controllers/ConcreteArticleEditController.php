@@ -1,15 +1,12 @@
 <?php
 
-namespace tt\ControllersNew;
+namespace tt\Controllers;
 
 use tt\DataProvider\ArticleProvider;
 use tt\DataProvider\DataProvider;
-use tt\Helpers\Printer;
-use tt\Helpers\Request;
-use tt\Helpers\Session;
 use tt\Models\Article;
 
-class ConcreteArticleEditController
+class ConcreteArticleEditController extends BaseController
 {
     /**
      * @var Article $article
@@ -19,29 +16,20 @@ class ConcreteArticleEditController
      * @var string|null
      */
     public ?string $hasError;
-    public $dataProvider;
-    public $session;
-    public $articleProvider;
-    public $request;
-    public $view;
-    public $uri;
+    /** @var ArticleProvider  */
+    public ArticleProvider $articleProvider;
 
     /**
-     * @param ArticleProvider $articleProvider
+     * @param DataProvider $dataProvider
      */
     public function __construct(DataProvider $dataProvider)
     {
-        $this->session = new Session();
-        $this->dataProvider = $dataProvider;
         $this->articleProvider = $dataProvider->articleProvider;
-        $this->request = new Request();
         $this->view = "src/Views/concreteArticleEditView.php";
+
+        parent::__construct($dataProvider);
     }
 
-    public function setUri($uri)
-    {
-        $this->uri = $uri;
-    }
     /**
      * @param array $param
      * @return void
@@ -81,7 +69,7 @@ class ConcreteArticleEditController
             return;
         }
 
-        $datetime = date_create()->format('Y-m-d H:i:s');
+        $datetime = date_create()->format("Y-m-d H:i:s");
 
         $id = $this->article->id;
         $url_key = $request["url_key"] ?? "";
@@ -109,6 +97,10 @@ class ConcreteArticleEditController
         exit();
     }
 
+    /**
+     * @param array $values
+     * @return void
+     */
     private function articleCreate(array $values)
     {
         $id = $values["id"];

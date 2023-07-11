@@ -2,8 +2,6 @@
 
 namespace tt\Controllers;
 
-
-use tt\DataProvider\ArticleProvider;
 use tt\DataProvider\DataProvider;
 use tt\Helpers\Request;
 use tt\Helpers\Session;
@@ -16,8 +14,8 @@ class BaseController
     /** @var string */
     protected string $view;
 
-/** @var DataProvider  */
-    public DataProvider  $dataProvider;
+    /** @var DataProvider */
+    public DataProvider $dataProvider;
 
     /** @var Session */
     public Session $session;

@@ -1,7 +1,7 @@
 <?php
 
 use tt\Controllers\BaseController;
-use tt\Models\Variable;
+
 
 /**
  * @var BaseController $obj

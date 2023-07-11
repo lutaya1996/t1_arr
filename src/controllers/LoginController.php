@@ -2,38 +2,29 @@
 
 namespace tt\Controllers;
 
+use tt\DataProvider\Database;
 use tt\DataProvider\DataProvider;
 use tt\DataProvider\UserProvider;
-use tt\Helpers\Printer;
-use tt\Helpers\Request;
-use tt\Helpers\Session;
 use tt\Helpers\ValidateInputs;
 
-class LoginController
+class LoginController extends BaseController
 {
     /** @var string|null */
     public ?string $error;
-    public $view;
-    public $session;
-    public $request;
-    public $dataProvider;
-    public $userProvider;
-    public $uri;
+    public UserProvider $userProvider;
+    public Database $database;
 
+    /**
+     * @param DataProvider $dataProvider
+     */
     public function __construct(DataProvider $dataProvider)
     {
-        $this->session = new Session();
-        $this->dataProvider = $dataProvider;
         $this->userProvider = $dataProvider->userProvider;
-        $this->request = new Request();
         $this->view = "src/Views/loginView.php";
 
-        $this->database = $this->dataProvider->database;
-    }
+        $this->database = $dataProvider->database;
 
-    public function setUri($uri)
-    {
-        $this->uri = $uri;
+        parent::__construct($dataProvider);
     }
 
     /**
@@ -43,7 +34,6 @@ class LoginController
     public function render(array $param)
     {
         if (!empty($this->request->getPost())) {
-
             $this->loginUser($this->request->getPost());
         }
         require $this->view;
@@ -78,6 +68,6 @@ class LoginController
             exit();
         }
         $this->error = "Неправильный логин или пароль";
-        return;
+        die();
     }
 }

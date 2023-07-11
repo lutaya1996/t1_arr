@@ -9,7 +9,7 @@ class ServicesProvider
 
     /** @var \PDO */
     public \PDO $connection;
-    public $database;
+    public Database $database;
     /** @var Service[] */
     public array $services;
 
@@ -24,7 +24,10 @@ class ServicesProvider
         $this->services = [];
     }
 
-    public function getServices()
+    /**
+     * @return array|Service[]
+     */
+    public function getServices(): array
     {
         $statement = $this->connection->prepare("SELECT * FROM services");
         $statement->execute();
@@ -36,6 +39,10 @@ class ServicesProvider
         return $this->services;
     }
 
+    /**
+     * @param array $values
+     * @return void
+     */
     private function createServices(array $values)
     {
         foreach ($values as $serviceValues)  {

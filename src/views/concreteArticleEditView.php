@@ -1,6 +1,6 @@
 <?php
 
-use tt\ControllersNew\ConcreteArticleEditController;
+use tt\Controllers\ConcreteArticleEditController;
 
 
 require_once "src/Views/components/header.php";

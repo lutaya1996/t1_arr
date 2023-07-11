@@ -1,6 +1,6 @@
 <?php
 
-use tt\ControllersNew\ArticleCreateController;
+use tt\Controllers\ArticleCreateController;
 
 
 require_once "src/Views/components/header.php";

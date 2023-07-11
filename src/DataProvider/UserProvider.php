@@ -18,12 +18,16 @@ class UserProvider
     public function __construct(Database $database)
     {
         $this->session = new Session();
-        session_start();
+        $this->session->start();
         $this->database = $database;
         $this->connection = $database->getConnection();
 
     }
 
+    /**
+     * @param string $value
+     * @return mixed
+     */
     public function checkUserInDb(string $value)
     {
         $statement = $this->database->getConnection()->prepare(
@@ -39,6 +43,12 @@ class UserProvider
 
     }
 
+    /**
+     * @param $name
+     * @param $email
+     * @param $password
+     * @return void
+     */
     public function createUser($name, $email, $password)
     {
         $statement = $this->database->getConnection()->prepare(

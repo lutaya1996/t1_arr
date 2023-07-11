@@ -9,7 +9,8 @@ class CommentsProvider
 
     /** @var \PDO */
     public \PDO $connection;
-    public $database;
+
+    public Database $database;
     /** @var Comment[] */
     public array $comments;
 
@@ -24,7 +25,10 @@ class CommentsProvider
         $this->comments = [];
     }
 
-    public function getComments()
+    /**
+     * @return array|Comment[]
+     */
+    public function getComments():array
     {
         $statement = $this->connection->prepare("SELECT * FROM comments");
         $statement->execute();
@@ -36,6 +40,10 @@ class CommentsProvider
         return $this->comments;
     }
 
+    /**
+     * @param array $values
+     * @return void
+     */
     private function createComments(array $values)
     {
         foreach ($values as $commentValues)  {
