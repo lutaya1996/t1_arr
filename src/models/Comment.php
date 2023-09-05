@@ -7,27 +7,27 @@ class Comment
    /**
     *  @var int
     */
-   public $idRelatedToArticle;
+   public int $idRelatedToArticle;
 
    /**
     *  @var string
     */
-   public $image;
+   public string $image;
 
    /**
     *  @var string
     */
-   public $name;
+   public string $name;
 
    /**
     *  @var string
     */
-   public $date;
+   public string $date;
 
    /**
     *  @var string
     */
-   public $text;
+   public string $text;
 
    /**
     * @param int $idRelatedToArticle

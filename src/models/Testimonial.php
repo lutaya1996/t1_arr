@@ -15,6 +15,12 @@ class Testimonial {
    /** @var string  */
    public string $text;
 
+    /**
+     * @param $image
+     * @param $clientName
+     * @param $profession
+     * @param $text
+     */
    public function __construct($image, $clientName, $profession, $text)
    {
       $this->image = $image;

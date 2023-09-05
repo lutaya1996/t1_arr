@@ -12,7 +12,6 @@ class BlogController extends BaseController
     public function __construct(DataProvider $dataProvider)
     {
         $this->view = "src/Views/blogView.php";
-
         parent::__construct($dataProvider);
     }
 }
