@@ -38,5 +38,5 @@
 
 ---
 
-![](https://github.com/lutaya1996/t1_arr/master/assets/img/PetLover.png)
+![](https://github.com/lutaya1996/t1_arr/main/assets/img/PetLover.png)
 
