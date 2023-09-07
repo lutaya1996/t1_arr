@@ -31,7 +31,6 @@
 ---
 - git clone git@github.com:lutaya1996/t1_arr.git
 - Создайте БД "mydb" в MySQL
-- Импортируйте БД "mydb.sql"
 - Запускайте!
 
 ## **Скриншоты**
