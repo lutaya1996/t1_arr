@@ -31,11 +31,11 @@
 ---
 - git clone git@github.com:lutaya1996/t1_arr.git
 - Создайте БД "mydb" в MySQL
-- Импортируйте БД "mydb.sql"
 - Запускайте!
 
 ## **Скриншоты**
 
 ---
 
-![](C:\OSPanel\domains\t1.arr\assets\img\PetLover.png)
+![IMG](https://github.com/lutaya1996/t1_arr/raw/main/assets/img/PetLover.png)
+
