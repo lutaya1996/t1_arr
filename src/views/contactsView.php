@@ -20,21 +20,21 @@ $variableProvider = $obj->dataProvider->variablesProvider;
       <div class="col-12 col-sm-8 mb-5">
          <div class="contact-form">
             <div id="success"></div>
-            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+            <form name="sentMessage" id="contactForm"  method="POST" action="http://cat-blog/contacts">
                <div class="control-group">
-                  <input type="text" class="form-control p-4" id="name" placeholder="Ваше имя" required="required" data-validation-required-message="Please enter your name" />
+                  <input type="text" class="form-control p-4" name="name" placeholder="Ваше имя" required="required" data-validation-required-message="Please enter your name" />
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <input type="email" class="form-control p-4" id="email" placeholder="Ваш Email" required="required" data-validation-required-message="Please enter your email" />
+                  <input type="email" class="form-control p-4" name="email" placeholder="Ваш Email" required="required" data-validation-required-message="Please enter your email" />
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <input type="text" class="form-control p-4" id="number" placeholder="Телефон" required="required" data-validation-required-message="Please enter a number" />
+                  <input type="text" class="form-control p-4" name="number" placeholder="Телефон" required="required" data-validation-required-message="Please enter a number" />
                   <p class="help-block text-danger"></p>
                </div>
                <div class="control-group">
-                  <textarea class="form-control p-4" rows="6" id="message" placeholder="Сообщение" required="required" data-validation-required-message="Please enter your message"></textarea>
+                  <textarea class="form-control p-4" rows="6" name="message" placeholder="Сообщение" required="required" data-validation-required-message="Please enter your message"></textarea>
                   <p class="help-block text-danger"></p>
                </div>
                <div class="text-center">
